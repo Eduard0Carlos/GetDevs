@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class Person
+    public class Person : EntityBase
     {
         public int Id { get; protected set; }
         public string Name { get; protected set; }
@@ -12,6 +13,7 @@ namespace Domain.Entities
         public DateTime BirthDate { get; protected set; }
         public Resume Resume { get; set; }
         public int ResumeId { get; set; }
+        public ICollection<Announcement> Announcements { get; set; }
 
         public int Age { get; }
 
@@ -24,8 +26,6 @@ namespace Domain.Entities
             this.Cep = cep;
             this.PhoneNumber = phoneNumber;
             this.BirthDate = birthDate;
-            var test = this.Name;
-            this.Name = "ljasdfghagfas";
         }
 
         public virtual void SetName(string name)

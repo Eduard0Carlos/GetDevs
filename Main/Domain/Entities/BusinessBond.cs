@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class BusinessBond
+    public class BusinessBond : EntityBase
     {
-        public int Id { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public string CompanyName { get; set; }
-        public string Role { get; set; }
+        public int Id { get; protected set; }
+        public DateTime StartDate { get; protected set; }
+        public DateTime EndDate { get; protected set; }
+        public string CompanyName { get; protected set; }
+        public string Role { get; protected set; }
+        public ICollection<Resume> Resumes { get; protected set; }
     }
 }

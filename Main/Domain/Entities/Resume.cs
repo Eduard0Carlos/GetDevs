@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class Resume
+    public class Resume : EntityBase
     {
-        public int Id { get; set; }
-        public Person Person { get; set; }
-        public int PersonId { get; set; }
-        public Skill Skills { get; set; }
-        public ICollection<Education> Educations { get; set; }
-        public ICollection<Idiom> Idioms { get; set; }
-        public ICollection<BusinessBond> BusinessBonds { get; set; }
+        public int Id { get; protected set; }
+        public Person Person { get; protected set; }
+        public int PersonId { get; protected set; }
+        public Skill Skills { get; protected set; }
+        public ICollection<Education> Educations { get; protected set; }
+        public ICollection<Idiom> Idioms { get; protected set; }
+        public ICollection<BusinessBond> BusinessBonds { get; protected set; }
     }
 }
