@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using AnnotationValidator.Factory;
+using Shared.Results;
 
 namespace AnnotationValidator.Enxtensions
 {

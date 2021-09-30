@@ -1,6 +1,8 @@
-﻿using BusinessLogical;
+﻿using AnnotationValidator;
 using DataAccessObject;
 using Domain.Entities;
+using Domain.Interfaces;
+using Shared.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class PersonService : BaseValidator<Person>
+    public class PersonService : BaseValidator<Person>, IEntityService<Person>
     {
-        public void Insert(Person person)
+        public Result Insert(Person person)
         {
             var response = this.Validate(person);
             if (!response.Success)
             {
-                return;
+                return response;
             }
 
             try
@@ -25,21 +27,22 @@ namespace Services
                     db.People.Add(person);
                     db.SaveChanges();
                 }
+                return ResultFactory.CreateSuccessResult();
             }
             catch (Exception)
             {
-                return;
+                return ResultFactory.CreateFailureResult();
             }
            
         }
 
-        public List<Person> GetAll()
+        public DataResult<Person> GetAll()
         {
             try
             {
                 using (var db = new ErpDbContext())
                 {
-                    return db.People.ToList();
+                    return ResultFactory.CreateSuccessDataResult(db.People.ToList());
                 }
             }
             catch (Exception)

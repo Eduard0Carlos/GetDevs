@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using Shared.Results;
 
 namespace AnnotationValidator
 {
@@ -95,7 +96,7 @@ namespace AnnotationValidator
         {
             if (this._erros.Length != 0)
             {
-                ValidationResult response = new ValidationResult() { Message = this._erros.ToString(), Success = false, ErrorConut = this._erros.Length };
+                ValidationResult response = new ValidationResult() { Message = this._erros.ToString(), Success = false, ErrorCount = this._erros.Length };
                 this._erros.Clear();
                 return response;
             }
