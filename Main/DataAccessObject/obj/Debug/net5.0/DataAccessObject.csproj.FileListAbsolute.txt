@@ -1,5 +1,0 @@
-C:\Users\moc\Source\Repos\Eduard0Carlos\GetDevs\Main\DataAccessObject\obj\Debug\net5.0\DataAccessObject.csproj.AssemblyReference.cache
-C:\Users\moc\Source\Repos\Eduard0Carlos\GetDevs\Main\DataAccessObject\obj\Debug\net5.0\DataAccessObject.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\moc\Source\Repos\Eduard0Carlos\GetDevs\Main\DataAccessObject\obj\Debug\net5.0\DataAccessObject.AssemblyInfoInputs.cache
-C:\Users\moc\Source\Repos\Eduard0Carlos\GetDevs\Main\DataAccessObject\obj\Debug\net5.0\DataAccessObject.AssemblyInfo.cs
-C:\Users\moc\Source\Repos\Eduard0Carlos\GetDevs\Main\DataAccessObject\obj\Debug\net5.0\DataAccessObject.csproj.CoreCompileInputs.cache
