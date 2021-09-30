@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AnnotationValidator\AnnotationValidator.csproj" />
+    <ProjectReference Include="..\DataAccessObject\DataAccessObject.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
