@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rD+AkeQAtKNdjVr14GNgSRky7GmrdWGDOWW0VhkgrLhCsQbrvLCaqsbfo4yeiea51b5tYYJnJ4JIhOeVDp9EMQ==",
+  "dgSpecHash": "K/CE0ZgHRNcYEw4NPoosP8KJ1sTsQiVM0OT1ulIS2EAAjg0Dh3Rc8zlFuXIaG3ozHjTO93Qj2e/xfgU9Z66jiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\moc\\Source\\Repos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj",
+  "projectFilePath": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\moc\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\moc\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
