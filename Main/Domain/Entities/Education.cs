@@ -11,7 +11,6 @@ namespace Domain.Entities
         public DateTime EndDate { get; protected set; }
         public Degree Degree { get; protected set; }
         public ICollection<Announcement> Announcements { get; protected set; }
-        public ICollection<Person> People { get; protected set; }
         public ICollection<Resume> Resumes { get; protected set; }
     }
 }

@@ -5,7 +5,6 @@ namespace Domain.Entities
 {
     public class Person : EntityBase
     {
-        public int Id { get; protected set; }
         public string Name { get; protected set; }
         public string Cpf { get; protected set; }
         public string Cep { get; protected set; }
