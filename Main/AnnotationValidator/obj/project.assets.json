@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj",
+      "projectUniqueName": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj",
       "projectName": "AnnotationValidator",
-      "projectPath": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj",
+      "projectPath": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj",
       "packagesPath": "C:\\Users\\moc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\obj\\",
+      "outputPath": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -68,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-rc.1.21463.6\\RuntimeIdentifierGraph.json"
       }
     }
   }

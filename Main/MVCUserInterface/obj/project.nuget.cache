@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "K/CE0ZgHRNcYEw4NPoosP8KJ1sTsQiVM0OT1ulIS2EAAjg0Dh3Rc8zlFuXIaG3ozHjTO93Qj2e/xfgU9Z66jiQ==",
+  "dgSpecHash": "pptZsk8Bv/0x6JYv2E48o/hRApzhEvCeWzvTfcOc7gX6utPsSPb3HvJVcQFuSWMnXMHDGGfL3CJHRLTKpsRL4g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj",
+  "projectFilePath": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\moc\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\moc\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
@@ -22,7 +22,8 @@
     "C:\\Users\\moc\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\moc\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
     "C:\\Users\\moc\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
-    "C:\\Users\\moc\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512"
+    "C:\\Users\\moc\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
+    "C:\\Users\\moc\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.9\\microsoft.netcore.app.host.win-x64.5.0.9.nupkg.sha512"
   ],
   "logs": []
 }
