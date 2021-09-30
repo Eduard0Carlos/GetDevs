@@ -5,7 +5,6 @@ namespace Domain.Entities
 {
     public class Resume : EntityBase
     {
-        public int Id { get; protected set; }
         public Person Person { get; protected set; }
         public int PersonId { get; protected set; }
         public Skill Skills { get; protected set; }

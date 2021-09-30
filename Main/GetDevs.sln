@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
@@ -11,6 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessObject", "DataAcc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{B008FAC6-6B34-4A6C-98D0-519BEEF6B4DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{485D5EB8-EC43-458E-8754-550E47B0A50A}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnotationValidator", "AnnotationValidator\AnnotationValidator.csproj", "{6A06D8D1-5C62-4202-B7C9-59F1DBD15D8A}"
 EndProject
 Global
@@ -35,6 +35,10 @@ Global
 		{B008FAC6-6B34-4A6C-98D0-519BEEF6B4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B008FAC6-6B34-4A6C-98D0-519BEEF6B4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B008FAC6-6B34-4A6C-98D0-519BEEF6B4DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{485D5EB8-EC43-458E-8754-550E47B0A50A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{485D5EB8-EC43-458E-8754-550E47B0A50A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{485D5EB8-EC43-458E-8754-550E47B0A50A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{485D5EB8-EC43-458E-8754-550E47B0A50A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6A06D8D1-5C62-4202-B7C9-59F1DBD15D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A06D8D1-5C62-4202-B7C9-59F1DBD15D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A06D8D1-5C62-4202-B7C9-59F1DBD15D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
