@@ -1,5 +1,5 @@
-﻿using BusinessLogical.Attributes;
-using BusinessLogical.Enxtensions;
+﻿using AnnotationValidator.Attributes;
+using AnnotationValidator.Enxtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace BusinessLogical
+namespace AnnotationValidator
 {
     public class BaseValidator<Entity>
     {
@@ -16,7 +16,6 @@ namespace BusinessLogical
         protected void AddErro(string erro)
         {
             this._erros.AppendLine(erro);
-            //kdeshjfjsdhfkjhsdf;
         }
         public virtual ValidationResult Validate(Entity entity)
         {
@@ -29,7 +28,7 @@ namespace BusinessLogical
                 var validationAttribute = validationProperty?.GetCustomAttribute<ValidationAttribute>();
                 if (validationAttribute != null)
                 {
-                    var validationMethod = validationAttribute.ValidationMehtod;
+                    var validationMethod = validationAttribute.GetValidationMethod();
                     if (validationAttribute.IsRequired && (property.GetValue(entity) == default || string.IsNullOrWhiteSpace((property.GetValue(entity) as string))))
                     {
                         results.Add(new ValidationResult($"{property.Name} deve ser informado", false));
@@ -43,7 +42,7 @@ namespace BusinessLogical
                         }
                         else
                         {
-                            validation = ((validationMethod.Invoke(Activator.CreateInstance(validationAttribute.ValidationClass), new[] { property.GetValue(entity) }) as ValidationResult));
+                            validation = ((validationMethod.Invoke(Activator.CreateInstance(validationAttribute.GetValidationClass()), new[] { property.GetValue(entity) }) as ValidationResult));
                         }
                         if (!validation.Success)
                         {

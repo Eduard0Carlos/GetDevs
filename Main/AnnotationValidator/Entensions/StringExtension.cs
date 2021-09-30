@@ -6,9 +6,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using BusinessLogical.Factory;
+using AnnotationValidator.Factory;
 
-namespace BusinessLogical.Enxtensions
+namespace AnnotationValidator.Enxtensions
 {
     public static class StringExtension
     {

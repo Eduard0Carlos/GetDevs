@@ -6,14 +6,27 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogical.Attributes
+namespace AnnotationValidator.Attributes
 {
     [System.AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
-    sealed class ValidationAttribute : Attribute
+    public sealed class ValidationAttribute : Attribute
     {
-        public string MethodName { get; set; }
-        public Type ValidationClass { get; set; }
-        public int MaxLenght { get; set; } = 100;
+        private string _methodName { get; set; }
+        private Type _validationClass { get; set; }
+
+        private int _maxLenght = 100;
+        public int MaxLenght
+        {
+            get
+            {
+                return this._maxLenght;
+            }
+            set
+            {
+                this._maxLenght = value;
+            }
+        }
+
         public int MinLenght { get; set; }
         public bool HasNormalize { get; set; }
         public bool HasHash { get; set; }
@@ -21,23 +34,28 @@ namespace BusinessLogical.Attributes
         public bool IsEmail { get; set; }
         public bool IsCPF { get; set; }
         public bool IsTelefone { get; set; }
-        public bool IsFixedLength { get; set; }
+        internal bool IsFixedLength { get; set; }
         public bool LettersOnly { get; set; }
         public int FixedLength { get; set; }
-        public MethodInfo ValidationMehtod
-        {
-            get
-            {
-                return this.ValidationClass?.GetMethod(this.MethodName);
-            }
-        }
         public ValidationAttribute()
         {
+            if (this.FixedLength != default)
+            {
+                this.IsFixedLength = true;
+            }
         }
         public ValidationAttribute(string validationMethodName, Type validationClass)
         {
-            this.MethodName = validationMethodName;
-            this.ValidationClass = validationClass;
+            this._methodName = validationMethodName;
+            this._validationClass = validationClass;
+        }
+        public MethodInfo? GetValidationMethod()
+        {
+            return this._validationClass?.GetMethod(this._methodName);
+        }
+        public Type GetValidationClass()
+        {
+            return this._validationClass;
         }
     }
 }
