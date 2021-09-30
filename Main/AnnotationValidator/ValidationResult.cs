@@ -10,6 +10,7 @@ namespace BusinessLogical
     {
         public string Message { get; set; }
         public bool Success { get; set; }
+        public int ErrorConut { get; set; }
 
         public ValidationResult(string message, bool success)
         {
