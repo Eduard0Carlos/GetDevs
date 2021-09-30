@@ -16,7 +16,6 @@ namespace BusinessLogical
         protected void AddErro(string erro)
         {
             this._erros.AppendLine(erro);
-            //kdeshjfjsdhfkjhsdf;
         }
         public virtual ValidationResult Validate(Entity entity)
         {
@@ -96,7 +95,7 @@ namespace BusinessLogical
         {
             if (this._erros.Length != 0)
             {
-                ValidationResult response = new ValidationResult() { Message = this._erros.ToString(), Success = false };
+                ValidationResult response = new ValidationResult() { Message = this._erros.ToString(), Success = false, ErrorConut = this._erros.Length };
                 this._erros.Clear();
                 return response;
             }
