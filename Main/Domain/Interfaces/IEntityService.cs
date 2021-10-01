@@ -10,5 +10,6 @@ namespace Domain.Interfaces
         Result Delete(TEntity entity);
         SingleResult<TEntity> GetById(int id);
         DataResult<TEntity> GetAll();
+
     }
 }
