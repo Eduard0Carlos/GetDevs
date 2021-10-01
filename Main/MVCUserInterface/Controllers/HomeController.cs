@@ -1,14 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVCUserInterface.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Net.Http;
-using System.IO;
-using System.Text.Json;
 
 namespace MVCUserInterface.Controllers
 {
@@ -23,10 +17,6 @@ namespace MVCUserInterface.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var test = await new HttpClient().GetAsync("http://localhost:30442/WeatherForecast");
-            var contentStream = test.Content.ReadAsStream();
-            var textReader = new StreamReader(contentStream);
-            var contentString = textReader.ReadToEnd();
             return View();
         }
 
