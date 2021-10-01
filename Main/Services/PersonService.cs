@@ -2,19 +2,18 @@
 using DataAccessObject;
 using Domain.Entities;
 using Domain.Interfaces;
+using Services.Utils;
 using Shared.Results;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Services
 {
     public class PersonService : BaseValidator<Person>, IEntityService<Person>
     {
-        public Result Insert(Person person)
+        public Result Insert(Person entity)
         {
-            var response = this.Validate(person);
+            var response = this.Validate(entity);
             if (!response.Success)
             {
                 return response;
@@ -24,14 +23,14 @@ namespace Services
             {
                 using (var db = new ErpDbContext())
                 {
-                    db.People.Add(person);
+                    db.People.Add(entity);
                     db.SaveChanges();
                 }
                 return ResultFactory.CreateSuccessResult();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return ResultFactory.CreateFailureResult();
+                return Error.asdfg(ex);
             }
            
         }
@@ -45,28 +44,36 @@ namespace Services
                     return ResultFactory.CreateSuccessDataResult(db.People.ToList());
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return ResultFactory.CreateSuccessDataResult<Person>();
             }  
         }
 
-        public Person GetById(int id)
+        public Result Update(Person entity)
         {
+            var response = this.Validate(entity);
+            if (!response.Success)
+            {
+                return response;
+            }
+
             try
             {
                 using (var db = new ErpDbContext())
                 {
-                    return db.People.Find(id);
+                    db.People.Update(entity);
+                    db.SaveChanges();
+                    return ResultFactory.CreateSuccessResult();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return Error.asdfg(ex);
             }
         }
-        
-        public void Delete(int id)
+
+        public Result Delete(int id)
         {
             try
             {
@@ -74,34 +81,44 @@ namespace Services
                 {
                     db.People.Remove(db.People.Find(id));
                     db.SaveChanges();
+                    return ResultFactory.CreateSuccessResult();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return Error.asdfg(ex);
             }
         }
 
-        public void Update(Person person)
+        public Result Delete(Person entity)
         {
-            var response = this.Validate(person);
-            if (!response.Success)
-            {
-                return;
-            }
-
             try
             {
-                using(var db = new ErpDbContext())
+                using (var db = new ErpDbContext())
                 {
-                    db.People.Update(person);
+                    db.People.Remove(entity);
                     db.SaveChanges();
+                    return ResultFactory.CreateSuccessResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                return Error.asdfg(ex);
+            }
+        }
+
+        public SingleResult<Person> GetById(int id)
+        {
+            try
+            {
+                using (var db = new ErpDbContext())
+                {
+                    return ResultFactory.CreateSuccessSingleResult(db.People.Find(id));
                 }
             }
             catch (Exception)
             {
-
-                throw;
+                return ResultFactory.CreateFailureSingleResult<Person>();
             }
         }
     }
