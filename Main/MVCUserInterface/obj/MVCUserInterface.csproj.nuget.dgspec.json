@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj": {}
+    "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj": {
+    "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj",
+        "projectUniqueName": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj",
         "projectName": "MVCUserInterface",
-        "projectPath": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj",
+        "projectPath": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\MVCUserInterface.csproj",
         "packagesPath": "C:\\Users\\moc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\obj\\",
+        "outputPath": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\MVCUserInterface\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

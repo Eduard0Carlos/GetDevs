@@ -6,7 +6,6 @@ namespace Domain.Entities
 {
     public class Education : EntityBase
     {
-        public int Id { get; protected set; }
         public string InstitutionName { get; protected set; }
         public DateTime StartDate { get; protected set; }
         public DateTime EndDate { get; protected set; }

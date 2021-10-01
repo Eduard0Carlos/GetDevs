@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj": {}
+    "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj": {
+    "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj",
+        "projectUniqueName": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj",
         "projectName": "AnnotationValidator",
-        "projectPath": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj",
+        "projectPath": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\AnnotationValidator.csproj",
         "packagesPath": "C:\\Users\\moc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moc\\source\\repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\obj\\",
+        "outputPath": "C:\\Users\\moc\\Source\\Repos\\Eduard0Carlos\\GetDevs\\Main\\AnnotationValidator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
