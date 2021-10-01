@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    public class Resume : EntityBase
+    public class Resume : EntityBase    
     {
         public Person Person { get; protected set; }
         public int PersonId { get; protected set; }
