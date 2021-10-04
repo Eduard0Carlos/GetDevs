@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "~/Views/Shared/GuestLayout.cshtml";
+    ViewData["Title"] = "Test Page";
+}
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <div class="container">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        </ol>
+    </div>
+
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img class="img-responsive" src="~/img/1920x1080/01.jpg" alt="Slider Image">
+            <div class="container">
+                <div class="carousel-centered">
+                    <div class="margin-b-40">
+                        <h1 class="carousel-title">Cadastre-se</h1>
+                        <p>Você só precisa preencher algumas informações e nós fazemos o resto. <br />  Buscaremos a vaga ideal para você no mercado de trabalho.</p>
+                    </div>
+                    <a asp-controller="test" asp-action="signup" class="btn-theme btn-theme-sm btn-white-brd text-uppercase">Confira</a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="img-responsive" src="~/img/1920x1080/02.jpg" alt="Slider Image">
+            <div class="container">
+                <div class="carousel-centered">
+                    <div class="margin-b-40">
+                        <h2 class="carousel-title">Quem Somos</h2>
+                        <p>Uma startup com o objetivo de facilitar a busca por oportunidades <br /> Conectamos você com o mundo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-color-sky-light" data-auto-height="true">
+    <div class="content-lg container">
+        <div class="row row-space-1 margin-b-2">
+            <div class="col-sm-4 sm-margin-b-2">
+                <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="service-icon icon-users"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Pessoas</h3>
+                            <p class="margin-b-5">Veja o perfil de milhares de pessoas de todo o Brasil</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-space-1 margin-b-2">
+                <div class="col-sm-4 sm-margin-b-2">
+                    <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
+                        <div class="service" data-height="height">
+                            <div class="service-element">
+                                <i class="service-icon icon-briefcase"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3>Vagas</h3>
+                                <p class="margin-b-5">Confira todas as vagas disponíveis no momento</p>
+                            </div>
+                            <a href="#" class="content-wrapper-link"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-space-1 margin-b-2">
+                    <div class="col-sm-4 sm-margin-b-2">
+                        <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
+                            <div class="service" data-height="height">
+                                <div class="service-element">
+                                    <i class="service-icon icon-globe"></i>
+                                </div>
+                                <div class="service-info">
+                                    <h3>Empresas</h3>
+                                    <p class="margin-b-5">Cadastre sua empresa e comece a anúnciar suas vagas!</p>
+                                </div>
+                                <a href="#" class="content-wrapper-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-lg container" data-data-auto-height="true">
+    <div class="row">
+        <h2>Nossa Missão</h2>
+        <p>Temos como objetivo facilitar a busca por uma oportunidade no mercado de trabalho.</p>
+    </div>
+</div>

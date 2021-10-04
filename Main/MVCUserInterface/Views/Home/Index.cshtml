@@ -2,7 +2,93 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <div class="container">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        </ol>
+    </div>
+
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img class="img-responsive" src="~/img/1920x1080/01.jpg" alt="Slider Image">
+            <div class="container">
+                <div class="carousel-centered">
+                    <div class="margin-b-40">
+                        <h1 class="carousel-title">Vagas</h1>
+                        <p>Um sistema pensado em conectar pessoas com sua vaga ideal. <br /> Em qualquer hora, em qualquer lugar. Tudo em suas mãos.</p>
+                    </div>
+                    <a href="#" class="btn-theme btn-theme-sm btn-white-brd text-uppercase">Confira</a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="img-responsive" src="~/img/1920x1080/02.jpg" alt="Slider Image">
+            <div class="container">
+                <div class="carousel-centered">
+                    <div class="margin-b-40">
+                        <h2 class="carousel-title">Empresas</h2>
+                        <p>Empresas anúnciam suas oportunidades e nós cuidamos do resto. <br /> Conectamos você com o mundo.</p>
+                    </div>
+                    <a href="#" class="btn-theme btn-theme-sm btn-white-brd text-uppercase">Confira</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="bg-color-sky-light" data-auto-height="true">
+    <div class="content-lg container">
+        <div class="row row-space-1 margin-b-2">
+            <div class="col-sm-4 sm-margin-b-2">
+                <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="service-icon icon-users"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Pessoas</h3>
+                            <p class="margin-b-5">Veja o perfil de milhares de pessoas de todo o Brasil</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-space-1 margin-b-2">
+                <div class="col-sm-4 sm-margin-b-2">
+                    <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
+                        <div class="service" data-height="height">
+                            <div class="service-element">
+                                <i class="service-icon icon-briefcase"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3>Vagas</h3>
+                                <p class="margin-b-5">Confira todas as vagas disponíveis no momento</p>
+                            </div>
+                            <a href="#" class="content-wrapper-link"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-space-1 margin-b-2">
+                <div class="col-sm-4 sm-margin-b-2">
+                    <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
+                        <div class="service" data-height="height">
+                            <div class="service-element">
+                                <i class="service-icon icon-globe"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3>Empresas</h3>
+                                <p class="margin-b-5">Cadastre sua empresa e comece a anúnciar suas vagas!</p>
+                            </div>
+                            <a href="#" class="content-wrapper-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 831px"></div>

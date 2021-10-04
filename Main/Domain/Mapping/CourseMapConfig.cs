@@ -11,7 +11,7 @@ namespace DataAccessObject.Mapping
             builder.Property(c => c.Name).IsRequired().IsUnicode(false).HasMaxLength(100);
             builder.Property(c => c.Degree).IsRequired();
             builder.Property(c => c.InstitutionName).IsRequired().IsUnicode(false).HasMaxLength(100);
-            builder.HasMany(c => c.People).WithMany(p => p.Courses)
+            builder.HasMany(c => c.People).WithMany(p => p.Courses);
         }
     }
 }
