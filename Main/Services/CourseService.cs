@@ -3,6 +3,7 @@ using DataAccessObject;
 using Domain.Entities;
 using Domain.Interfaces;
 using Services.Utils;
+using Services.ValidationModel;
 using Shared.Results;
 using System;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace Services
 {
     public class CourseService : BaseValidator<Course>, IEntityService<Course>
     {
+        public CourseService()
+        {
+            this.ValidationModel = typeof(CourseValidationModel);
+        }
+
         public Result Delete(int id)
         {
             try
