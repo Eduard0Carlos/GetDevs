@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Services.ValidationModel
 {
-    public class AnnouncementValidationModel
+    internal class AnnouncementValidationModel
     {
         [Validation(HasNormalize = true, IsRequired = true, MinLenght = 5, MaxLenght = 100)]
         public string Title { get; protected set; }
