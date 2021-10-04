@@ -20,5 +20,11 @@ namespace MVCUserInterface.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Choose()
+        {
+            return View();
+        }
     }
 }

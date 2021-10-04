@@ -73,17 +73,48 @@ form {
 }
 
 .half-1 {
-    display: inline !important;
-    width: 48.6% !important;
-    margin-right: 15px !important;
+    margin-right: 7.5px
 }
 .half-2 {
-    display: inline !important;
-    width: 49% !important;
+    margin-left: 7.5px;
 }
 
 .form-date {
-    padding: 15px!important;
+    padding: 6px 12px !important;
+    background: rgba(0,0,0,.40) !important;
+    border: 0px solid #AF1100 !important;
+    border-radius: 6px !important;
+    color: #FFF !important;
+    margin-top: 15px !important;
+}
+
+.form-date:focus {
+    border: 2px solid #AF1100 !important;
+}
+
+.btn-choose {
+    display: block;
+    text-align: center !important;
+    background-color: #AF1100 !important;
+    border-radius: 6px !important;
+    padding: 6px 10px 6px 10px !important;
+    margin: 15px 0 15px 0 !important;
+    color: #FFF;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: Hind,sans-serif;
+}
+
+.btn-choose:hover {
+    background-color: #680800!important;
+    color: #FFF;
+}
+
+.margin-topbottom-15 {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 h1 {
