@@ -16,7 +16,7 @@ namespace Services
         {
             this.ValidationModel = typeof(CompanyValidationModel);
         }
-        ]
+
         public Result Delete(int id)
         {
             try
