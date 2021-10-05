@@ -11,6 +11,10 @@ namespace Services
 {
     public class ResumeService : BaseValidator<Resume>, IEntityService<Resume>
     {
+        public ResumeService()
+        {
+            this.ValidationModel = typeof(ResumeValidationModel);
+        }
         public Result Delete(int id)
         {
             try

@@ -11,6 +11,10 @@ namespace Services
 {
     public class EducationServices : BaseValidator<Education>, IEntityService<Education>
     {
+        public EducationServices()
+        {
+            this.ValidationModel = typeof(EducationValidationModel);
+        }
         public Result Delete(int id)
         {
             try

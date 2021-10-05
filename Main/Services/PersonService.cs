@@ -3,6 +3,7 @@ using DataAccessObject;
 using Domain.Entities;
 using Domain.Interfaces;
 using Services.Utils;
+using Services.ValidationModel;
 using Shared.Results;
 using System;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace Services
 {
     public class PersonService : BaseValidator<Person>, IEntityService<Person>
     {
+        public PersonService()
+        {
+            this.ValidationModel = typeof(PersonValidationModel);
+        }
+
         public Result Insert(Person entity)
         {
             var response = this.Validate(entity);

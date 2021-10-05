@@ -1,59 +1,22 @@
 ﻿using AnnotationValidator;
 using DataAccessObject;
 using Domain.Entities;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
 using Domain.Interfaces;
 using Services.Utils;
+using Services.ValidationModel;
 using Shared.Results;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
 using System;
 using System.Linq;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
-using System.Buffers.Binary;
 
 namespace Services
 {
     internal class CompanyService : BaseValidator<Company>, IEntityService<Company>
     {
+        public CompanyService()
+        {
+            this.ValidationModel = typeof(CompanyValidationModel);
+        }
+        ]
         public Result Delete(int id)
         {
             try
