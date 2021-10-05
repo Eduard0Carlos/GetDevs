@@ -12,4 +12,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebRankingML\WebRankingML.csproj" />
+  </ItemGroup>
+
 </Project>
