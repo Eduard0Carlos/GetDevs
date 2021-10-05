@@ -12,6 +12,8 @@ namespace AnnotationValidator
 {
     public class BaseValidator<Entity>
     {
+        private bool _isValidatePropertyActive;
+        
         public Type ValidationModel { get; set; }
         private StringBuilder _erros = new StringBuilder();
         protected void AddErro(string erro)
@@ -87,6 +89,11 @@ namespace AnnotationValidator
                         }
                     }
                 }
+                if (this._isValidatePropertyActive)
+                {
+                    this._isValidatePropertyActive = false;
+                    break;
+                }
             }
             this.ValidateResult(results.ToArray());
             return this.CheckErros();
@@ -119,6 +126,11 @@ namespace AnnotationValidator
             var md5data = md5.ComputeHash(password);
             var hashedPassword = ASCIIEncoding.ASCII.GetString(md5data);
             return hashedPassword;
+        }
+        public virtual ValidationResult ValidateProperty(string propertyName, Entity entity)
+        {
+            this._isValidatePropertyActive = true;
+            return this.Validate(entity);
         }
     }
 }
