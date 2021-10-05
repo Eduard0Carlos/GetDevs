@@ -8,8 +8,9 @@ namespace Domain.Entities
         public Person Person { get; protected set; }
         public int PersonId { get; protected set; }
         public Skill Skills { get; protected set; }
+        public Degree Degrees { get; protected set; }
         public ICollection<Education> Educations { get; protected set; }
-        public ICollection<Idiom> Idioms { get; protected set; }
+        public Language Languages { get; protected set; }
         public ICollection<BusinessBond> BusinessBonds { get; protected set; }
     }
 }
