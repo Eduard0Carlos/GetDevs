@@ -12,6 +12,8 @@ namespace AnnotationValidator
 {
     public class BaseValidator<Entity>
     {
+        private bool _isValidatePropertyActive;
+        private string _vlaidationPropertyName;
         public Type ValidationModel { get; set; }
         private StringBuilder _erros = new StringBuilder();
         protected void AddErro(string erro)
@@ -24,8 +26,16 @@ namespace AnnotationValidator
             List<ValidationResult> results = new List<ValidationResult>();
             PropertyInfo[] validationProperties = this.ValidationModel.GetProperties();
             foreach (var property in properties)
-            { 
-                var validationProperty = validationProperties.ToList().Find(item => item.Name == property.Name);
+            {
+                PropertyInfo validationProperty;
+                if (this._isValidatePropertyActive)
+                {
+                    validationProperty = validationProperties.ToList().Find(item => item.Name == this._vlaidationPropertyName);
+                }
+                else
+                {
+                    validationProperty = validationProperties.ToList().Find(item => item.Name == property.Name);
+                }
                 var validationAttribute = validationProperty?.GetCustomAttribute<ValidationAttribute>();
                 if (validationAttribute != null)
                 {
@@ -87,6 +97,11 @@ namespace AnnotationValidator
                         }
                     }
                 }
+                if (this._isValidatePropertyActive)
+                {
+                    this._isValidatePropertyActive = false;
+                    break;
+                }
             }
             this.ValidateResult(results.ToArray());
             return this.CheckErros();
@@ -119,6 +134,12 @@ namespace AnnotationValidator
             var md5data = md5.ComputeHash(password);
             var hashedPassword = ASCIIEncoding.ASCII.GetString(md5data);
             return hashedPassword;
+        }
+        public virtual ValidationResult ValidateProperty(string propertyName, Entity entity)
+        {
+            this._isValidatePropertyActive = true;
+            this._vlaidationPropertyName = propertyName;
+            return this.Validate(entity);
         }
     }
 }
