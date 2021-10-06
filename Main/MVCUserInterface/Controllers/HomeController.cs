@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using MVCUserInterface.Models;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using WebRankingML;
 
 namespace MVCUserInterface.Controllers
 {
@@ -17,6 +18,7 @@ namespace MVCUserInterface.Controllers
 
         public IActionResult Index()
         {
+            AIContext.Rank(1);
             return View();
         }
 
