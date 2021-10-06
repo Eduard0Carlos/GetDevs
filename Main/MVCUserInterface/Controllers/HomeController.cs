@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVCUserInterface.Models;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using WebRankingML;
@@ -18,7 +19,7 @@ namespace MVCUserInterface.Controllers
 
         public IActionResult Index()
         {
-            AIContext.Rank(1);
+            var temp = AIContext.Rank(1, AIContext.PrepareData(new List<AIResume>()));
             return View();
         }
 

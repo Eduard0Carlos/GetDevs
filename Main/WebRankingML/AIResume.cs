@@ -8,7 +8,8 @@ namespace WebRankingML
 {
     public class AIResume
     {
-        public int GroupId { get; protected set; }
+        public uint Label { get; set; }
+        public uint GroupId { get; protected set; }
         public float Skills { get; protected set; }
         public float Educations { get; protected set; }
         public float Idioms { get; protected set; }
