@@ -1,4 +1,5 @@
 ﻿using AnnotationValidator.Attributes;
+using Services.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Services.ValidationModel
         public string Url { get; protected set; }
         [Validation(LettersOnly = true, MaxLenght = 100, MinLenght = 3, IsRequired = true)]
         public string Sector { get; protected set; }
+        [Validation("ValidateCnpj", typeof(CommonValidation))]
+        public string Cnpj { get; protected set; }  
         [Validation(IsRequired = true)]
         public int CompanySize { get; protected set; }
         [Validation(IsRequired = true, MaxLenght = 600)]
