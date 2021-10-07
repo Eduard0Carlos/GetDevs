@@ -12,7 +12,7 @@ namespace DataAccessObject
         public DbSet<Course> Courses { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Idiom> Idioms { get; set; }
-        public DbSet<Person> People { get; set; }
+        public DbSet<Candidate> Candidates { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -15,6 +15,6 @@ namespace Domain.Entities
         public DateTime ExpiredDate { get; protected set; }
         public Company Company { get; protected set; }
         public int CompanyId { get; protected set; }
-        public ICollection<Person> People { get; protected set; }
+        public ICollection<Candidate> Candidates { get; protected set; }
     }
 }

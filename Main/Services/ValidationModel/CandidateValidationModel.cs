@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Services.ValidationModel
 {
-    internal class PersonValidationModel
+    internal class CandidateValidationModel
     {
         [Validation(IsRequired = true, HasNormalize = true, MaxLenght = 70, MinLenght = 3, LettersOnly = true)]
         public string Name { get; protected set; }
