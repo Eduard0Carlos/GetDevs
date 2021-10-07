@@ -7,10 +7,11 @@ using Services.ValidationModel;
 using Shared.Results;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Services
 {
-    public class CandidateService : BaseValidator<Candidate>, IEntityService<Candidate>
+    public class CandidateService : BaseValidator<Candidate>, IEntityService<Candidate>, IUserService
     {
         public CandidateService()
         {
@@ -130,6 +131,11 @@ namespace Services
             {
                 return ResultFactory.CreateFailureSingleResult<Candidate>();
             }
+        }
+
+        public Task<AuthenticateResult> Authenticate(AuthenticateRequest model)
+        {
+            
         }
     }
 }

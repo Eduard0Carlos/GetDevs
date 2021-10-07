@@ -1,10 +1,6 @@
 ﻿using AnnotationValidator.Attributes;
 using Services.Validation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.ValidationModel
 {
@@ -16,6 +12,8 @@ namespace Services.ValidationModel
         public string Cpf { get; protected set; }
         [Validation("ValidateCep", typeof(CommonValidation))]
         public string Cep { get; protected set; }
+        [Validation(IsEmail = true, MaxLenght = 100)]
+        public string Email { get; protected set; }
         [Validation(IsTelefone = true, IsRequired = true, FixedLength = 13)]
         public string PhoneNumber { get; protected set; }
         [Validation(IsRequired = true)]

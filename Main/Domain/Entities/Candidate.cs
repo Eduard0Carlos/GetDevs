@@ -8,6 +8,8 @@ namespace Domain.Entities
         public string Name { get; protected set; }
         public string Cpf { get; protected set; }
         public string Cep { get; protected set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
         public string PhoneNumber { get; protected set; }
         public DateTime BirthDate { get; protected set; }
         public Resume Resume { get; set; }
