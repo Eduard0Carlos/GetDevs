@@ -19,7 +19,7 @@ namespace MVCUserInterface.Controllers
 
         public IActionResult Index()
         {
-            var temp = AIContext.Rank(1, AIContext.PrepareData(new List<AIResume>()));
+            var temp = AIContext.Rank(1, AIContext.PrepareData(new List<AIResume>() { new AIResume() { Id = 1, BusinessBonds = 2123123, Educations = 1, GroupId = 1, Idioms = 1, Skills = 1, Label = 1 }, new AIResume() { Id = 2, Label = 1,BusinessBonds = 1, Educations = 1, GroupId = 1, Idioms = 1, Skills = 1902390123 } }));
             return View();
         }
 

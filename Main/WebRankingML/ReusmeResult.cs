@@ -8,6 +8,7 @@ namespace WebRankingML
 {
     public class ReusmeResult
     {
+        public uint Id { get; set; }
         public uint GroupId { get; set; }
         public uint Label { get; set; }
         public float Score { get; set; }
