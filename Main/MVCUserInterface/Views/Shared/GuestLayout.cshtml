@@ -32,7 +32,7 @@
                     </button>
 
                     <div class="logo">
-                        <a class="logo-wrap" asp-controller="test" asp-action="index">
+                        <a class="logo-wrap" asp-controller="home" asp-action="index">
                             <img class="logo-img logo-img-main" src="~/img/logo.png">
                             <img class="logo-img logo-img-active" src="~/img/logo-dark.png">
                         </a>
@@ -42,8 +42,8 @@
                 <div class="collapse navbar-collapse nav-collapse">
                     <div class="menu-container">
                         <ul class="navbar-nav navbar-nav-right">
-                            <li class="nav-item"><a class="nav-item-child" id="singin" asp-controller="test" asp-action="choose">Entrar</a></li>
-                            <li class="nav-item"><a class="nav-item-child" id="singup" asp-controller="test" asp-action="choose">Cadastre-se</a></li>
+                            <li class="nav-item"><a class="nav-item-child" id="singin" asp-controller="signin" asp-action="index">Entrar</a></li>
+                            <li class="nav-item"><a class="nav-item-child" id="singup" asp-controller="signup" asp-action="index">Cadastre-se</a></li>
                         </ul>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
         </nav>
     </header>
 
-    <div>
+    <div class="full-height">
             @RenderBody()
     </div>
 

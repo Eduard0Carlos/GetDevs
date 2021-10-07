@@ -1,8 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/GuestLayout.cshtml";
-    ViewData["Title"] = "Test Page";
+    ViewData["Title"] = "Cadastrar";
 }
-<div class="login">
+<div class="black-background full-height">
     <form>
         <div class="margin-b-40" style="position: absolute; top: 20%; width: 40%; margin-left: 10%;">
             <h1>Cadastro</h1>
@@ -17,7 +17,7 @@
                 <input type="text" class="form-control form-input half-1" placeholder="CEP" required />
                 <input type="date" class="form-control form-date half-2" placeholder="Data Nascimento" required />
             </div>
-            <p class="margin-topbottom-15">Já possui uma conta? <a asp-controller="test" asp-action="signin">Entre aqui</a></p>
+            <p class="margin-topbottom-15">Já possui uma conta? <a asp-controller="signin" asp-action="candidate">Entre aqui</a></p>
             <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Cadastrar</button>
 
         </div>

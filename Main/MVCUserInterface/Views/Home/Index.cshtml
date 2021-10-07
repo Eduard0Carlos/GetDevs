@@ -1,5 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/GuestLayout.cshtml";
+    ViewData["Title"] = "Ínicio";
 }
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -16,10 +17,10 @@
             <div class="container">
                 <div class="carousel-centered">
                     <div class="margin-b-40">
-                        <h1 class="carousel-title">Vagas</h1>
-                        <p>Um sistema pensado em conectar pessoas com sua vaga ideal. <br /> Em qualquer hora, em qualquer lugar. Tudo em suas mãos.</p>
+                        <h1 class="carousel-title">Cadastre-se</h1>
+                        <p>Você só precisa preencher algumas informações e nós fazemos o resto. <br />  Buscaremos a vaga ideal para você no mercado de trabalho.</p>
                     </div>
-                    <a href="#" class="btn-theme btn-theme-sm btn-white-brd text-uppercase">Confira</a>
+                    <a asp-controller="signup" asp-action="index" class="btn-theme btn-theme-sm btn-white-brd text-uppercase">Confira</a>
                 </div>
             </div>
         </div>
@@ -28,10 +29,9 @@
             <div class="container">
                 <div class="carousel-centered">
                     <div class="margin-b-40">
-                        <h2 class="carousel-title">Empresas</h2>
-                        <p>Empresas anúnciam suas oportunidades e nós cuidamos do resto. <br /> Conectamos você com o mundo.</p>
+                        <h2 class="carousel-title">Quem Somos</h2>
+                        <p>Uma startup com o objetivo de facilitar a busca por oportunidades <br /> Conectamos você com o mundo.</p>
                     </div>
-                    <a href="#" class="btn-theme btn-theme-sm btn-white-brd text-uppercase">Confira</a>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                             <h3>Pessoas</h3>
                             <p class="margin-b-5">Veja o perfil de milhares de pessoas de todo o Brasil</p>
                         </div>
-                        <a href="#" class="content-wrapper-link"></a>
+                        <a asp-controller="signup" asp-action="index" class="content-wrapper-link"></a>
                     </div>
                 </div>
             </div>
@@ -67,23 +67,24 @@
                                 <h3>Vagas</h3>
                                 <p class="margin-b-5">Confira todas as vagas disponíveis no momento</p>
                             </div>
-                            <a href="#" class="content-wrapper-link"></a>
+                            <a asp-controller="signup" asp-action="index" class="content-wrapper-link"></a>
                         </div>
                     </div>
                 </div>
 
                 <div class="row row-space-1 margin-b-2">
-                <div class="col-sm-4 sm-margin-b-2">
-                    <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
-                        <div class="service" data-height="height">
-                            <div class="service-element">
-                                <i class="service-icon icon-globe"></i>
+                    <div class="col-sm-4 sm-margin-b-2">
+                        <div class="wow fadeInLeft" data-wow-duration=".3" data-wow-delay=".3s">
+                            <div class="service" data-height="height">
+                                <div class="service-element">
+                                    <i class="service-icon icon-globe"></i>
+                                </div>
+                                <div class="service-info">
+                                    <h3>Empresas</h3>
+                                    <p class="margin-b-5">Cadastre sua empresa e comece a anúnciar suas vagas!</p>
+                                </div>
+                                <a asp-controller="signup" asp-action="index" class="content-wrapper-link"></a>
                             </div>
-                            <div class="service-info">
-                                <h3>Empresas</h3>
-                                <p class="margin-b-5">Cadastre sua empresa e comece a anúnciar suas vagas!</p>
-                            </div>
-                            <a href="#" class="content-wrapper-link"></a>
                         </div>
                     </div>
                 </div>
@@ -91,4 +92,9 @@
         </div>
     </div>
 </div>
-<div style="height: 831px"></div>
+<div class="content-lg container" data-data-auto-height="true">
+    <div class="row">
+        <h2>Nossa Missão</h2>
+        <p>Temos como objetivo facilitar a busca por uma oportunidade no mercado de trabalho.</p>
+    </div>
+</div>

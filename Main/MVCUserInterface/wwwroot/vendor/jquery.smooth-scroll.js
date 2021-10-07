@@ -2,7 +2,7 @@
 // Licensed under the terms of the MIT license.
 // https://gist.github.com/galambalazs/6477177/
 
-// People involved
+// Candidates involved
 //  - Balazs Galambosi (maintainer)  
 //  - Michael Herf     (Pulse Algorithm)
  

@@ -10,14 +10,14 @@ using System.Linq;
 
 namespace Services
 {
-    public class PersonService : BaseValidator<Person>, IEntityService<Person>
+    public class CandidateService : BaseValidator<Candidate>, IEntityService<Candidate>
     {
-        public PersonService()
+        public CandidateService()
         {
-            this.ValidationModel = typeof(PersonValidationModel);
+            this.ValidationModel = typeof(CandidateValidationModel);
         }
 
-        public Result Insert(Person entity)
+        public Result Insert(Candidate entity)
         {
             var response = this.Validate(entity);
             if (!response.Success)
@@ -25,11 +25,15 @@ namespace Services
                 return response;
             }
 
+
+
+
+
             try
             {
                 using (var db = new ErpDbContext())
                 {
-                    db.People.Add(entity);
+                    db.Candidates.Add(entity);
                     db.SaveChanges();
                 }
                 return ResultFactory.CreateSuccessResult();
@@ -41,22 +45,22 @@ namespace Services
            
         }
 
-        public DataResult<Person> GetAll()
+        public DataResult<Candidate> GetAll()
         {
             try
             {
                 using (var db = new ErpDbContext())
                 {
-                    return ResultFactory.CreateSuccessDataResult(db.People.ToList());
+                    return ResultFactory.CreateSuccessDataResult(db.Candidates.ToList());
                 }
             }
             catch (Exception ex)
             {
-                return ResultFactory.CreateSuccessDataResult<Person>();
+                return ResultFactory.CreateSuccessDataResult<Candidate>();
             }  
         }
 
-        public Result Update(Person entity)
+        public Result Update(Candidate entity)
         {
             var response = this.Validate(entity);
             if (!response.Success)
@@ -68,7 +72,7 @@ namespace Services
             {
                 using (var db = new ErpDbContext())
                 {
-                    db.People.Update(entity);
+                    db.Candidates.Update(entity);
                     db.SaveChanges();
                     return ResultFactory.CreateSuccessResult();
                 }
@@ -85,7 +89,7 @@ namespace Services
             {
                 using (var db = new ErpDbContext())
                 {
-                    db.People.Remove(db.People.Find(id));
+                    db.Candidates.Remove(db.Candidates.Find(id));
                     db.SaveChanges();
                     return ResultFactory.CreateSuccessResult();
                 }
@@ -96,13 +100,13 @@ namespace Services
             }
         }
 
-        public Result Delete(Person entity)
+        public Result Delete(Candidate entity)
         {
             try
             {
                 using (var db = new ErpDbContext())
                 {
-                    db.People.Remove(entity);
+                    db.Candidates.Remove(entity);
                     db.SaveChanges();
                     return ResultFactory.CreateSuccessResult();
                 }
@@ -113,18 +117,18 @@ namespace Services
             }
         }
 
-        public SingleResult<Person> GetById(int id)
+        public SingleResult<Candidate> GetById(int id)
         {
             try
             {
                 using (var db = new ErpDbContext())
                 {
-                    return ResultFactory.CreateSuccessSingleResult(db.People.Find(id));
+                    return ResultFactory.CreateSuccessSingleResult(db.Candidates.Find(id));
                 }
             }
             catch (Exception)
             {
-                return ResultFactory.CreateFailureSingleResult<Person>();
+                return ResultFactory.CreateFailureSingleResult<Candidate>();
             }
         }
     }

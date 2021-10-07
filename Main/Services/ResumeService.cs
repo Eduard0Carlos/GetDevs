@@ -11,7 +11,40 @@ namespace Services
 {
     public class ResumeService : BaseValidator<Resume>, IEntityService<Resume>
     {
-        
+        public Result FindDevs(Announcement announcement)
+        {
+            try
+            {
+                using (var db = new ErpDbContext())
+                {
+                    var resumes = db.Resumes.Where(r => r.Skills.HasFlag(announcement.SkillRequired) && r.Languages.HasFlag(announcement.LanguagesRequired) && r.Degrees.HasFlag(announcement.degreesRequired)).ToList();
+                    if (resumes.Count < announcement.Count * 2)
+                    {
+                        resumes.AddRange(db.Resumes.Where(r =>
+                        r.Skills.HasFlag(announcement.SkillRequired) &&
+                        (r.Languages.HasFlag(announcement.LanguagesRequired) ||
+                        r.Degrees.HasFlag(announcement.degreesRequired))
+                        ));
+                    }
+
+                    foreach (var item in resumes)
+                    {
+                        db.Announcements.Find(announcement.Id).Candidates.Add(db.Candidates.Find(item.CandidateId));
+                    }
+
+                    db.SaveChanges();
+
+                    return ResultFactory.CreateSuccessResult();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Error.asdfg(ex);
+            }
+
+        }
+
         public Result Delete(int id)
         {
             try
