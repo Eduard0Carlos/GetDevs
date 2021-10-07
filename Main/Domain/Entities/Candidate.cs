@@ -5,8 +5,8 @@ namespace Domain.Entities
 {
     public class Candidate : EntityBase
     {
-        public string Name { get; protected set; }
-        public string Cpf { get; protected set; }
+        public string Name { get; set; }
+        public string Cpf { get; set; }
         public string Cep { get; protected set; }
         public string PhoneNumber { get; protected set; }
         public DateTime BirthDate { get; protected set; }
