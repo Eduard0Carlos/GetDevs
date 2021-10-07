@@ -18,7 +18,6 @@ namespace MVCUserInterface.Controllers
 
         public IActionResult Index()
         {
-            AIContext.Rank(1);
             return View();
         }
 
