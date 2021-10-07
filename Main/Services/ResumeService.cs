@@ -29,7 +29,7 @@ namespace Services
 
                     foreach (var item in resumes)
                     {
-                        db.Announcements.Find(announcement.Id).People.Add(db.People.Find(item.PersonId));
+                        db.Announcements.Find(announcement.Id).Candidates.Add(db.Candidates.Find(item.CandidateId));
                     }
 
                     db.SaveChanges();

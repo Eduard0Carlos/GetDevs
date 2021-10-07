@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/GuestLayout.cshtml";
+    ViewData["Title"] = "Entrar";
+}
+<div class="black-background full-height">
+    <form>
+        <div class="margin-b-40" style="position: absolute; top: 20%; width: 40%; margin-left: 10%;">
+            <h1>Quem é Você?</h1>
+            <a class="wow fadeInLeft animated btn-choose" data-wow-delay=".3s" data-wow-duration=".3" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;" asp-controller="signin" asp-action="company">Empresa</a>
+            <a class="wow fadeInLeft animated btn-choose" data-wow-delay=".3s" data-wow-duration=".3" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;"asp-controller="signin" asp-action="candidate">Candidato</a>
+        </div>
+    </form>
+</div>

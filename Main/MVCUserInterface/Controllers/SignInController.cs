@@ -2,27 +2,19 @@
 
 namespace MVCUserInterface.Controllers
 {
-    public class TestController : Controller
+    public class SignInController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-        
-        [HttpGet]
-        public IActionResult Signup()
+
+        public IActionResult Candidate()
         {
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Signin()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Choose()
+        public IActionResult Company()
         {
             return View();
         }

@@ -1,4 +1,12 @@
-﻿#singup {
+﻿html, body {
+    height: 100% !important; 
+}
+
+.full-height {
+    height: 100% !important;
+}
+
+#singup {
     color: #FFF;
     background-color: #AF1100;
     box-sizing: border-box;
@@ -36,18 +44,19 @@
     height: 100%;
 }
 
-#footer {
-    bottom: 0;
+.black-background {
+    background-image: url(/img/1920x1080/03.jpg) !important;
+}
+
+.footer {
+    position: absolute !important;
+    width: 100% !important;
+    bottom: 0 !important;
 }
 
 form {
     margin: auto;
     width: 60%;
-}
-
-.login {
-    padding-top: 100%;
-    background-image: url(/img/1920x1080/03.jpg);
 }
 
 .form-input {
