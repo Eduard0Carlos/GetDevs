@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Shared.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Services.Validation
 {
     public static class CommonValidation
     {
-		public static bool IsCnpj(string cnpj)
+		public static ValidationResult ValidateCnpj(string cnpj)
 		{
 			int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
 			int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -19,7 +21,7 @@ namespace Services.Validation
 			cnpj = cnpj.Trim();
 			cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "");
 			if (cnpj.Length != 14)
-				return false;
+				return ResultFactory.CreateFailureResult() as ValidationResult;
 			tempCnpj = cnpj.Substring(0, 12);
 			soma = 0;
 			for (int i = 0; i < 12; i++)
@@ -40,7 +42,21 @@ namespace Services.Validation
 			else
 				resto = 11 - resto;
 			digito = digito + resto.ToString();
-			return cnpj.EndsWith(digito);
+			cnpj.EndsWith(digito);
+			return ResultFactory.CreateSuccessResult() as ValidationResult;	
+		}
+
+		public static ValidationResult ValidateCep(string cep)
+		{
+			if (cep.Length == 8)
+			{
+				cep = cep.Substring(0, 5) + "-" + cep.Substring(5, 3);
+			}
+			if(Regex.IsMatch(cep, ("[0-9]{5}-[0-9]{3}")))
+            {
+				return ResultFactory.CreateSuccessResult() as ValidationResult;
+			}
+			return ResultFactory.CreateFailureResult() as ValidationResult;
 		}
 	}
 }
