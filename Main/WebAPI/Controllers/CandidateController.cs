@@ -21,10 +21,10 @@ namespace WebAPI.Controllers
             this._service = service;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        [HttpGet]
+        public IActionResult Get(int id)
         {
-            var result = _service.GetById(int.Parse(id));
+            var result = _service.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -32,21 +32,10 @@ namespace WebAPI.Controllers
             return NotFound(result);
         }
 
-        [HttpGet()]
-        public IActionResult Get()
+        [HttpDelete]
+        public IActionResult Delete(int id)
         {
-            var result = _service.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return NotFound(result);
-        }
-
-        [HttpDelete()]
-        public IActionResult Delete(string id)
-        {
-            var result = _service.Delete(int.Parse(id));
+            var result = _service.Delete(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -59,8 +48,7 @@ namespace WebAPI.Controllers
         {
             var teste = content.ReadAsStringAsync().Result;
             var candidate = JsonSerializer.Deserialize<Candidate>(teste);
-
-            return Enumerable.Empty;
+                return Ok();
         }
     }
 }
