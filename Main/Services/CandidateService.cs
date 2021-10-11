@@ -2,6 +2,7 @@
 using DataAccessObject;
 using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Services.Utils;
 using Services.ValidationModel;
 using Shared.Results;
@@ -133,9 +134,42 @@ namespace Services
             }
         }
 
-        public Task<AuthenticateResult> Authenticate(AuthenticateRequest model)
+        public async Task<AuthenticateResult> Authenticate(AuthenticateRequest model)
         {
-            
-        }
+            AuthenticateResult authenticateResult= new AuthenticateResult();
+
+            try
+            {
+                using (ErpDbContext db = new ErpDbContext())
+                {
+                    User user = await db.Users.FirstOrDefaultAsync(x => x.Email == model.Email && x.Password == model.Password);
+                    // AuthenticateResponse authenticaResponse = new AuthenticateResponse();
+                    if (user == null)
+                    {
+                        return null;
+                    }
+                    authenticateResult.FullName = user.Email;
+
+                    authenticateResult.Email = user.Email;
+                    authenticateResult.Id = user.Id;
+
+                    if (user.CompanyId.HasValue)
+                    {
+                        authenticateResult.IsCompany = true;
+                    }
+                    else
+                    {
+                        authenticateResult.IsCandidate = true;
+                    }
+                    if (user == null) return null;
+                    
+                    return  authenticateResult;
+                }
+            }
+            catch (Exception ex)
+            {
+                return authenticateResult = null;
+            }
+        }   
     }
 }
