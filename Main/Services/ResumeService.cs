@@ -1,6 +1,7 @@
 ﻿using AnnotationValidator;
 using DataAccessObject;
 using Domain.Entities;
+using Domain.Enums;
 using Domain.Interfaces;
 using Services.Utils;
 using Shared.Results;
@@ -18,7 +19,8 @@ namespace Services
                 using (var db = new ErpDbContext())
                 {
                     var resumes = db.Resumes.Where(r => r.Skills.HasFlag(announcement.SkillRequired) && r.Languages.HasFlag(announcement.LanguagesRequired) && r.Degrees.HasFlag(announcement.degreesRequired)).ToList();
-                    if (resumes.Count < announcement.Count * 2)
+                    
+                    if (resumes.Count < announcement.RequiredCandidates * 2)
                     {
                         resumes.AddRange(db.Resumes.Where(r =>
                         r.Skills.HasFlag(announcement.SkillRequired) &&
@@ -29,7 +31,7 @@ namespace Services
 
                     foreach (var item in resumes)
                     {
-                        db.Announcements.Find(announcement.Id).Candidates.Add(db.Candidates.Find(item.CandidateId));
+                        db.CandidatesAnnoucements.Add(new CandidateAnnoucement(item.Candidate, announcement));
                     }
 
                     db.SaveChanges();

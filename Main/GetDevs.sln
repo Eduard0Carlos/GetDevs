@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnotationValidator", "AnnotationValidator\AnnotationValidator.csproj", "{6A06D8D1-5C62-4202-B7C9-59F1DBD15D8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRankingML", "WebRankingML\WebRankingML.csproj", "{4F84D892-D1EA-400E-8BB7-D0768BBE6AC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebRankingML", "WebRankingML\WebRankingML.csproj", "{4F84D892-D1EA-400E-8BB7-D0768BBE6AC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{1B439671-B2C1-443B-BBE2-EC0FD2E878B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{4F84D892-D1EA-400E-8BB7-D0768BBE6AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F84D892-D1EA-400E-8BB7-D0768BBE6AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F84D892-D1EA-400E-8BB7-D0768BBE6AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B439671-B2C1-443B-BBE2-EC0FD2E878B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B439671-B2C1-443B-BBE2-EC0FD2E878B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B439671-B2C1-443B-BBE2-EC0FD2E878B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B439671-B2C1-443B-BBE2-EC0FD2E878B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

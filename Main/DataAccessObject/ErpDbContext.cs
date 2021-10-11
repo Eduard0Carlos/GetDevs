@@ -13,6 +13,7 @@ namespace DataAccessObject
         public DbSet<Candidate> Candidates { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Resume> Resumes { get; set; }
+        public DbSet<CandidateAnnoucement> CandidatesAnnoucements { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
