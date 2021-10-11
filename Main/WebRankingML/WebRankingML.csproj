@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -8,6 +8,10 @@
     <PackageReference Include="Microsoft.ML" Version="1.6.0" />
     <PackageReference Include="Microsoft.ML.FastTree" Version="1.6.0" />
     <PackageReference Include="Microsoft.ML.LightGbm" Version="1.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>
