@@ -14,6 +14,7 @@ namespace DataAccessObject
         public DbSet<Education> Educations { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<CandidateAnnoucement> CandidatesAnnoucements { get; set; }
+        public DbSet<User> Users { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

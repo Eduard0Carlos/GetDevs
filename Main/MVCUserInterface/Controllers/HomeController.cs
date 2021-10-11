@@ -23,7 +23,7 @@ namespace MVCUserInterface.Controllers
         public IActionResult Index()
         {
             Resume resume = new Resume();
-            var temp = AIContext.Rank(1, AIContext.PrepareData(new List<WebRankingML.AIResume>() { new WebRankingML.AIResume() { Id = 1, BusinessBonds = 2123123, Educations = 1, GroupId = 1, Idioms = 1, Skills = 1, Label = 1 }, new WebRankingML.AIResume() { Id = 2, Label = 1, BusinessBonds = 1, Educations = 1, GroupId = 1, Idioms = 1, Skills = 1902390123 }, resume.ConvertToAIResume(Skill.CSharp, Language.Africâner, Degree.Doutorado, 1, resume.CandidateId) })) ;
+            //var temp = AIContext.Rank(1, AIContext.PrepareData(new List<WebRankingML.AIResume>() { new WebRankingML.AIResume() { Id = 1, BusinessBonds = 2123123, Educations = 1, GroupId = 1, Idioms = 1, Skills = 1, Label = 1 }, new WebRankingML.AIResume() { Id = 2, Label = 1, BusinessBonds = 1, Educations = 1, GroupId = 1, Idioms = 1, Skills = 1902390123 }, resume.ConvertToAIResume(Skill.CSharp, Language.Africâner, Degree.Doutorado, 1, resume.CandidateId) })) ;
             return View();
         }
 

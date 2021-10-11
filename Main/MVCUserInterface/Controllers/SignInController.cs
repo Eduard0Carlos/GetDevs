@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 
 namespace MVCUserInterface.Controllers
@@ -57,7 +56,7 @@ namespace MVCUserInterface.Controllers
             string role = result.IsCandidate ? "Candidate" : "Company";
             var userClaims = new List<Claim>()
             {
-                new Claim(ClaimTypes.Name, result.UserName),
+                new Claim(ClaimTypes.Name, result.Email),
                 new Claim(ClaimTypes.Role, role),
                 new Claim(ClaimTypes.NameIdentifier, result.Id.ToString())
             };
@@ -73,6 +72,14 @@ namespace MVCUserInterface.Controllers
                 await HttpContext.SignInAsync(userPrincipal);
             }
 
+            if (role == "Candidate")
+            {
+                return RedirectToAction("Index", "Candidate");
+            }
+            if (role == "Company")
+            {
+                return RedirectToAction("Index", "Company");
+            }
             //TODO: redirecionar para a página correspondente.
             return View();
         }
