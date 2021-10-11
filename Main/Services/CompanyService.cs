@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Services
 {
-    internal class CompanyService : BaseValidator<Company>, IEntityService<Company>
+    public class CompanyService : BaseValidator<Company>, IEntityService<Company>
     {
         public CompanyService()
         {

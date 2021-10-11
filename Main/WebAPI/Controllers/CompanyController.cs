@@ -1,16 +1,18 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CandidateController : ControllerBase
+    public class CompanyController : ControllerBase
     {
-        private IEntityService<Candidate> _service;
+        private IEntityService<Company> _service;
 
-        public CandidateController(IEntityService<Candidate> service)
+        public CompanyController(IEntityService<Company> service)
         {
             this._service = service;
         }
@@ -38,9 +40,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(Candidate candidate)
+        public IActionResult Put(Company company)
         {
-            var result = _service.Insert(candidate);
+            var result = _service.Insert(company);
             if (result.Success)
             {
                 return Ok(result);
@@ -48,10 +50,11 @@ namespace WebAPI.Controllers
             return NotFound(result);
         }
 
+
         [HttpPost]
-        public IActionResult Post(Candidate candidate)
+        public IActionResult post(Company company)
         {
-            var result = _service.Insert(candidate);
+            var result = _service.Update(company);
             if (result.Success)
             {
                 return Ok(result);

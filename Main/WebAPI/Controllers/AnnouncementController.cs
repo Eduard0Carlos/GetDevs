@@ -1,16 +1,17 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class CandidateController : ControllerBase
+    [ApiController]
+    public class AnnouncementController : ControllerBase
     {
-        private IEntityService<Candidate> _service;
+        private IEntityService<Announcement> _service;
 
-        public CandidateController(IEntityService<Candidate> service)
+        public AnnouncementController(IEntityService<Announcement> service)
         {
             this._service = service;
         }
@@ -38,9 +39,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(Candidate candidate)
+        public IActionResult Put(Announcement announcement)
         {
-            var result = _service.Insert(candidate);
+            var result = _service.Insert(announcement);
             if (result.Success)
             {
                 return Ok(result);
@@ -49,9 +50,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Candidate candidate)
+        public IActionResult Post(Announcement announcement)
         {
-            var result = _service.Insert(candidate);
+            var result = _service.Insert(announcement);
             if (result.Success)
             {
                 return Ok(result);

@@ -29,7 +29,9 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<IEntityService<Announcement>, AnnouncementService>();
             services.AddTransient<IEntityService<Candidate>, CandidateService>();
+            services.AddTransient<IEntityService<Company>, CompanyService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
