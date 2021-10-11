@@ -5,8 +5,8 @@ namespace Domain.Entities
 {
     public class Candidate : EntityBase
     {
-        public string Name { get; protected set; }
-        public string Cpf { get; protected set; }
+        public string Name { get; set; }
+        public string Cpf { get; set; }
         public string Cep { get; protected set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -14,7 +14,7 @@ namespace Domain.Entities
         public DateTime BirthDate { get; protected set; }
         public Resume Resume { get; set; }
         public int ResumeId { get; set; }
-        public ICollection<Announcement> Announcements { get; set; }
+        public ICollection<CandidateAnnoucement> Announcements { get; set; }
 
         public int Age { get; }
 
@@ -29,9 +29,10 @@ namespace Domain.Entities
             this.BirthDate = birthDate;
         }
 
-        public virtual void SetName(string name)
+        public virtual Candidate SetName(string name)
         {
             this.Name = name;
+            return this;
         }
 
         public virtual void SetPhoneNumber(string phoneNumber)

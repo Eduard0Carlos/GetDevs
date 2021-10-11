@@ -23,5 +23,9 @@ namespace WebRankingML
 
             return serchieQueries.OrderByDescending(item => item.Score).ToList();
         }
+        public static IDataView PrepareData(List<AIResume> data)
+        {
+            return new MLContext().Data.LoadFromEnumerable(data);
+        }
     }
 }
