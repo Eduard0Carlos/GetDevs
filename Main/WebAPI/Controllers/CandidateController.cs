@@ -25,10 +25,10 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var result = await _service.GetByIdAsync(id);
+            
             if (result.Success)
-            {
                 return Ok(result);
-            }
+            
             return NotFound(result);
         }
 
@@ -36,10 +36,10 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _service.DeleteAsync(id);
+            
             if (result.Success)
-            {
                 return Ok(result);
-            }
+            
             return NotFound(result);
         }
 

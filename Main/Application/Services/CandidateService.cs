@@ -3,7 +3,6 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Shared.Results;
-using System;
 using System.Threading.Tasks;
 
 namespace Application.Services

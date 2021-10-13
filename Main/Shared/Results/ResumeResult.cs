@@ -1,4 +1,4 @@
-﻿namespace WebRankingML
+﻿namespace Shared.Results
 {
     public class ResumeResult
     {

@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.ML;
+using Shared.Results;
 using System.Collections.Generic;
 using System.Linq;
 
