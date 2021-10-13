@@ -17,37 +17,27 @@ namespace Application.Services
 
         public async Task<AuthenticateResult> Authenticate(AuthenticateRequest model)
         {
-            var authenticateResult= new AuthenticateResult();
+            var authenticateResult = new AuthenticateResult();
 
-            try
-            {
-                using (MainContext db = new MainContext())
-                {
-                    var user = await db.Users.FirstOrDefaultAsync(x => x.Email == model.Email && x.Password == model.Password);
-                    
-                    if (user == null)
-                        return null;
-                    
-                    authenticateResult.FullName = user.Email;
+            var user = await this._dbContext.Set<User>().FirstOrDefaultAsync(x => x.Email == model.Email && x.Password == model.Password);
 
-                    authenticateResult.Email = user.Email;
-                    authenticateResult.Id = user.Id;
+            if (user == null)
+                return null;
 
-                    if (user.CompanyId.HasValue)
-                        authenticateResult.IsCompany = true;
-                    else
-                        authenticateResult.IsCandidate = true;
-                    
-                    if (user == null)
-                        return null;
-                    
-                    return  authenticateResult;
-                }
-            }
-            catch (Exception ex)
-            {
-                return authenticateResult = null;
-            }
-        }   
+            authenticateResult.FullName = user.Email;
+
+            authenticateResult.Email = user.Email;
+            authenticateResult.Id = user.Id;
+
+            if (user.CompanyId.HasValue)
+                authenticateResult.IsCompany = true;
+            else
+                authenticateResult.IsCandidate = true;
+
+            if (user == null)
+                return null;
+
+            return authenticateResult;
+        }
     }
-}
+}   
