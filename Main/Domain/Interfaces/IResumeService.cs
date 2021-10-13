@@ -6,6 +6,5 @@ namespace Domain.Interfaces
 {
     public interface IResumeService : IGenericService<Resume>
     {
-        Task<Result> FindDevs(Announcement announcement);
     }
 }

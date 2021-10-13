@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    public class CandidateAnnoucement
+    public class CandidateAnnoucement : EntityBase
     {
         public bool Registered { get; protected set; }
         public Candidate Candidate { get; protected set; }
