@@ -30,6 +30,7 @@ namespace MVCUserInterface.Controllers
 
         public IActionResult Privacy()
         {
+
             return View();
         }
 
