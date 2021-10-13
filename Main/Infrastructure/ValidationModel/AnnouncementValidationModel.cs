@@ -1,10 +1,12 @@
 ﻿using AnnotationValidator.Attributes;
+using AnnotationValidator.Interface;
+using Domain.Entities;
 using Domain.Enums;
 using System;
 
 namespace Infrastructure.ValidationModel
 {
-    public class AnnouncementValidationModel
+    public class AnnouncementValidationModel : IEntityValidationModel<Announcement>
     {
         [Validation(HasNormalize = true, IsRequired = true, MinLength = 5, MaxLength = 100)]
         public string Title { get; protected set; }

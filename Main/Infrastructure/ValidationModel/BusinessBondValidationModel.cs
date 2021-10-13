@@ -1,9 +1,11 @@
 ﻿using AnnotationValidator.Attributes;
+using AnnotationValidator.Interface;
+using Domain.Entities;
 using System;
 
 namespace Infrastructure.ValidationModel
 {
-    public class BusinessBoundValidationModel
+    public class BusinessBondValidationModel : IEntityValidationModel<BusinessBond>
     {
         [Validation(IsRequired = true)]
         public DateTime StartDate { get; protected set; }

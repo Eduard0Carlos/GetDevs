@@ -1,8 +1,11 @@
 ﻿using AnnotationValidator.Attributes;
+using AnnotationValidator.Interface;
+using Domain.Entities;
+using Infrastructure.Validation;
 
 namespace Infrastructure.ValidationModel
 {
-    public class CompanyValidationModel
+    public class CompanyValidationModel : IEntityValidationModel<Company>
     {
         [Validation(HasNormalize = true, LettersOnly = true, MaxLength = 70, MinLength = 3, IsRequired = true)]
         public string Name { get; protected set; }
@@ -10,7 +13,7 @@ namespace Infrastructure.ValidationModel
         public string Url { get; protected set; }
         [Validation(LettersOnly = true, MaxLength = 100, MinLength = 3, IsRequired = true)]
         public string Sector { get; protected set; }
-        //[Validation("ValidateCnpj", typeof(CommonValidation))]
+        [Validation("ValidateCnpj", typeof(CommonValidation))]
         public string Cnpj { get; protected set; }  
         [Validation(IsRequired = true)]
         public int CompanySize { get; protected set; }

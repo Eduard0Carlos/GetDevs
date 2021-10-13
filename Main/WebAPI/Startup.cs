@@ -9,6 +9,9 @@ using Application.Services;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System;
+using AnnotationValidator.Interface;
+using Domain.Entities;
+using Infrastructure.ValidationModel;
 
 namespace WebAPI
 {
@@ -32,6 +35,12 @@ namespace WebAPI
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<IEducationService, EducationService>();
             services.AddTransient<IResumeService, ResumeService>();
+
+            services.AddTransient<IEntityValidationModel<Announcement>, AnnouncementValidationModel>();
+            services.AddTransient<IEntityValidationModel<BusinessBond>, BusinessBondValidationModel>();
+            services.AddTransient<IEntityValidationModel<Candidate>, CandidateValidationModel>();
+            services.AddTransient<IEntityValidationModel<Company>, CompanyValidationModel>();
+            services.AddTransient<IEntityValidationModel<Course>, CourseValidationModel>();
 
             services.AddDbContext<MainContext>(opt => opt.UseSqlServer(Environment.GetEnvironmentVariable("SqlConnectionString")));
 

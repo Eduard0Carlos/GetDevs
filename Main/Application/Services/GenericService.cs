@@ -6,6 +6,7 @@ using Shared.Factory;
 using Shared.Results;
 using System.Threading.Tasks;
 using AnnotationValidator;
+using AnnotationValidator.Interface;
 
 namespace Application.Services
 {
@@ -16,7 +17,7 @@ namespace Application.Services
         public GenericService(MainContext dbContext)
         {
             this._dbContext = dbContext;
-            this.ValidationModel = typeof(TEntity);
+            this.ValidationModel = typeof(IEntityValidationModel<TEntity>);
         }
 
         public virtual async Task<Result> DeleteAsync(TEntity entity)
