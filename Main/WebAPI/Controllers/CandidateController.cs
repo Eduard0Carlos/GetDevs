@@ -14,7 +14,7 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     public class CandidateController : ControllerBase
     {
-        private ICandidateService _service;
+        private readonly ICandidateService _service;
 
         public CandidateController(ICandidateService service)
         {

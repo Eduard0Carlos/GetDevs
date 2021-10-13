@@ -1,5 +1,5 @@
 ﻿using Domain.Enums;
-using Shared.Utils;
+using Shared.Extension;
 using System.Linq;
 
 namespace Domain.Entities

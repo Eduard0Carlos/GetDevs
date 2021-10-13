@@ -7,6 +7,7 @@ using Shared.Results;
 using System.Threading.Tasks;
 using AnnotationValidator;
 using AnnotationValidator.Interface;
+using Shared.Extension;
 
 namespace Application.Services
 {
@@ -14,10 +15,10 @@ namespace Application.Services
     {
         protected readonly MainContext _dbContext;
 
-        public GenericService(MainContext dbContext)
+        public GenericService(MainContext dbContext, IEntityValidationModel<TEntity> validationModel)
         {
             this._dbContext = dbContext;
-            this.ValidationModel = typeof(IEntityValidationModel<TEntity>);
+            this.ValidationModel = validationModel.GetType();
         }
 
         public virtual async Task<Result> DeleteAsync(TEntity entity)
@@ -54,6 +55,10 @@ namespace Application.Services
 
         public virtual async Task<Result> InsertAsync(TEntity entity)
         {
+            var validation = this.Validate(entity);
+            if (!validation.IsValid)
+                return validation.ToResult();
+
             await this._dbContext.Set<TEntity>().AddAsync(entity);
             await this._dbContext.SaveChangesAsync();
 

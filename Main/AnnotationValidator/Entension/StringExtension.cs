@@ -1,6 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using AnnotationValidator.Results;
+using System.Text.RegularExpressions;
 using System.Threading;
-using Shared.Results;
 
 namespace AnnotationValidator.Enxtensions
 {

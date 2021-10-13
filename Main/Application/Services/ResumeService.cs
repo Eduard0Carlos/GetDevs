@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using AnnotationValidator.Interface;
+using Domain.Entities;
 using Domain.Interfaces;
 using Infrastructure;
 using Shared.Factory;
@@ -10,7 +11,7 @@ namespace Application.Services
 {
     public class ResumeService : GenericService<Resume>, IResumeService
     {
-        public ResumeService(MainContext dbContext) : base(dbContext)
+        public ResumeService(MainContext dbContext, IEntityValidationModel<Resume> validationModel) : base(dbContext, validationModel)
         {
 
         }

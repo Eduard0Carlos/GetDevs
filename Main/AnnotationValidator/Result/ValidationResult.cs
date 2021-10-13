@@ -1,4 +1,4 @@
-﻿namespace Shared.Results
+﻿namespace AnnotationValidator.Results
 {
     public class ValidationResult
     {

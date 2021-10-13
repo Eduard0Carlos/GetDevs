@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Shared.Utils
+namespace Shared.Extension
 {
     public static class EnumExtension
     {

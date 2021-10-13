@@ -4,12 +4,13 @@ using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Shared.Results;
 using System.Threading.Tasks;
+using AnnotationValidator.Interface;
 
 namespace Application.Services
 {
     public class CandidateService : GenericService<Candidate>, ICandidateService
     {
-        public CandidateService(MainContext dbContext) : base(dbContext)
+        public CandidateService(MainContext dbContext, IEntityValidationModel<Candidate> validationModel) : base(dbContext, validationModel)
         {
 
         }
