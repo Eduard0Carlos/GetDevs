@@ -1,12 +1,12 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Services;
 using Shared.Results;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
@@ -14,17 +14,17 @@ namespace WebAPI.Controllers
     [Route("api/[controller]")]
     public class CandidateController : ControllerBase
     {
-        private IEntityService<Candidate> _service;
+        private ICandidateService _service;
 
-        public CandidateController(IEntityService<Candidate> service)
+        public CandidateController(ICandidateService service)
         {
             this._service = service;
         }
 
         [HttpGet]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var result = _service.GetById(id);
+            var result = await _service.GetByIdAsync(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -33,9 +33,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _service.Delete(id);
+            var result = await _service.DeleteAsync(id);
             if (result.Success)
             {
                 return Ok(result);

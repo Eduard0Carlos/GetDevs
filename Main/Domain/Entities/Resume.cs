@@ -12,5 +12,18 @@ namespace Domain.Entities
         public ICollection<Education> Educations { get; protected set; }
         public Language Languages { get; protected set; }
         public ICollection<BusinessBond> BusinessBonds { get; protected set; }
+
+        protected Resume() { }
+
+        public Resume(Candidate candidate, int candidateId, Skill skills, Degree degrees, ICollection<Education> educations, Language languages, ICollection<BusinessBond> businessBonds)
+        {
+            Candidate = candidate;
+            CandidateId = candidateId;
+            Skills = skills;
+            Degrees = degrees;
+            Educations = educations;
+            Languages = languages;
+            BusinessBonds = businessBonds;
+        }
     }
 }

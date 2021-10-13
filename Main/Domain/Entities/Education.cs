@@ -13,5 +13,17 @@ namespace Domain.Entities
         public Degree Degree { get; protected set; }
         public ICollection<Announcement> Announcements { get; protected set; }
         public ICollection<Resume> Resumes { get; protected set; }
+
+        protected Education() { }
+
+        public Education(string institutionName, DateTime startDate, DateTime endDate, Degree degree, ICollection<Announcement> announcements, ICollection<Resume> resumes)
+        {
+            InstitutionName = institutionName;
+            StartDate = startDate;
+            EndDate = endDate;
+            Degree = degree;
+            Announcements = announcements;
+            Resumes = resumes;
+        }
     }
 }

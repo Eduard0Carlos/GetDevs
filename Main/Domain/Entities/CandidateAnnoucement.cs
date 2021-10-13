@@ -6,10 +6,11 @@
         public Candidate Candidate { get; protected set; }
         public Announcement Announcement { get; protected set; }
 
-        public CandidateAnnoucement() { }
+        protected CandidateAnnoucement() { }
 
-        public CandidateAnnoucement(Candidate candidate, Announcement announcement)
+        public CandidateAnnoucement(bool registered, Candidate candidate, Announcement announcement)
         {
+            Registered = registered;
             Candidate = candidate;
             Announcement = announcement;
         }

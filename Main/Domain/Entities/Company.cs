@@ -12,5 +12,19 @@ namespace Domain.Entities
         public string LogoImageUrl { get; protected set; }
         public string Slogan { get; protected set; }
         public ICollection<Announcement> Announcements { get; protected set; }
+
+        protected Company() { }
+
+        public Company(string name, string url, string sector, string cnpj, int companySize, string logoImageUrl, string slogan, ICollection<Announcement> announcements)
+        {
+            Name = name;
+            Url = url;
+            Sector = sector;
+            Cnpj = cnpj;
+            CompanySize = companySize;
+            LogoImageUrl = logoImageUrl;
+            Slogan = slogan;
+            Announcements = announcements;
+        }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Services;
+using Application.Services;
 
 namespace MVCUserInterface
 {
@@ -21,7 +21,7 @@ namespace MVCUserInterface
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddTransient<IUserService,CandidateService>();
+            services.AddTransient<ICandidateService, CandidateService>();
             services.AddHttpContextAccessor();
         }
 

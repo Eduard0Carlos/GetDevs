@@ -1,18 +1,14 @@
-using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Services;
+using Application.Services;
+using Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebAPI
 {
@@ -29,7 +25,16 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IEntityService<Candidate>, CandidateService>();
+            services.AddTransient<ICandidateService, CandidateService>();
+            services.AddTransient<IAnnouncementService, AnnouncementService>();
+            services.AddTransient<IBusinessBondService, BusinessBondService>();
+            services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<ICourseService, CourseService>();
+            services.AddTransient<IEducationService, EducationService>();
+            services.AddTransient<IResumeService, ResumeService>();
+
+            services.AddDbContext<MainContext>(opt => opt.UseSqlServer(Environment.GetEnvironmentVariable("SqlConnectionString")));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
