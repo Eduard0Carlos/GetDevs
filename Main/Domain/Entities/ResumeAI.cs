@@ -17,16 +17,16 @@ namespace Domain.Entities
 
     public static class ResumeAIExtension
     {
-        public static ResumeAI ConvertToResumeAI(this Resume resume, Skill skillRequired, Language languageRequired, Degree degreeRequired, int announcementId, int candidateId)
+        public static ResumeAI ToResumeAI(this Resume resume, Announcement announcement)
         {
             var resumeAi = new ResumeAI();
 
-            resumeAi.Skills = resume.Skills.EvaluateEnum(skillRequired);
-            resumeAi.Idioms = resume.Languages.EvaluateEnum(languageRequired);
-            resumeAi.Educations = resume.Degrees.EvaluateEnum(degreeRequired);
+            resumeAi.Skills = resume.Skills.EvaluateEnum(announcement.SkillRequired);
+            resumeAi.Idioms = resume.Languages.EvaluateEnum(announcement.LanguagesRequired);
+            resumeAi.Educations = resume.Degrees.EvaluateEnum(announcement.DegreesRequired);
 
-            resumeAi.Id = (uint)candidateId;
-            resumeAi.GroupId = (uint)announcementId;
+            resumeAi.Id = (uint)resume.CandidateId;
+            resumeAi.GroupId = (uint)announcement.Id;
 
             var experienceTime = 0;
             resume.BusinessBonds.ToList().ForEach(item => experienceTime += item.GetTimeExperience());

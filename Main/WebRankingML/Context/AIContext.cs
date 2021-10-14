@@ -8,7 +8,7 @@ namespace WebRankingML
 {
     public static class AIContext
     {
-        public static IEnumerable<ResumeResult> Rank(int groupId, IDataView data)
+        public static IEnumerable<ResumeResult> Rank(IDataView data)
         {
             var mlContext = new MLContext();
             DataViewSchema schema;
@@ -20,6 +20,7 @@ namespace WebRankingML
 
             return serchieQueries.OrderByDescending(item => item.Score).ToList();
         }
+
         public static IDataView PrepareData(List<ResumeAI> data)
         {
             return new MLContext().Data.LoadFromEnumerable(data);

@@ -4,8 +4,10 @@ using Domain.Interfaces;
 using Infrastructure;
 using Shared.Factory;
 using Shared.Results;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebRankingML;
 
 namespace Application.Services
 {
@@ -43,7 +45,20 @@ namespace Application.Services
 
         public Task<DataResult<Candidate>> GetDevs(Announcement announcement)
         {
-            throw new System.NotImplementedException();
+            var candidatesAnnoucement = this._dbContext.Set<CandidateAnnoucement>()
+                .Where(ca => ca.Announcement == announcement &&
+                ca.Registered == true)
+                .ToList();
+
+            List<ResumeAI> resumesAI = new List<ResumeAI>();
+
+            foreach (var item in candidatesAnnoucement)
+                resumesAI.Add(item.Candidate.Resume.ToResumeAI(announcement));
+
+
+            var result =  AIContext.Rank(AIContext.PrepareData(resumesAI));
+
+            return 
         }
     }
 }
