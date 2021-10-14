@@ -25,7 +25,7 @@ namespace Domain.Entities
 
         protected Announcement() { }
 
-        public Announcement(string title, string description, Skill skillRequired, Language languagesRequired, Degree degreesRequired, int avaibleVacancy, DateTime announcementDate, DateTime expiredDate, Company company, int companyId, ICollection<CandidateAnnouncement> candidates)
+        public Announcement(string title, string description, Skill skillRequired, Language languagesRequired, Degree degreesRequired, int avaibleVacancy, DateTime announcementDate, DateTime expiredDate, Company company, int companyId)
         {
             Title = title;
             Description = description;
@@ -37,7 +37,6 @@ namespace Domain.Entities
             ExpiredDate = expiredDate;
             Company = company;
             CompanyId = companyId;
-            Candidates = candidates;
         }
 
         public override bool Equals(object obj) =>

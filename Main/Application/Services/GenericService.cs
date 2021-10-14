@@ -60,8 +60,17 @@ namespace Application.Services
             if (!validation.IsValid)
                 return validation.ToResult();
 
-            await this._dbContext.Set<TEntity>().AddAsync(entity);
-            await this._dbContext.SaveChangesAsync();
+            try
+            {
+                await this._dbContext.Set<TEntity>().AddAsync(entity);
+                await this._dbContext.SaveChangesAsync();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
+            
 
             return ResultFactory.CreateSuccessResult();
         }

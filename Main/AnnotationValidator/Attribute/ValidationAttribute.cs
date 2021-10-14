@@ -4,7 +4,7 @@ using System.Reflection;
 namespace AnnotationValidator.Attributes
 {
     [System.AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
-    public sealed class ValidationAttribute : Attribute
+    public sealed class ValidationAttribute : System.Attribute
     {
         private int _maxLength = 100;
         private string _methodName;

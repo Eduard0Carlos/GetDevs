@@ -8,6 +8,7 @@ using Shared.Results;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebRankingML;
 
 namespace Application.Services
 {
@@ -20,7 +21,7 @@ namespace Application.Services
             this._resumeService = resumeService;
         }
 
-        public async Task<Result> FindDevs(CandidateAnnouncement candidateAnnouncement)
+        public async Task<Result> FindDevsAsync(CandidateAnnouncement candidateAnnouncement)
         {
             var announcement = candidateAnnouncement.Announcement;
             var resumeDataResult = await this._resumeService.GetResumeByRequirementAsync(announcement.SkillRequired, announcement.LanguagesRequired, announcement.DegreesRequired);
@@ -29,18 +30,6 @@ namespace Application.Services
                 await this.InsertAsync(new CandidateAnnouncement(false, resume.Candidate, announcement));
 
             return ResultFactory.CreateSuccessResult();
-        }
-
-        public async Task<DataResult<CandidateAnnouncement>> GetDevs(Announcement announcement)
-        {
-            var candidatesRegistered = new List<Candidate>();
-
-            await this._dbContext.Set<CandidateAnnouncement>()
-                .AsNoTracking()
-                .Where(e => e.Announcement == announcement && e.Registered)
-                .ForEachAsync(e => candidatesRegistered.Add(e.Candidate));
-
-            return default;
         }
     }
 }

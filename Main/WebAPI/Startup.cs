@@ -12,6 +12,7 @@ using System;
 using AnnotationValidator.Interface;
 using Domain.Entities;
 using Infrastructure.ValidationModel;
+using Shared;
 
 namespace WebAPI
 {
@@ -41,8 +42,11 @@ namespace WebAPI
             services.AddTransient<IEntityValidationModel<Candidate>, CandidateValidationModel>();
             services.AddTransient<IEntityValidationModel<Company>, CompanyValidationModel>();
             services.AddTransient<IEntityValidationModel<Course>, CourseValidationModel>();
+            services.AddTransient<IEntityValidationModel<Education>, EducationValidationModel>();
+            services.AddTransient<IEntityValidationModel<Resume>, ResumeValidationModel>();
 
-            services.AddDbContext<MainContext>(opt => opt.UseSqlServer(Environment.GetEnvironmentVariable("SqlConnectionString")));
+
+            services.AddDbContext<MainContext>(opt => opt.UseSqlServer(SqlRepository.CONNECTION_STRING));
 
             services.AddSwaggerGen(c =>
             {
@@ -69,5 +73,13 @@ namespace WebAPI
                 endpoints.MapControllers();
             });
         }
+    }
+
+    public class ResumeValidationModel : IEntityValidationModel<Resume>
+    {
+    }
+
+    public class EducationValidationModel : IEntityValidationModel<Education>
+    {
     }
 }
