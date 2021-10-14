@@ -1,7 +1,9 @@
 ﻿using AnnotationValidator.Interface;
 using Domain.Entities;
+using Domain.Enums;
 using Domain.Interfaces;
 using Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Shared.Factory;
 using Shared.Results;
 using System.Linq;
@@ -16,29 +18,16 @@ namespace Application.Services
 
         }
 
-        public async Task<Result> FindDevs(Announcement announcement)
+        public async Task<DataResult<Resume>> GetResumeByRequirementAsync(Skill skill = Skill.None, Language language = Language.Português, Degree degree = Degree.Ensino_Fundamental)
         {
-            var resumes = this._dbContext.Set<Resume>()
-                .Where(r => r.Skills.HasFlag(announcement.SkillRequired) &&
-                r.Languages.HasFlag(announcement.LanguagesRequired) &&
-                r.Degrees.HasFlag(announcement.DegreesRequired))
-                .ToList();
-
-            if (resumes.Count < announcement.RequiredCandidates)
-            {
-                resumes.AddRange(this._dbContext.Set<Resume>()
-                    .Where(r => r.Skills.HasFlag(announcement.SkillRequired) &&
-                (r.Languages.HasFlag(announcement.LanguagesRequired) ||
-                r.Degrees.HasFlag(announcement.DegreesRequired))
-                ));
-            }
-
-            foreach (var item in resumes)
-                await this._dbContext.Set<CandidateAnnoucement>().AddAsync(new CandidateAnnoucement(false, item.Candidate, announcement));
-
-            await this._dbContext.SaveChangesAsync();
-
-            return ResultFactory.CreateSuccessResult();
+            return ResultFactory.CreateSuccessDataResult(
+                await this._dbContext.Set<Resume>()
+                           .AsNoTracking()
+                           .Where(r =>
+                                  r.Skills.HasFlag(skill) &&
+                                  r.Languages.HasFlag(language) &&
+                                  r.Degrees.HasFlag(degree))
+                           .ToListAsync());
         }
     }
 }

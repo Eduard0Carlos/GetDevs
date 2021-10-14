@@ -16,7 +16,7 @@ namespace Domain.Entities
         public DateTime ExpiredDate { get; protected set; }
         public Company Company { get; protected set; }
         public int CompanyId { get; protected set; }
-        public ICollection<CandidateAnnoucement> Candidates { get; protected set; }
+        public ICollection<CandidateAnnouncement> Candidates { get; protected set; }
 
         public int RequiredCandidates
         {
@@ -25,7 +25,7 @@ namespace Domain.Entities
 
         protected Announcement() { }
 
-        public Announcement(string title, string description, Skill skillRequired, Language languagesRequired, Degree degreesRequired, int avaibleVacancy, DateTime announcementDate, DateTime expiredDate, Company company, int companyId, ICollection<CandidateAnnoucement> candidates)
+        public Announcement(string title, string description, Skill skillRequired, Language languagesRequired, Degree degreesRequired, int avaibleVacancy, DateTime announcementDate, DateTime expiredDate, Company company, int companyId, ICollection<CandidateAnnouncement> candidates)
         {
             Title = title;
             Description = description;
@@ -39,5 +39,8 @@ namespace Domain.Entities
             CompanyId = companyId;
             Candidates = candidates;
         }
+
+        public override bool Equals(object obj) =>
+            (obj as Announcement).Id == this.Id;
     }
 }

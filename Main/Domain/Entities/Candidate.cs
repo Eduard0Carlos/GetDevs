@@ -14,7 +14,7 @@ namespace Domain.Entities
         public DateTime BirthDate { get; protected set; }
         public Resume Resume { get; protected set; }
         public int ResumeId { get; protected set; }
-        public ICollection<CandidateAnnoucement> Announcements { get; set; }
+        public ICollection<CandidateAnnouncement> Announcements { get; set; }
 
         public int Age { get; }
 

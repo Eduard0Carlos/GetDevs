@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AnnotationValidator;
 using AnnotationValidator.Interface;
 using Shared.Extension;
+using System.Collections.Generic;
 
 namespace Application.Services
 {
@@ -62,6 +63,13 @@ namespace Application.Services
             await this._dbContext.Set<TEntity>().AddAsync(entity);
             await this._dbContext.SaveChangesAsync();
 
+            return ResultFactory.CreateSuccessResult();
+        }
+
+        public async Task<Result> InsertRangeAsync(IEnumerable<TEntity> entities)
+        {
+            await this._dbContext.Set<TEntity>().AddRangeAsync(entities);
+            await this._dbContext.SaveChangesAsync();
             return ResultFactory.CreateSuccessResult();
         }
 
