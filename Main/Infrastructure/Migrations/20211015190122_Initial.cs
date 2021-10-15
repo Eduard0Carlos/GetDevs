@@ -71,9 +71,7 @@ namespace Infrastructure.Migrations
                     InstitutionName = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Degree = table.Column<int>(type: "int", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true)
+                    Degree = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -116,8 +114,7 @@ namespace Infrastructure.Migrations
                     AvaibleVacancy = table.Column<int>(type: "int", nullable: false),
                     AnnouncementDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ExpiredDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CompanyId = table.Column<int>(type: "int", nullable: false),
-                    EducationId = table.Column<int>(type: "int", nullable: true)
+                    CompanyId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,9 +124,21 @@ namespace Infrastructure.Migrations
                         column: x => x.CompanyId,
                         principalTable: "Company",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Courses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Courses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Announcement_Education_EducationId",
-                        column: x => x.EducationId,
+                        name: "FK_Courses_Education_Id",
+                        column: x => x.Id,
                         principalTable: "Education",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -215,11 +224,6 @@ namespace Infrastructure.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Announcement_EducationId",
-                table: "Announcement",
-                column: "EducationId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BusinessBondResume_ResumesId",
                 table: "BusinessBondResume",
                 column: "ResumesId");
@@ -250,6 +254,9 @@ namespace Infrastructure.Migrations
                 name: "CandidateAnnouncement");
 
             migrationBuilder.DropTable(
+                name: "Courses");
+
+            migrationBuilder.DropTable(
                 name: "EducationResume");
 
             migrationBuilder.DropTable(
@@ -259,13 +266,13 @@ namespace Infrastructure.Migrations
                 name: "Announcement");
 
             migrationBuilder.DropTable(
+                name: "Education");
+
+            migrationBuilder.DropTable(
                 name: "Resume");
 
             migrationBuilder.DropTable(
                 name: "Company");
-
-            migrationBuilder.DropTable(
-                name: "Education");
 
             migrationBuilder.DropTable(
                 name: "Candidate");

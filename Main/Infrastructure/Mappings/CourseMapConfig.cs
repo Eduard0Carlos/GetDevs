@@ -11,6 +11,8 @@ namespace Infrastructure
             builder.Property(c => c.Name).IsRequired().IsUnicode(false).HasMaxLength(100);
             builder.Property(c => c.Degree).IsRequired();
             builder.Property(c => c.InstitutionName).IsRequired().IsUnicode(false).HasMaxLength(100);
+
+            builder.ToTable("Courses");
         }
     }
 }

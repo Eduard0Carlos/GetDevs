@@ -1,6 +1,8 @@
 ﻿using Domain.Entities;
+using Domain.Enums;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
@@ -18,9 +20,13 @@ namespace WebAPI.Controllers
         private readonly ICompanyService _companyService;
         private readonly ICandidateAnnouncementService _candidateAnnouncementService;
         private readonly IBusinessBondService _businessBondService;
+        private readonly ICourseService _courseService;
+        private readonly IEducationService _educationService;
 
-        public CandidateController(IBusinessBondService businessBondService, IAnnouncementService service, ICandidateService candidateService, IResumeService resumeService, ICompanyService companyService, ICandidateAnnouncementService candidateAnnouncementService)
+        public CandidateController(IEducationService educationService, ICourseService courseService, IBusinessBondService businessBondService, IAnnouncementService service, ICandidateService candidateService, IResumeService resumeService, ICompanyService companyService, ICandidateAnnouncementService candidateAnnouncementService)
         {
+            _educationService = educationService;
+            _courseService = courseService;
             _businessBondService = businessBondService;
             _service = service;
             _candidateService = candidateService;
@@ -42,10 +48,16 @@ namespace WebAPI.Controllers
 
             var result1 = await _candidateService.GetByIdAsync(1);
             var result2 = await _resumeService.GetByIdAsync(1);
-             var result3 = await _companyService.GetByIdAsync(1);
-            var result4 = await _service.GetByIdAsync(1);
-            var result6 = await _candidateAnnouncementService.FindAsync(result1.Value.Id, result4.Value.Id);
-            var result8 = await _candidateService.GetDevsAsync(result4.Value);
+            var result3 = await _businessBondService.GetByIdAsync(1);
+            var result4 = await _companyService.GetByIdAsync(1);
+            var result5 = await _service.GetByIdAsync(1);
+            var resumes = await _resumeService.GetAllAsync();
+            var course = new Course("C#", "Proway", new DateTime(2021, 04, 11), new DateTime(2021, 11, 03), Degree.Doutorado, resumes.Data);
+            var result6 = await _courseService.GetByIdAsync(1);
+            var result7 = await _educationService.GetByIdAsync(1);
+            var result8 = await _candidateAnnouncementService.FindAsync(result1.Value.Id, result5.Value.Id);
+            var result9 = await _candidateAnnouncementService.FindAsync(result1.Value.Id, result4.Value.Id);
+            var result10 = await _candidateService.GetDevsAsync(result5.Value);
 
             return Ok(result4);
         }

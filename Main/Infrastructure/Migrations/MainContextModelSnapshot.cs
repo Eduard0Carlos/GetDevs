@@ -59,9 +59,6 @@ namespace Infrastructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(1234)");
 
-                    b.Property<int?>("EducationId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ExpiredDate")
                         .HasColumnType("datetime2");
 
@@ -80,8 +77,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("EducationId");
 
                     b.ToTable("Announcement");
                 });
@@ -245,10 +240,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Degree")
                         .HasColumnType("int");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -264,8 +255,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Education");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Education");
                 });
 
             modelBuilder.Entity("Domain.Entities.Resume", b =>
@@ -323,7 +312,7 @@ namespace Infrastructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.HasDiscriminator().HasValue("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("BusinessBondResume", b =>
@@ -348,10 +337,6 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.HasOne("Domain.Entities.Education", null)
-                        .WithMany("Announcements")
-                        .HasForeignKey("EducationId");
 
                     b.Navigation("Company");
                 });
@@ -401,6 +386,15 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Domain.Entities.Course", b =>
+                {
+                    b.HasOne("Domain.Entities.Education", null)
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.Course", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Domain.Entities.Announcement", b =>
                 {
                     b.Navigation("CandidateAnnouncements");
@@ -414,11 +408,6 @@ namespace Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Domain.Entities.Company", b =>
-                {
-                    b.Navigation("Announcements");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Education", b =>
                 {
                     b.Navigation("Announcements");
                 });
