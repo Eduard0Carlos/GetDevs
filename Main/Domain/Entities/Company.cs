@@ -15,7 +15,7 @@ namespace Domain.Entities
 
         protected Company() { }
 
-        public Company(string name, string url, string sector, string cnpj, int companySize, string logoImageUrl, string slogan, ICollection<Announcement> announcements)
+        public Company(string name, string url, string sector, string cnpj, int companySize, string logoImageUrl, string slogan)
         {
             Name = name;
             Url = url;
@@ -24,7 +24,6 @@ namespace Domain.Entities
             CompanySize = companySize;
             LogoImageUrl = logoImageUrl;
             Slogan = slogan;
-            Announcements = announcements;
         }
     }
 }

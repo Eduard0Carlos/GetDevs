@@ -1,4 +1,5 @@
-﻿using AnnotationValidator.Attributes;
+﻿using AnnotationValidator.Attribute;
+using AnnotationValidator.Attributes;
 using AnnotationValidator.Enxtensions;
 using AnnotationValidator.Interface;
 using AnnotationValidator.Results;
@@ -49,7 +50,7 @@ namespace AnnotationValidator
                 if (validationAttribute != null)
                 {
                     var validationMethod = validationAttribute.GetValidationMethod();
-                    if (validationAttribute.IsRequired && (property.GetValue(entity) == default || string.IsNullOrWhiteSpace((property.GetValue(entity) as string))))
+                    if (validationAttribute.IsRequired && (property.GetValue(entity) == default))
                         validationResults.Add(ValidationResultFactory.CreateFailure($"{property.Name} deve ser informado"));
                 
                     else if (validationMethod != null)
@@ -59,15 +60,23 @@ namespace AnnotationValidator
                             validation = (validationMethod.Invoke(null, new[] { property.GetValue(entity) }) as ValidationResult);
                         else
                             validation = ((validationMethod.Invoke(Activator.CreateInstance(validationAttribute.GetValidationClass()), new[] { property.GetValue(entity) }) as ValidationResult));
-                    
-                        if (!validation.IsValid)
+
+                        if (validation is null) { }
+                        else if (!validation.IsValid)
                             validationResults.Add(validation);
                     }
                     else if (property.PropertyType == typeof(string))
                     {
+                        var displayName = property?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
+                        if (displayName == null)
+                            displayName = property.Name;
+
                         var value = (property.GetValue(entity) as string);
+                        if (string.IsNullOrWhiteSpace(value))
+                            validationResults.Add(ValidationResultFactory.CreateFailure());
+
                         if (validationAttribute.LettersOnly)
-                            validationResults.Add(value.ContainsOnlyLetters(property.Name));
+                            validationResults.Add(value.ContainsOnlyLetters(displayName));
                         
                         if (validationAttribute.IsTelefone)
                             validationResults.Add(value.ValidatePhoneNumber());
@@ -79,9 +88,9 @@ namespace AnnotationValidator
                             validationResults.Add(value.ValidateCPF());
                         
                         if (validationAttribute.IsFixedLength)
-                            validationResults.Add(value.ValidateLength(validationAttribute.FixedLength, property.Name));
+                            validationResults.Add(value.ValidateLength(validationAttribute.FixedLength, displayName));
                         else
-                            validationResults.Add((value.ValidateLength(validationAttribute.MaxLength, validationAttribute.MinLength, property.Name)));
+                            validationResults.Add((value.ValidateLength(validationAttribute.MaxLength, validationAttribute.MinLength, displayName)));
                      
                         if (validationAttribute.HasNormalize)
                             property.SetValue(entity, value.NormalizeString());

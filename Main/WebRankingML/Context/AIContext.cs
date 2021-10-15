@@ -8,7 +8,7 @@ namespace WebRankingML
 {
     public static class AIContext
     {
-        public static IEnumerable<ResumeResult> Rank(int groupId, IDataView data)
+        public static IEnumerable<ResumeResult> Rank(IDataView data)
         {
             var mlContext = new MLContext();
             DataViewSchema schema;

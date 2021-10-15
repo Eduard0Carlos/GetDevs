@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using AnnotationValidator;
 using AnnotationValidator.Interface;
 using Shared.Extension;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Application.Services
 {
@@ -43,26 +45,33 @@ namespace Application.Services
 
         public virtual async Task<DataResult<TEntity>> GetAllAsync()
         {
-            var entities = await this._dbContext.Set<TEntity>().AsNoTracking().ToListAsync();
+            var entities = await this._dbContext.Set<TEntity>().ToListAsync();
             return ResultFactory.CreateSuccessDataResult(entities);
         }
 
         public virtual async Task<SingleResult<TEntity>> GetByIdAsync(int id)
         {
-            var entity = await this._dbContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
+            var entity = await this._dbContext.Set<TEntity>().FindAsync(id);
             return ResultFactory.CreateSuccessSingleResult(entity);
         }
 
-        public virtual async Task<Result> InsertAsync(TEntity entity)
+        public virtual async Task<SingleResult<TEntity>> InsertAsync(TEntity entity)
         {
             var validation = this.Validate(entity);
             if (!validation.IsValid)
-                return validation.ToResult();
+                return ResultFactory.CreateFailureSingleResult(entity);
 
-            await this._dbContext.Set<TEntity>().AddAsync(entity);
+                await this._dbContext.Set<TEntity>().AddAsync(entity);
+                await this._dbContext.SaveChangesAsync();
+
+            return ResultFactory.CreateSuccessSingleResult(entity);
+        }
+
+        public async Task<DataResult<TEntity>> InsertRangeAsync(IEnumerable<TEntity> entities)
+        {
+            await this._dbContext.Set<TEntity>().AddRangeAsync(entities);
             await this._dbContext.SaveChangesAsync();
-
-            return ResultFactory.CreateSuccessResult();
+            return ResultFactory.CreateSuccessDataResult(entities.ToArray());
         }
 
         public virtual async Task<Result> UpdateAsync(TEntity entity)

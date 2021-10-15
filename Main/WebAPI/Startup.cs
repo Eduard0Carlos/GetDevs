@@ -8,10 +8,11 @@ using Microsoft.OpenApi.Models;
 using Application.Services;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System;
 using AnnotationValidator.Interface;
 using Domain.Entities;
 using Infrastructure.ValidationModel;
+using Shared.Database;
+using System.Text.Json.Serialization;
 
 namespace WebAPI
 {
@@ -35,14 +36,18 @@ namespace WebAPI
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<IEducationService, EducationService>();
             services.AddTransient<IResumeService, ResumeService>();
+            services.AddTransient<ICandidateAnnouncementService, CandidateAnnouncementService>();
 
             services.AddTransient<IEntityValidationModel<Announcement>, AnnouncementValidationModel>();
             services.AddTransient<IEntityValidationModel<BusinessBond>, BusinessBondValidationModel>();
             services.AddTransient<IEntityValidationModel<Candidate>, CandidateValidationModel>();
             services.AddTransient<IEntityValidationModel<Company>, CompanyValidationModel>();
             services.AddTransient<IEntityValidationModel<Course>, CourseValidationModel>();
+            services.AddTransient<IEntityValidationModel<Education>, EducationValidationModel>();
+            services.AddTransient<IEntityValidationModel<Resume>, ResumeValidationModel>();
+            services.AddTransient<IEntityValidationModel<CandidateAnnouncement>, CandidateAnnouncementValdiationModel>();
 
-            services.AddDbContext<MainContext>(opt => opt.UseSqlServer(Environment.GetEnvironmentVariable("SqlConnectionString")));
+            services.AddDbContext<MainContext>(opt => opt.UseSqlServer(SqlDataBase.CONNECTION_STRING));
 
             services.AddSwaggerGen(c =>
             {
@@ -69,5 +74,13 @@ namespace WebAPI
                 endpoints.MapControllers();
             });
         }
+    }
+
+    public class ResumeValidationModel : IEntityValidationModel<Resume>
+    {
+    }
+
+    public class EducationValidationModel : IEntityValidationModel<Education>
+    {
     }
 }

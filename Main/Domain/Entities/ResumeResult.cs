@@ -1,4 +1,4 @@
-﻿namespace Shared.Results
+﻿namespace Domain.Entities
 {
     public class ResumeResult
     {
@@ -7,6 +7,11 @@
         public uint Label { get; set; }
         public float Score { get; set; }
         public float[] Features { get; set; }
+    }
 
+    public static class ResumeResultExtension
+    {
+        public static Resume ConvertToResume(this ResumeResult resumeResult, Resume resume) =>
+            resume.SetScore(resumeResult.Score);
     }
 }

@@ -5,6 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Shared.Results;
 using System.Threading.Tasks;
 using AnnotationValidator.Interface;
+using System.Collections.Generic;
+using WebRankingML;
+using Shared.Factory;
+using System.Linq;
 
 namespace Application.Services
 {
@@ -38,6 +42,33 @@ namespace Application.Services
                 return null;
 
             return authenticateResult;
+        }
+        public async Task<DataResult<Candidate>> GetDevsAsync(Announcement announcement)
+        {
+            var candidatesRegistered = await this.GetRegisteredCandidatesAsync(announcement);
+            var resumes = new List<ResumeAI>();
+
+            candidatesRegistered?.Data?.ForEach(c =>
+            resumes.Add(c.Resume.ConvertToResumeAI(announcement)));
+
+            var dataView = AIContext.PrepareData(resumes);
+            var rankingResult = AIContext.Rank(dataView);
+
+            candidatesRegistered.Data.ForEach(c => c.Resume.SetScore(rankingResult.ToList().FirstOrDefault(r => r.Id == c.Resume.Id).Score));
+
+            return ResultFactory.CreateSuccessDataResult(candidatesRegistered.Data);
+        }
+
+        public async Task<DataResult<Candidate>> GetRegisteredCandidatesAsync(Announcement announcement)
+        {
+            var registeredCandidates = new List<Candidate>();
+
+            this._dbContext.Set<CandidateAnnouncement>()
+                .Where(e => e.Announcement == announcement && e.Registered)
+                .ToList()
+                .ForEach(e => registeredCandidates.Add(e.Candidate));
+
+            return ResultFactory.CreateSuccessDataResult(registeredCandidates);
         }
     }
 }   

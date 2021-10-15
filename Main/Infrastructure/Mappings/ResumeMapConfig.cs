@@ -10,7 +10,6 @@ namespace Infrastructure
         {
             builder.Property(r => r.Skills).IsRequired();
             
-            builder.HasOne(r => r.Candidate).WithOne(p => p.Resume).OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(r => r.Educations).WithMany(e => e.Resumes);
             builder.HasMany(r => r.BusinessBonds).WithMany(b => b.Resumes);
         }

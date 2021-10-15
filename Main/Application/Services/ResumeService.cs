@@ -1,7 +1,9 @@
 ﻿using AnnotationValidator.Interface;
 using Domain.Entities;
+using Domain.Enums;
 using Domain.Interfaces;
 using Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Shared.Factory;
 using Shared.Results;
 using System.Linq;
@@ -16,29 +18,21 @@ namespace Application.Services
 
         }
 
-        public async Task<Result> FindDevs(Announcement announcement)
+        public override async Task<SingleResult<Resume>> GetByIdAsync(int id)
         {
-            var resumes = this._dbContext.Set<Resume>()
-                .Where(r => r.Skills.HasFlag(announcement.SkillRequired) &&
-                r.Languages.HasFlag(announcement.LanguagesRequired) &&
-                r.Degrees.HasFlag(announcement.DegreesRequired))
-                .ToList();
+            var resume = await this._dbContext.Set<Resume>().Include(r => r.BusinessBonds).Include(r => r.Educations).FirstOrDefaultAsync(e => e.Id == id);
+            return ResultFactory.CreateSuccessSingleResult<Resume>(resume);
+        }
 
-            if (resumes.Count < announcement.RequiredCandidates)
-            {
-                resumes.AddRange(this._dbContext.Set<Resume>()
-                    .Where(r => r.Skills.HasFlag(announcement.SkillRequired) &&
-                (r.Languages.HasFlag(announcement.LanguagesRequired) ||
-                r.Degrees.HasFlag(announcement.DegreesRequired))
-                ));
-            }
-
-            foreach (var item in resumes)
-                await this._dbContext.Set<CandidateAnnoucement>().AddAsync(new CandidateAnnoucement(false, item.Candidate, announcement));
-
-            await this._dbContext.SaveChangesAsync();
-
-            return ResultFactory.CreateSuccessResult();
+        public async Task<DataResult<Resume>> GetResumeByRequirementAsync(Skill skill = Skill.None, Language language = Language.Português, Degree degree = Degree.Ensino_Fundamental)
+        {
+            return ResultFactory.CreateSuccessDataResult(
+                await this._dbContext.Set<Resume>()
+                           .Where(r =>
+                                  r.Skills.HasFlag(skill) &&
+                                  r.Languages.HasFlag(language) &&
+                                  r.Degrees.HasFlag(degree))
+                           .ToListAsync());
         }
     }
 }

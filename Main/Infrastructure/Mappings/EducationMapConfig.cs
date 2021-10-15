@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccessObject.Mapping
+namespace Infrastructure
 {
     internal class EducationMapConfig : IEntityTypeConfiguration<Education>
     {

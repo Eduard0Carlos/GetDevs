@@ -14,6 +14,7 @@ namespace Infrastructure
             builder.Property(a => a.SkillRequired).IsRequired();
 
             builder.HasOne(a => a.Company).WithMany(c => c.Announcements).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(a => a.CandidateAnnouncements).WithOne(c => c.Announcement).HasForeignKey(c => c.AnnouncementId);
         }
     }
 }
