@@ -1,5 +1,6 @@
 ﻿using AnnotationValidator.Attributes;
 using AnnotationValidator.Enxtensions;
+using AnnotationValidator.Interface;
 using AnnotationValidator.Results;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace AnnotationValidator
         private string _validationPropertyName;
         private StringBuilder _errors;
 
-        public Type ValidationModel { get; set; }
+        public IEntityValidationModel<TEntity> ValidationModel { get; set; }
 
         public BaseValidator()
         {
@@ -32,7 +33,7 @@ namespace AnnotationValidator
         {
             var entityProperties = typeof(TEntity).GetProperties();
             var validationResults = new List<ValidationResult>();
-            var validationProperties = this.ValidationModel.GetProperties();
+            var validationProperties = this.ValidationModel.GetType().GetProperties();
 
             foreach (var property in entityProperties)
             {

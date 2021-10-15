@@ -1,22 +1,19 @@
-﻿using Domain.Entities;
-using Domain.Interfaces;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class CandidateController : ControllerBase
+    [ApiController]
+    public class CadidateAnnouncementController : ControllerBase
     {
-        private readonly ICandidateService _service;
+        private readonly ICandidateAnnouncementService _service;
 
-        public CandidateController(ICandidateService service)
+        public CadidateAnnouncementController(IBusinessBondService service)
         {
             this._service = service;
         }
@@ -25,10 +22,10 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var result = await _service.GetByIdAsync(id);
-            
+
             if (result.Success)
                 return Ok(result);
-            
+
             return NotFound(result);
         }
 
@@ -36,17 +33,17 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _service.DeleteAsync(id);
-            
+
             if (result.Success)
                 return Ok(result);
-            
+
             return NotFound(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(Candidate candidate)
+        public async Task<IActionResult> Put(BusinessBond businessBond)
         {
-            var result = await _service.InsertAsync(candidate);
+            var result = await _service.InsertAsync(businessBond);
             if (result.Success)
             {
                 return Ok(result);
@@ -55,9 +52,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Candidate candidate)
+        public async Task<IActionResult> Post(BusinessBond businessBond)
         {
-            var result = await _service.InsertAsync(candidate);
+            var result = await _service.InsertAsync(businessBond);
             if (result.Success)
             {
                 return Ok(result);
