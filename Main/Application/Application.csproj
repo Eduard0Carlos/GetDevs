@@ -11,8 +11,8 @@
   <ItemGroup>
     <ProjectReference Include="..\AnnotationValidator\AnnotationValidator.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
+	  <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\WebRankingML\WebRankingML.csproj" />
   </ItemGroup>
 

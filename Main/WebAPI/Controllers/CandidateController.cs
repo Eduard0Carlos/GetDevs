@@ -74,11 +74,25 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(HttpContent content)
+        public async Task<IActionResult> Put(Candidate candidate)
         {
-            var teste = content.ReadAsStringAsync().Result;
-            var candidate = JsonSerializer.Deserialize<Candidate>(teste);
-                return Ok();
+            var result = await _service.InsertAsync(candidate);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return NotFound(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Candidate candidate)
+        {
+            var result = await _service.InsertAsync(candidate);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return NotFound(result);
         }
     }
 }

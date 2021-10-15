@@ -7,6 +7,7 @@ namespace Infrastructure
 {
     public class MainContext : DbContext 
     {
+
         protected DbSet<Announcement> Announcements;
         protected DbSet<BusinessBond> BusinessBonds;
         protected DbSet<CandidateAnnouncement> AnnouncementCandidate;
