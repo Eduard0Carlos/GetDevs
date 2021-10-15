@@ -11,18 +11,6 @@ namespace Domain.Entities
         public string Role { get; protected set; }
         public ICollection<Resume> Resumes { get; protected set; }
 
-        public int GetTimeExperience()
-        {
-            int experienceYears;
-            
-            if (this.EndDate != default)
-                experienceYears = this.EndDate.Year - this.StartDate.Year;
-            else
-                experienceYears = DateTime.Now.Year - this.StartDate.Year;
-            
-            return experienceYears;
-        }
-
         protected BusinessBond() { }
 
         public BusinessBond(DateTime startDate, DateTime endDate, string companyName, string role, ICollection<Resume> resumes)
@@ -32,6 +20,19 @@ namespace Domain.Entities
             CompanyName = companyName;
             Role = role;
             Resumes = resumes;
+        }
+
+
+        public int GetTimeExperience()
+        {
+            int experienceYears;
+
+            if (this.EndDate != default)
+                experienceYears = this.EndDate.Year - this.StartDate.Year;
+            else
+                experienceYears = DateTime.Now.Year - this.StartDate.Year;
+
+            return experienceYears;
         }
     }
 }

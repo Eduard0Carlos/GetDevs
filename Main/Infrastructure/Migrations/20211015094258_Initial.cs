@@ -27,7 +27,7 @@ namespace Infrastructure.Migrations
                 name: "Candidate",
                 columns: table => new
                 {
-                    ResumeId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(70)", unicode: false, maxLength: 70, nullable: false),
                     Cpf = table.Column<string>(type: "char(11)", unicode: false, fixedLength: true, maxLength: 11, nullable: false),
@@ -36,11 +36,11 @@ namespace Infrastructure.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ResumeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Candidate", x => x.ResumeId);
+                    table.PrimaryKey("PK_Candidate", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -99,7 +99,7 @@ namespace Infrastructure.Migrations
                         name: "FK_Resume_Candidate_CandidateId",
                         column: x => x.CandidateId,
                         principalTable: "Candidate",
-                        principalColumn: "ResumeId");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -187,27 +187,26 @@ namespace Infrastructure.Migrations
                 name: "CandidateAnnouncement",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CandidateId = table.Column<int>(type: "int", nullable: false),
+                    AnnouncementId = table.Column<int>(type: "int", nullable: false),
                     Registered = table.Column<bool>(type: "bit", nullable: false),
-                    CandidateResumeId = table.Column<int>(type: "int", nullable: true),
-                    AnnouncementId = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CandidateAnnouncement", x => x.Id);
+                    table.PrimaryKey("PK_CandidateAnnouncement", x => new { x.AnnouncementId, x.CandidateId });
                     table.ForeignKey(
                         name: "FK_CandidateAnnouncement_Announcement_AnnouncementId",
                         column: x => x.AnnouncementId,
                         principalTable: "Announcement",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CandidateAnnouncement_Candidate_CandidateResumeId",
-                        column: x => x.CandidateResumeId,
+                        name: "FK_CandidateAnnouncement_Candidate_CandidateId",
+                        column: x => x.CandidateId,
                         principalTable: "Candidate",
-                        principalColumn: "ResumeId",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -226,14 +225,9 @@ namespace Infrastructure.Migrations
                 column: "ResumesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CandidateAnnouncement_AnnouncementId",
+                name: "IX_CandidateAnnouncement_CandidateId",
                 table: "CandidateAnnouncement",
-                column: "AnnouncementId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CandidateAnnouncement_CandidateResumeId",
-                table: "CandidateAnnouncement",
-                column: "CandidateResumeId");
+                column: "CandidateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EducationResume_ResumesId",

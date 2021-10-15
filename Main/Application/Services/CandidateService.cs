@@ -48,7 +48,7 @@ namespace Application.Services
             var candidatesRegistered = await this.GetRegisteredCandidatesAsync(announcement);
             var resumes = new List<ResumeAI>();
 
-            candidatesRegistered.Data.ForEach(c =>
+            candidatesRegistered?.Data?.ForEach(c =>
             resumes.Add(c.Resume.ConvertToResumeAI(announcement)));
 
             var dataView = AIContext.PrepareData(resumes);
@@ -63,10 +63,10 @@ namespace Application.Services
         {
             var registeredCandidates = new List<Candidate>();
 
-            await this._dbContext.Set<CandidateAnnouncement>()
-               .AsNoTracking()
-               .Where(e => e.Announcement == announcement && e.Registered)
-               .ForEachAsync(e => registeredCandidates.Add(e.Candidate));
+            this._dbContext.Set<CandidateAnnouncement>()
+                .Where(e => e.Announcement == announcement && e.Registered)
+                .ToList()
+                .ForEach(e => registeredCandidates.Add(e.Candidate));
 
             return ResultFactory.CreateSuccessDataResult(registeredCandidates);
         }

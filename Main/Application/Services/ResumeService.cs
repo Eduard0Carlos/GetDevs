@@ -22,7 +22,6 @@ namespace Application.Services
         {
             return ResultFactory.CreateSuccessDataResult(
                 await this._dbContext.Set<Resume>()
-                           .AsNoTracking()
                            .Where(r =>
                                   r.Skills.HasFlag(skill) &&
                                   r.Languages.HasFlag(language) &&

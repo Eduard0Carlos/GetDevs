@@ -59,13 +59,14 @@ namespace AnnotationValidator
                             validation = (validationMethod.Invoke(null, new[] { property.GetValue(entity) }) as ValidationResult);
                         else
                             validation = ((validationMethod.Invoke(Activator.CreateInstance(validationAttribute.GetValidationClass()), new[] { property.GetValue(entity) }) as ValidationResult));
-                    
-                        if (!validation.IsValid)
+
+                        if (validation is null) { }
+                        else if (!validation.IsValid)
                             validationResults.Add(validation);
                     }
                     else if (property.PropertyType == typeof(string))
                     {
-                        var displayName = property.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        var displayName = property?.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName;
                         if (displayName == null)
                             displayName = property.Name;
 

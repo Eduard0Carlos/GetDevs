@@ -14,8 +14,8 @@ namespace Infrastructure
             builder.Property(p => p.BirthDate).IsRequired();
             builder.Property(p => p.Cep).IsRequired().IsFixedLength().HasMaxLength(8).IsUnicode(false);
 
-            builder.HasOne(p => p.Resume).WithOne(r => r.Candidate).OnDelete(DeleteBehavior.NoAction);
-            builder.HasKey(c => c.ResumeId);
+            builder.HasOne(c => c.Resume).WithOne(r => r.Candidate).OnDelete(DeleteBehavior.NoAction).HasForeignKey<Resume>(r => r.CandidateId);
+            builder.HasMany(c => c.CandidateAnnouncements).WithOne(c => c.Candidate).HasForeignKey(c => c.CandidateId);
         }
     }
 }

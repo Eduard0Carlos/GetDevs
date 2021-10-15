@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20211014180956_Initial")]
+    [Migration("20211015094258_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,7 +120,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Candidate", b =>
                 {
-                    b.Property<int>("ResumeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -145,9 +145,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(70)
@@ -163,32 +160,31 @@ namespace Infrastructure.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(13)");
 
-                    b.HasKey("ResumeId");
+                    b.Property<int>("ResumeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Candidate");
                 });
 
             modelBuilder.Entity("Domain.Entities.CandidateAnnouncement", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AnnouncementId")
+                    b.Property<int>("AnnouncementId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CandidateResumeId")
+                    b.Property<int>("CandidateId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<bool>("Registered")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("AnnouncementId", "CandidateId");
 
-                    b.HasIndex("AnnouncementId");
-
-                    b.HasIndex("CandidateResumeId");
+                    b.HasIndex("CandidateId");
 
                     b.ToTable("CandidateAnnouncement");
                 });
@@ -365,12 +361,16 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.CandidateAnnouncement", b =>
                 {
                     b.HasOne("Domain.Entities.Announcement", "Announcement")
-                        .WithMany("Candidates")
-                        .HasForeignKey("AnnouncementId");
+                        .WithMany("CandidateAnnouncements")
+                        .HasForeignKey("AnnouncementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.Candidate", "Candidate")
-                        .WithMany("Announcements")
-                        .HasForeignKey("CandidateResumeId");
+                        .WithMany("CandidateAnnouncements")
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Announcement");
 
@@ -405,12 +405,12 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Announcement", b =>
                 {
-                    b.Navigation("Candidates");
+                    b.Navigation("CandidateAnnouncements");
                 });
 
             modelBuilder.Entity("Domain.Entities.Candidate", b =>
                 {
-                    b.Navigation("Announcements");
+                    b.Navigation("CandidateAnnouncements");
 
                     b.Navigation("Resume");
                 });
