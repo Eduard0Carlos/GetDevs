@@ -6,6 +6,7 @@ namespace Domain.Interfaces
 {
     public interface ICandidateAnnouncementService : IGenericService<CandidateAnnouncement>
     {
-        Task<Result> FindDevsAsync(CandidateAnnouncement candidateAnnouncement);
+        Task<SingleResult<CandidateAnnouncement>> FindAsync(int candidateId, int announcementId);
+        Task<Result> FindDevsAsync(Announcement announcement);
     }
 }

@@ -18,11 +18,16 @@ namespace Application.Services
 
         }
 
+        public override async Task<SingleResult<Resume>> GetByIdAsync(int id)
+        {
+            var resume = await this._dbContext.Set<Resume>().Include(r => r.BusinessBonds).Include(r => r.Educations).FirstOrDefaultAsync(e => e.Id == id);
+            return ResultFactory.CreateSuccessSingleResult<Resume>(resume);
+        }
+
         public async Task<DataResult<Resume>> GetResumeByRequirementAsync(Skill skill = Skill.None, Language language = Language.Português, Degree degree = Degree.Ensino_Fundamental)
         {
             return ResultFactory.CreateSuccessDataResult(
                 await this._dbContext.Set<Resume>()
-                           .AsNoTracking()
                            .Where(r =>
                                   r.Skills.HasFlag(skill) &&
                                   r.Languages.HasFlag(language) &&

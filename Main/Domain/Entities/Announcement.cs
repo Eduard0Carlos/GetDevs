@@ -1,6 +1,7 @@
 ﻿using Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Domain.Entities
 {
@@ -14,9 +15,11 @@ namespace Domain.Entities
         public int AvaibleVacancy { get; protected set; }
         public DateTime AnnouncementDate { get; protected set; }
         public DateTime ExpiredDate { get; protected set; }
+        [JsonIgnore]
         public Company Company { get; protected set; }
         public int CompanyId { get; protected set; }
-        public ICollection<CandidateAnnouncement> Candidates { get; protected set; }
+        [JsonIgnore]
+        public ICollection<CandidateAnnouncement> CandidateAnnouncements { get; protected set; }
 
         public int RequiredCandidates
         {
@@ -25,7 +28,7 @@ namespace Domain.Entities
 
         protected Announcement() { }
 
-        public Announcement(string title, string description, Skill skillRequired, Language languagesRequired, Degree degreesRequired, int avaibleVacancy, DateTime announcementDate, DateTime expiredDate, Company company, int companyId)
+        public Announcement(string title, string description, Skill skillRequired, Language languagesRequired, Degree degreesRequired, int avaibleVacancy, DateTime announcementDate, DateTime expiredDate, int companyId)
         {
             Title = title;
             Description = description;
@@ -35,7 +38,6 @@ namespace Domain.Entities
             AvaibleVacancy = avaibleVacancy;
             AnnouncementDate = announcementDate;
             ExpiredDate = expiredDate;
-            Company = company;
             CompanyId = companyId;
         }
 

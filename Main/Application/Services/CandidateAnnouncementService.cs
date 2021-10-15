@@ -5,29 +5,43 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Shared.Factory;
 using Shared.Results;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebRankingML;
 
 namespace Application.Services
 {
     public class CandidateAnnouncementService : GenericService<CandidateAnnouncement>, ICandidateAnnouncementService
     {
-        private readonly IResumeService _resumeService;
-        public CandidateAnnouncementService(MainContext dbContext, IEntityValidationModel<CandidateAnnouncement> validationModel, IResumeService resumeService)
+        protected readonly IResumeService _resumeService;
+
+        public CandidateAnnouncementService(IResumeService resumeService, MainContext dbContext, IEntityValidationModel<CandidateAnnouncement> validationModel)
         : base(dbContext, validationModel)
         {
             this._resumeService = resumeService;
         }
 
-        public async Task<Result> FindDevsAsync(CandidateAnnouncement candidateAnnouncement)
+        public async Task<SingleResult<CandidateAnnouncement>> FindAsync(int candidateId, int announcementId)
         {
-            var announcement = candidateAnnouncement.Announcement;
+            return ResultFactory.CreateSuccessSingleResult(
+                await this._dbContext.Set<CandidateAnnouncement>()
+                .FirstOrDefaultAsync(c => c.AnnouncementId == announcementId && c.CandidateId == candidateId));
+        }
+
+        public async Task<Result> FindDevsAsync(Announcement announcement)
+        {
             var resumeDataResult = await this._resumeService.GetResumeByRequirementAsync(announcement.SkillRequired, announcement.LanguagesRequired, announcement.DegreesRequired);
 
             foreach (var resume in resumeDataResult.Data)
-                await this.InsertAsync(new CandidateAnnouncement(false, resume.Candidate, announcement));
+            {
+                try
+                {
+                    await this.InsertAsync(new CandidateAnnouncement(false, resume.CandidateId, announcement.Id));
+                }
+                catch (System.Exception)
+                {
+                    continue;
+                }
+            }
 
             return ResultFactory.CreateSuccessResult();
         }
