@@ -8,8 +8,6 @@ namespace Domain.Entities
         public string Name { get; protected set; }
         public string Cpf { get; protected set; }
         public string Cep { get; protected set; }
-        public string Email { get; protected set; }
-        public string Password { get; protected set; }
         public string PhoneNumber { get; protected set; }
         public DateTime BirthDate { get; protected set; }
         public Resume Resume { get; protected set; }
@@ -20,15 +18,13 @@ namespace Domain.Entities
 
         protected Candidate() { }
 
-        public Candidate(string name, string cpf, string cep, string phoneNumber, DateTime birthDate, string email, string password)
+        public Candidate(string name, string cpf, string cep, string phoneNumber, DateTime birthDate)
         {
             Name = name;
             Cpf = cpf;
             Cep = cep;
             PhoneNumber = phoneNumber;
             BirthDate = birthDate;
-            Email = email;
-            Password = password;
         }
 
         public virtual Candidate SetName(string name)

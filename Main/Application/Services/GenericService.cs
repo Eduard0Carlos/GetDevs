@@ -20,7 +20,7 @@ namespace Application.Services
         public GenericService(MainContext dbContext, IEntityValidationModel<TEntity> validationModel)
         {
             this._dbContext = dbContext;
-            this.ValidationModel = validationModel.GetType();
+            this.ValidationModel = validationModel;
         }
 
         public virtual async Task<Result> DeleteAsync(TEntity entity)

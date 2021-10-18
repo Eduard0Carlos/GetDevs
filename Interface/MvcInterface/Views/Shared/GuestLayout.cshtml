@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="pt-br" class="no-js">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,8 +42,8 @@
                 <div class="collapse navbar-collapse nav-collapse">
                     <div class="menu-container">
                         <ul class="navbar-nav navbar-nav-right">
-                            <li class="nav-item"><a class="nav-item-child" id="singin" asp-controller="signin" asp-action="index">Entrar</a></li>
-                            <li class="nav-item"><a class="nav-item-child" id="singup" asp-controller="signup" asp-action="index">Cadastre-se</a></li>
+                            <li class="nav-item"><a class="nav-item-child signin fadein-effect" asp-controller="signin" asp-action="index">Entrar</a></li>
+                            <li class="nav-item"><a class="nav-item-child signup fadein-effect" asp-controller="signup" asp-action="index">Cadastre-se</a></li>
                         </ul>
                     </div>
                 </div>
@@ -51,12 +51,9 @@
         </nav>
     </header>
 
-    <div class="full-height">
-        @RenderBody()
-    </div>
+    @RenderBody()
 
-
-    <footer class="footer" id="footer">
+    <footer class="footer" style="position: relative;">
         <div class="content container">
             <div class="row">
                 <div class="col-xs-6">

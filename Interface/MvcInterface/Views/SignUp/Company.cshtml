@@ -7,17 +7,21 @@
         <h1>Cadastro</h1>
         <input type="text" class="form-control form-input" placeholder="Email" required />
         <input type="password" class="form-control form-input" placeholder="Senha" required />
-        <div style="width: 100%; display: flex;">
-            <input type="text" class="form-control form-input half-1" placeholder="Nome" required />
-            <input type="text" class="form-control form-input half-2" placeholder="Sobrenome" required />
-        </div>
-        <input type="text" class="form-control form-input" placeholder="CPF" required />
+        <input type="text" class="form-control form-input" placeholder="Nome da Empresa" required />
+        <input type="text" class="form-control form-input" placeholder="Descrição" required />
+        <input type="text" class="form-control form-input" placeholder="CNPJ" required />
         <div style="width: 100%; display: flex;">
             <input type="text" class="form-control form-input half-1" placeholder="CEP" required />
-            <input type="date" class="form-control form-date half-2" placeholder="Data Nascimento" required />
+            <select class="form-control form-input half-2" style="color: #a6a7aa" name="cars" id="cars">
+                <option value="empty" disabled selected hidden>Tamanho</option>
+                <option value="volvo">0-50</option>
+                <option value="saab">50-100</option>
+                <option value="mercedes">100-500</option>
+                <option value="audi">500-1000</option>
+                <option value="audi">1000-5000</option>
+            </select>
         </div>
         <p class="margin-topbottom-15">Já possui uma conta? <a asp-controller="signin" asp-action="index">Entre aqui</a></p>
         <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Cadastrar</button>
-
     </div>
 </div>

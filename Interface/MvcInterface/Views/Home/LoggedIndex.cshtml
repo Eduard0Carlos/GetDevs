@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = $"~/Views/Shared/GuestLayout.cshtml";
+    Layout = $"~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Ínicio";
 }
 
@@ -17,10 +17,10 @@
             <div class="container">
                 <div class="carousel-centered">
                     <div class="margin-b-40">
-                        <h1 class="carousel-title">Cadastre-se</h1>
-                        <p>Você só precisa preencher algumas informações e nós fazemos o resto. <br />  Buscaremos a vaga ideal para você no mercado de trabalho.</p>
+                        <h1 class="carousel-title">Vagas</h1>
+                        <p>Confira as oportunidades disponíveis para você!</p>
                     </div>
-                    <a asp-controller="signup" asp-action="index" class="btn-theme btn-theme-sm btn-white-brd text-uppercase">Confira</a>
+                    <a asp-controller="job" asp-action="index" class="btn-theme btn-theme-sm btn-white-brd text-uppercase">Confira</a>
                 </div>
             </div>
         </div>
@@ -48,10 +48,10 @@
                             <i class="service-icon icon-users"></i>
                         </div>
                         <div class="service-info">
-                            <h3>Pessoas</h3>
-                            <p class="margin-b-5">Veja o perfil de milhares de pessoas de todo o Brasil</p>
+                            <h3>Perfil</h3>
+                            <p class="margin-b-5">Veja seu perfil e preencha seu currículo!</p>
                         </div>
-                        <a asp-controller="signup" asp-action="index" class="content-wrapper-link"></a>
+                        <a asp-controller="profile" asp-action="Index" class="content-wrapper-link"></a>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                                 <h3>Vagas</h3>
                                 <p class="margin-b-5">Confira todas as vagas disponíveis no momento</p>
                             </div>
-                            <a asp-controller="signup" asp-action="index" class="content-wrapper-link"></a>
+                            <a asp-controller="job" asp-action="index" class="content-wrapper-link"></a>
                         </div>
                     </div>
                 </div>
