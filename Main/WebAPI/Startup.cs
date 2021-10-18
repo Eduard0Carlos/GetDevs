@@ -31,6 +31,7 @@ namespace WebAPI
             services.AddControllers();
             services.AddTransient<ICandidateService, CandidateService>();
             services.AddTransient<IAnnouncementService, AnnouncementService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IBusinessBondService, BusinessBondService>();
             services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<ICourseService, CourseService>();
@@ -46,6 +47,7 @@ namespace WebAPI
             services.AddTransient<IEntityValidationModel<Education>, EducationValidationModel>();
             services.AddTransient<IEntityValidationModel<Resume>, ResumeValidationModel>();
             services.AddTransient<IEntityValidationModel<CandidateAnnouncement>, CandidateAnnouncementValdiationModel>();
+            services.AddTransient<IEntityValidationModel<User>, UserValidationModel>();
 
             services.AddDbContext<MainContext>(opt => opt.UseSqlServer(SqlDataBase.CONNECTION_STRING));
 

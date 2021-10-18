@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="pt-br" class="no-js">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
+    <title>@ViewData["Title"]</title>
 
     <link href="~/css/home.css" rel="stylesheet" type="text/css" />
     <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
@@ -19,7 +20,7 @@
 
     <link rel="shortcut icon" href="favicon.ico" />
 </head>
-<body class="page-on-scroll">
+<body class="black-background page-on-scroll">
 
     <header class="header navbar-fixed-top">
         <nav class="navbar" role="navigation">
@@ -31,9 +32,9 @@
                     </button>
 
                     <div class="logo">
-                        <a class="logo-wrap" asp-controller="Home" asp-action="Index">
-                            <img class="logo-img logo-img-main" src="img/logo.png" alt="Asentus Logo">
-                            <img class="logo-img logo-img-active" src="img/logo-dark.png" alt="Asentus Logo">
+                        <a class="logo-wrap" asp-controller="home" asp-action="index">
+                            <img class="logo-img logo-img-main" src="~/img/logo.png">
+                            <img class="logo-img logo-img-active" src="~/img/logo-dark.png">
                         </a>
                     </div>
                 </div>
@@ -41,10 +42,8 @@
                 <div class="collapse navbar-collapse nav-collapse">
                     <div class="menu-container">
                         <ul class="navbar-nav navbar-nav-right">
-                            <li class="nav-item"><a class="nav-item-child nav-item-hover" asp-controller="Home" asp-action="Logout">Vagas</a></li>
-                            <li class="nav-item"><a class="nav-item-child nav-item-hover" href="pricing.html">Pessoas</a></li>
-                            <li class="nav-item"><a class="nav-item-child nav-item-hover" href="pricing.html">Empresas</a></li>
-                            <li class="nav-item"><a class="nav-item-child nav-item-hover" asp-controller="Profile" asp-action="Index">Perfil</a></li>
+                            <li class="nav-item"><a class="nav-item-child signin fadein-effect" asp-controller="signin" asp-action="index">Entrar</a></li>
+                            <li class="nav-item"><a class="nav-item-child signup fadein-effect" asp-controller="signup" asp-action="index">Cadastre-se</a></li>
                         </ul>
                     </div>
                 </div>
@@ -58,7 +57,7 @@
         <div class="content container">
             <div class="row">
                 <div class="col-xs-6">
-                    <img class="footer-logo" src="img/logo.png" alt="Asentus Logo">
+                    <img class="footer-logo" src="~/img/logo.png">
                 </div>
                 <div class="col-xs-6 text-right">
                     <p class="margin-b-0">Desenvolvido por GetDevs</p>
@@ -66,7 +65,7 @@
             </div>
         </div>
     </footer>
-    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+    <a href="javascript:void(0);" class="js-back-to-top back-to-top">Topo</a>
 
     <script src="~/vendor/jquery.min.js" type="text/javascript"></script>
     <script src="~/vendor/jquery-migrate.min.js" type="text/javascript"></script>

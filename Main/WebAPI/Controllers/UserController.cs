@@ -5,17 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CadidateAnnouncementController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly ICandidateAnnouncementService _service;
+        private readonly ICompanyService _service;
 
-        public CadidateAnnouncementController(ICandidateAnnouncementService service)
+        public UserController(ICompanyService service)
         {
             this._service = service;
         }
@@ -42,10 +44,9 @@ namespace WebAPI.Controllers
             return NotFound(result);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Put(CandidateAnnouncement businessBond)
+        public async Task<IActionResult> Put(Company company)
         {
-            var result = await _service.InsertAsync(businessBond);
+            var result = await _service.InsertAsync(company);
             if (result.Success)
             {
                 return Ok(result);
@@ -54,9 +55,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CandidateAnnouncement businessBond)
+        public async Task<IActionResult> Post(Company company)
         {
-            var result = await _service.InsertAsync(businessBond);
+            var result = await _service.InsertAsync(company);
             if (result.Success)
             {
                 return Ok(result);

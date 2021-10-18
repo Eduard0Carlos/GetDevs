@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVCUserInterface.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace MVCUserInterface.Controllers
 {
@@ -17,17 +19,16 @@ namespace MVCUserInterface.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+                return View("~/Views/Home/LoggedIndex.cshtml");
+            else
+                return View("~/Views/Home/Index.cshtml");
         }
 
-        public IActionResult Test()
+        public async Task<IActionResult> Logout()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

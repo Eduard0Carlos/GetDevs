@@ -11,14 +11,22 @@
 
         protected User() { }
 
-        public User(string email, string password, int? companyId, Company company, int? candidateId, Candidate candidate)
+        public User(string email, string password)
         {
             Email = email;
             Password = password;
-            CompanyId = companyId;
-            Company = company;
-            CandidateId = candidateId;
-            Candidate = candidate;
+        }
+
+        public User SetCompanyId(int companyId)
+        {
+            this.CompanyId = companyId;
+            return this;
+        }
+
+        public User SetCandidate(int candidateId)
+        {
+            this.CandidateId = candidateId;
+            return this;
         }
     }
 }
