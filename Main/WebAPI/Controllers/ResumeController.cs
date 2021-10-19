@@ -13,17 +13,19 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ResumeController : ControllerBase
     {
-        private readonly IResumeService _service;
+        private readonly IResumeService _resumeService;
+        private readonly IUserService _userService;
 
-        public ResumeController(IResumeService service)
+        public ResumeController(IResumeService resumeService, IUserService userService)
         {
-            this._service = service;
+            _resumeService = resumeService;
+            _userService = userService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _service.GetByIdAsync(id);
+            var result = await _resumeService.GetByIdAsync(id);
 
             if (result.Success)
                 return Ok(result);
@@ -31,10 +33,20 @@ namespace WebAPI.Controllers
             return NotFound(result);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get(string email)
+        {
+            var result = await _userService.GetByEmailAsync(email);
+            if (result.Success)
+                return Ok(result.Value.Candidate.Resume);
+
+            return NotFound(result);
+        }
+
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _service.DeleteAsync(id);
+            var result = await _resumeService.DeleteAsync(id);
 
             if (result.Success)
                 return Ok(result);
@@ -45,7 +57,7 @@ namespace WebAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(Resume resume)
         {
-            var result = await _service.InsertAsync(resume);
+            var result = await _resumeService.InsertAsync(resume);
             if (result.Success)
             {
                 return Ok(result);
@@ -56,7 +68,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Resume resume)
         {
-            var result = await _service.InsertAsync(resume);
+            var result = await _resumeService.InsertAsync(resume);
             if (result.Success)
             {
                 return Ok(result);
