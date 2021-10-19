@@ -6,6 +6,8 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
+    <title>@ViewData["Title"]</title>
+    <link rel="shortcut icon" href="~/favicon.ico" />
 
     <link href="~/css/home.css" rel="stylesheet" type="text/css" />
     <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
@@ -16,8 +18,6 @@
     <link href="~/vendor/swiper/css/swiper.min.css" rel="stylesheet" type="text/css" />
 
     <link href="~/css/layout.min.css" rel="stylesheet" type="text/css" />
-
-    <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body class="black-background page-on-scroll">
 
@@ -32,8 +32,8 @@
 
                     <div class="logo">
                         <a class="logo-wrap" asp-controller="Home" asp-action="Index">
-                            <img class="logo-img logo-img-main" src="img/logo.png" alt="Asentus Logo">
-                            <img class="logo-img logo-img-active" src="img/logo-dark.png" alt="Asentus Logo">
+                            <img class="logo-img logo-img-main" src="~/img/logo.png" >
+                            <img class="logo-img logo-img-active" src="~/img/logo-dark.png" >
                         </a>
                     </div>
                 </div>
@@ -41,10 +41,9 @@
                 <div class="collapse navbar-collapse nav-collapse">
                     <div class="menu-container">
                         <ul class="navbar-nav navbar-nav-right">
-                            <li class="nav-item"><a class="nav-item-child nav-item-hover" asp-controller="Home" asp-action="Logout">Vagas</a></li>
-                            <li class="nav-item"><a class="nav-item-child nav-item-hover" href="pricing.html">Pessoas</a></li>
-                            <li class="nav-item"><a class="nav-item-child nav-item-hover" href="pricing.html">Empresas</a></li>
+                            <li class="nav-item"><a class="nav-item-child nav-item-hover" asp-controller="Job" asp-action="Index">Vagas</a></li>
                             <li class="nav-item"><a class="nav-item-child nav-item-hover" asp-controller="Profile" asp-action="Index">Perfil</a></li>
+                            <li class="nav-item"><a class="nav-item-child nav-item-hover" asp-controller="Home" asp-action="Logout">Sair</a></li>
                         </ul>
                     </div>
                 </div>
