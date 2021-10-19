@@ -25,17 +25,6 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int id)
-        {
-            var result = await _annoucementService.GetByIdAsync(id);
-
-            if (result.Success)
-                return Ok(result);
-
-            return NotFound(result);
-        }
-
-        [HttpGet]
         public async Task<IActionResult> Get(string email)
         {
             var result = await _userService.GetByEmailAsync(email);

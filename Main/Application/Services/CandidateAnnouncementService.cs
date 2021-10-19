@@ -24,7 +24,7 @@ namespace Application.Services
         {
             return ResultFactory.CreateSuccessSingleResult(
                 await this._dbContext.Set<CandidateAnnouncement>()
-                .FirstOrDefaultAsync(c => c.AnnouncementId == announcementId && c.CandidateId == candidateId));
+                                     .FirstOrDefaultAsync(c => c.AnnouncementId == announcementId && c.CandidateId == candidateId));
         }
 
         public async Task<Result> FindDevsAsync(Announcement announcement)

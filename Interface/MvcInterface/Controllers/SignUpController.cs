@@ -22,7 +22,7 @@ namespace MVCUserInterface.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Candidate(SignUpViewModel signUpViewModel)
+        public async Task<IActionResult> Candidate(CandidateSignUpViewModel signUpViewModel)
         {
             var json = JsonConvert.SerializeObject(signUpViewModel);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
@@ -33,9 +33,21 @@ namespace MVCUserInterface.Controllers
         }
 
         [HttpGet]
-        public IActionResult Company()
+        public async Task<IActionResult> Company()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Company(CompanySignUpViewModel signUpViewModel)
+        {
+            var json = JsonConvert.SerializeObject(signUpViewModel);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            using var client = new HttpClient();
+            var response = await client.PostAsync($"{Api.URL}/company/register", data);
+
+            return RedirectToAction("Index", "SignIn");
         }
     }
 }

@@ -8,31 +8,28 @@ using System.Threading.Tasks;
 
 namespace MVCUserInterface.Controllers
 {
-    public class ProfileController : Controller
+    public class CompanyController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public ProfileController(ILogger<HomeController> logger)
+        public CompanyController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet("Profile")]
+        [HttpGet("Company")]
         public IActionResult Index()
         {
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "SignIn");
 
-            if (User.IsInRole("candidate"))
-                return Redirect($"profile/{User.Identity.Name}");
-            else
-                return Redirect($"company/{User.Identity.Name}");
+            return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet("Profile/{profileName}")]
+        [HttpGet("Company/{profileName}")]
         public async Task<IActionResult> Index(string profileName)
         {
-            var response = await new HttpClient().GetAsync($"{Api.URL}/candidate?email={profileName}");
+            var response = await new HttpClient().GetAsync($"{Api.URL}/company?companyName={profileName}");
 
             if (!response.IsSuccessStatusCode)
                 return RedirectToAction("Index", "Home");
