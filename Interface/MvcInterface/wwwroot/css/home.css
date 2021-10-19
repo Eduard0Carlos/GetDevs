@@ -159,8 +159,15 @@
 
 .form-button {
     background-color: #AF1100 !important;
-    border-radius: 6px!important;
+    border-radius: 6px !important;
     margin-top: 15px !important;
+}
+
+.form-button-choosed {
+    background-color: #333 !important;
+    border-radius: 6px !important;
+    margin-top: 15px !important;
+    cursor: auto !important;
 }
 
 .form-button:hover {
@@ -206,6 +213,35 @@
     background-color: #680800!important;
     color: #FFF;
 }
+.shadow {
+    box-shadow: rgb(0 0 0 / 55%) 0px 15px 68px !important;
+}
+
+.grid-job {
+    display: grid !important;
+    grid-template-rows: auto auto auto !important;
+    grid-template-columns: auto auto auto !important;
+    box-sizing: inherit;
+}
+
+.rounded-job {
+    border-radius: 15px !important;
+    box-shadow: rgb(0 0 0 / 55%) 0px 15px 68px !important;
+    text-align: center !important;
+    margin-left: 15px !important;
+    background-color: rgb(240, 240, 240);
+    width: 400px !important;
+    height: 400px !important;
+    max-width: 420px !important;
+    max-height: 420px !important;
+    margin-bottom: 15px !important;
+    padding: 40px !important;
+    overflow-wrap: break-word;
+}
+
+    .rounded-job:hover {
+        background-color: rgb(255 255 255 / 55%);
+    }
 
 .margin-topbottom-15 {
     margin-top: 15px;
@@ -219,4 +255,12 @@ form {
 
 h1 {
     color: #FFF !important;
+}
+
+h2 {
+    color: black !important;
+}
+
+h3 {
+    font-weight: 400 !important;
 }

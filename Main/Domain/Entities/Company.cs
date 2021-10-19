@@ -15,14 +15,13 @@ namespace Domain.Entities
 
         protected Company() { }
 
-        public Company(string name, string url, string sector, string cnpj, int companySize, string logoImageUrl, string slogan)
+        public Company(string name, string url, string sector, string cnpj, int companySize, string slogan)
         {
             Name = name;
             Url = url;
             Sector = sector;
             Cnpj = cnpj;
             CompanySize = companySize;
-            LogoImageUrl = logoImageUrl;
             Slogan = slogan;
         }
     }

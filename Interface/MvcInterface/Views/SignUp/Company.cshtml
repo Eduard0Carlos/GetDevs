@@ -8,17 +8,17 @@
         <input type="text" class="form-control form-input" placeholder="Email" required />
         <input type="password" class="form-control form-input" placeholder="Senha" required />
         <input type="text" class="form-control form-input" placeholder="Nome da Empresa" required />
-        <input type="text" class="form-control form-input" placeholder="Descrição" required />
+        <input type="text" class="form-control form-input" name="slogan" placeholder="Slogan" required />
         <input type="text" class="form-control form-input" placeholder="CNPJ" required />
         <div style="width: 100%; display: flex;">
-            <input type="text" class="form-control form-input half-1" placeholder="CEP" required />
+            <input type="text" class="form-control form-input half-1" placeholder="Site URL" required />
             <select class="form-control form-input half-2" style="color: #a6a7aa" name="cars" id="cars">
                 <option value="empty" disabled selected hidden>Tamanho</option>
-                <option value="volvo">0-50</option>
-                <option value="saab">50-100</option>
-                <option value="mercedes">100-500</option>
-                <option value="audi">500-1000</option>
-                <option value="audi">1000-5000</option>
+                <option value="50">0-50</option>
+                <option value="100">50-100</option>
+                <option value="500">100-500</option>
+                <option value="1000">500-1000</option>
+                <option value="5000">1000-5000</option>
             </select>
         </div>
         <p class="margin-topbottom-15">Já possui uma conta? <a asp-controller="signin" asp-action="index">Entre aqui</a></p>

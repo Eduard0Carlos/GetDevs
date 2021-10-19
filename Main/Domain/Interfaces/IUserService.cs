@@ -7,7 +7,6 @@ namespace Domain.Interfaces
     public interface IUserService : IGenericService<User>
     {
         Task<SingleResult<User>> Authenticate(User user);
-        Task<SingleResult<User>> Register(User user);
         Task<SingleResult<User>> GetByEmailAsync(string email);
     }
 }

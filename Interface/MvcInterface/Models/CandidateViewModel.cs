@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace MvcInterface.Models
 {
-    public class SignUpViewModel
+    public class CandidateViewModel
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        [JsonPropertyName("name")]
         public string Name { get; set; }
+        [JsonPropertyName("cpf")]
         public string Cpf { get; set; }
+        [JsonPropertyName("cep")]
         public string Cep { get; set; }
+        [JsonPropertyName("phoneNumber")]
         public string PhoneNumber { get; set; }
+        [JsonPropertyName("birthDate")]
         public DateTime BirthDate { get; set; }
     }
 }

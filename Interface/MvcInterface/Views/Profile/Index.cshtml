@@ -1,22 +1,22 @@
 ﻿@{
-    Layout = $"~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Ínicio";
+    Layout = $"~/Views/Shared/_LayoutFooterHidden.cshtml";
+    ViewData["Title"] = "Perfil";
 }
 
-<div class="grid-template">
+<div class="grid-template shadow">
     <div id="banner" class="content-lg container" style="width: 100%; padding-bottom: 0px; padding-top: 250px">
         <div class="margin-b-40 center">
         </div>
     </div>
     <div style="display: flex;">
-        <img class="profile-img profile-top" src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80">
+        <img class="profile-img profile-top" src="https://exoffender.org/wp-content/uploads/2016/09/empty-profile.png">
     </div>
     <div>
-        <h1 class="black center-text">Carlos Eduardo Vieira</h1>
+        <h1 class="black center-text">@Model.Name</h1>
         <h3 class="black center-text" style="margin-top: -20px; color: #565656 !important;">Desenvolvedor C# Junior</h3>
     </div>
     <div class="bg-color-sky-light" data-auto-height="true">
-        <div class="content-lg container" style="display: flex;">
+        <div class="content-lg container" style="display: flex; margin-left: 5%;">
             <div style="width: 50%;">
                 <div class="row margin-b-40" style="width: 50%;">
                     <div class="col-sm-4">
@@ -69,11 +69,29 @@
     </div>
     <div class="bg-color-sky-light" data-auto-height="true">
         <div class="content-lg container">
-            <div class="row">
-                <h2>Contato</h2>
-                <p>Telefone: 47 99102-9894</p>
-                <p>Email: @User.Identity.Name</p>
+            <div class="row margin-b-40 center-element">
+                <div class="col-sm-4" style="width: 100%;">
+                    <h2 style="font-weight: 400; text-align: center;">Experiências</h2>
+                </div>
             </div>
+            <div class="row center-element">
+                <div class="education-top">
+                    <h3>Empresa 1</h3>
+                    <h3 class="right-align">Desenvolvedor C#</h3>
+                </div>
+                <div class="education" style="text-align: center;">
+                    <h3>2018</h3>
+                    <h3 class="text-separator">-</h3>
+                    <h3>2022</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-lg container" style="margin-left: 10% !important;">
+        <div class="row">
+            <h2 style="font-weight: 400;">Contato</h2>
+            <p>Telefone: @Model.PhoneNumber</p>
+            <p>Email: @ViewBag.ProfileName</p>
         </div>
     </div>
 
