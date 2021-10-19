@@ -62,8 +62,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("ExpiredDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LanguagesRequired")
-                        .HasColumnType("int");
+                    b.Property<long>("LanguagesRequired")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("SkillRequired")
                         .HasColumnType("bigint");
@@ -135,17 +135,11 @@ namespace Infrastructure.Migrations
                         .HasColumnType("char(11)")
                         .IsFixedLength(true);
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(70)
                         .IsUnicode(false)
                         .HasColumnType("varchar(70)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -153,7 +147,7 @@ namespace Infrastructure.Migrations
                         .IsUnicode(true)
                         .HasColumnType("nvarchar(13)");
 
-                    b.Property<int>("ResumeId")
+                    b.Property<int?>("ResumeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -270,8 +264,8 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Degrees")
                         .HasColumnType("int");
 
-                    b.Property<int>("Languages")
-                        .HasColumnType("int");
+                    b.Property<long>("Languages")
+                        .HasColumnType("bigint");
 
                     b.Property<float?>("Score")
                         .HasColumnType("real");
@@ -285,6 +279,40 @@ namespace Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Resume");
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CandidateId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("EducationResume", b =>
@@ -369,6 +397,21 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Candidate");
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.HasOne("Domain.Entities.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId");
+
+                    b.HasOne("Domain.Entities.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId");
+
+                    b.Navigation("Candidate");
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("EducationResume", b =>

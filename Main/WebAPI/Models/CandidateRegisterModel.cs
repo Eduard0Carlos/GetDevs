@@ -7,11 +7,11 @@ namespace WebAPI.Models
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Name { get; protected set; }
-        public string Cpf { get; protected set; }
-        public string Cep { get; protected set; }
-        public string PhoneNumber { get; protected set; }
-        public DateTime BirthDate { get; protected set; }
+        public string Name { get;  set; }
+        public string Cpf { get; set; }
+        public string Cep { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateTime BirthDate { get; set; }
     }
 
     public static class CandidateRegisterModelExtension

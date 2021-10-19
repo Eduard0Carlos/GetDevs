@@ -32,11 +32,9 @@ namespace Infrastructure.Migrations
                     Name = table.Column<string>(type: "varchar(70)", unicode: false, maxLength: 70, nullable: false),
                     Cpf = table.Column<string>(type: "char(11)", unicode: false, fixedLength: true, maxLength: 11, nullable: false),
                     Cep = table.Column<string>(type: "char(8)", unicode: false, fixedLength: true, maxLength: 8, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ResumeId = table.Column<int>(type: "int", nullable: false)
+                    ResumeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -88,7 +86,7 @@ namespace Infrastructure.Migrations
                     Score = table.Column<float>(type: "real", nullable: true),
                     Skills = table.Column<long>(type: "bigint", nullable: false),
                     Degrees = table.Column<int>(type: "int", nullable: false),
-                    Languages = table.Column<int>(type: "int", nullable: false)
+                    Languages = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -109,7 +107,7 @@ namespace Infrastructure.Migrations
                     Title = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "varchar(1234)", unicode: false, maxLength: 1234, nullable: false),
                     SkillRequired = table.Column<long>(type: "bigint", nullable: false),
-                    LanguagesRequired = table.Column<int>(type: "int", nullable: false),
+                    LanguagesRequired = table.Column<long>(type: "bigint", nullable: false),
                     DegreesRequired = table.Column<int>(type: "int", nullable: false),
                     AvaibleVacancy = table.Column<int>(type: "int", nullable: false),
                     AnnouncementDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -124,6 +122,34 @@ namespace Infrastructure.Migrations
                         column: x => x.CompanyId,
                         principalTable: "Company",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyId = table.Column<int>(type: "int", nullable: true),
+                    CandidateId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_User_Candidate_CandidateId",
+                        column: x => x.CandidateId,
+                        principalTable: "Candidate",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_User_Company_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Company",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -243,6 +269,22 @@ namespace Infrastructure.Migrations
                 table: "Resume",
                 column: "CandidateId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_CandidateId",
+                table: "User",
+                column: "CandidateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_CompanyId",
+                table: "User",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Email",
+                table: "User",
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -258,6 +300,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "EducationResume");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "BusinessBond");

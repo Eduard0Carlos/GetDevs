@@ -15,17 +15,17 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ICompanyService _service;
+        private readonly IUserService _userService;
 
-        public UserController(ICompanyService service)
+        public UserController(IUserService userService)
         {
-            this._service = service;
+            this._userService = userService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _service.GetByIdAsync(id);
+            var result = await _userService.GetByIdAsync(id);
 
             if (result.Success)
                 return Ok(result);
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _service.DeleteAsync(id);
+            var result = await _userService.DeleteAsync(id);
 
             if (result.Success)
                 return Ok(result);
@@ -44,9 +44,9 @@ namespace WebAPI.Controllers
             return NotFound(result);
         }
 
-        public async Task<IActionResult> Put(Company company)
+        public async Task<IActionResult> Put(User user)
         {
-            var result = await _service.InsertAsync(company);
+            var result = await _userService.InsertAsync(user);
             if (result.Success)
             {
                 return Ok(result);
@@ -54,15 +54,20 @@ namespace WebAPI.Controllers
             return NotFound(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post(Company company)
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Post(User user)
         {
-            var result = await _service.InsertAsync(company);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return NotFound(result);
+            var result = await _userService.Authenticate(user);
+            if (!result.Success)
+                return NotFound();
+
+            var role = "";
+            if (result.Value.CompanyId.HasValue)
+                role = "company";
+            else
+                role = "candidate";
+
+            return Ok(role);
         }
     }
 }

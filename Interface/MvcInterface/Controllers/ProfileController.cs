@@ -15,9 +15,13 @@ namespace MVCUserInterface.Controllers
         [HttpGet("Profile")]
         public IActionResult Index()
         {
-            var test = User.IsInRole("ckjbafskjbasf");
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "SignIn");
 
-            return Redirect($"profile/{User.Identity.Name}");
+            if (User.IsInRole("candidate"))
+                return Redirect($"profile/{User.Identity.Name}");
+            else
+                return Redirect($"company/{User.Identity.Name}");
         }
 
         [HttpGet("Profile/{profileName}")]

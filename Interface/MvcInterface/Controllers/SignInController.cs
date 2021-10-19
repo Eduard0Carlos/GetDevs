@@ -37,14 +37,16 @@ namespace MVCUserInterface.Controllers
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             using var client = new HttpClient();
-            var response = await client.PostAsync(Api.URL, data);
+            var response = await client.PostAsync($"{Api.URL}/user/authenticate", data);
+
+            var role = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
                 var claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Name, loginViewModel.Email),
-                    new Claim(ClaimTypes.Role, "candidate")
+                    new Claim(ClaimTypes.Role, role)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
@@ -54,6 +56,7 @@ namespace MVCUserInterface.Controllers
             }
             else
             {
+                ViewBag.Error = "Email e/ou senha inválido";
                 return View();
             }
         }

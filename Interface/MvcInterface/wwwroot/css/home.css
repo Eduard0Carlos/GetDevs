@@ -19,6 +19,42 @@
     background-color: #680800 !important;
 }
 
+.gray-square {
+    margin-top: 10% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background-color: dimgray !important;
+    border-radius: 20% !important;
+}
+
+.center {
+    margin-top: 10% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 50% !important;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.profile-img {
+    width: 256px !important;
+    height: 256px !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 100%;
+}
+
+.error {
+    margin-top: 5px !important;
+    color: red !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    font-family: Hind,sans-serif !important;
+}
+
 .signin {
     margin-right: 5px !important;
     background-color: none !important;
