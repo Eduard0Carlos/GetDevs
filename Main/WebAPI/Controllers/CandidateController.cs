@@ -27,7 +27,22 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok();
+            var result = await _candidateService.GetByIdAsync(id);
+
+            if (result.Success)
+                return Ok(result);
+
+            return NotFound(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(string email)
+        {
+            var result = await _userService.GetByEmailAsync(email);
+            if (result.Success)
+                return Ok(result.Value.Candidate);
+
+            return NotFound(result);
         }
 
         [HttpDelete]

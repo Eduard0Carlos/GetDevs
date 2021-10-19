@@ -8,5 +8,6 @@ namespace Domain.Interfaces
     {
         Task<SingleResult<User>> Authenticate(User user);
         Task<SingleResult<User>> Register(User user);
+        Task<SingleResult<User>> GetByEmailAsync(string email);
     }
 }

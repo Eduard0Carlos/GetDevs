@@ -36,6 +36,18 @@ namespace Application.Services
             return ResultFactory.CreateSuccessSingleResult(user);
         }
 
+        public async Task<SingleResult<User>> GetByEmailAsync(string email)
+        {
+            var user = await this._dbContext.Set<User>()
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+                return ResultFactory.CreateFailureSingleResult<User>();
+        
+            return ResultFactory.CreateSuccessSingleResult(user); 
+        }
+
         public async Task<SingleResult<User>> Register(User user)
         {
             throw new System.NotImplementedException();
