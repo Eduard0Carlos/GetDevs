@@ -6,7 +6,7 @@ namespace Domain.Interfaces
 {
     public interface IUserService : IGenericService<User>
     {
-        Task<AuthenticateResult> Authenticate(AuthenticateRequest model);
-        Task<Result> Register(AuthenticateRequest model);
+        Task<SingleResult<User>> Authenticate(User user);
+        Task<SingleResult<User>> Register(User user);
     }
 }

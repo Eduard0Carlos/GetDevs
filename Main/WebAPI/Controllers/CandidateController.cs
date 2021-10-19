@@ -66,7 +66,7 @@ namespace WebAPI.Controllers
             user.SetCandidate(candidateInsertResult.Value.Id);
             var userInsertResult = await _userService.InsertAsync(user);
 
-            if (userInsertResult.Success)
+            if (!userInsertResult.Success)
                 return NotFound();
 
             return Ok();

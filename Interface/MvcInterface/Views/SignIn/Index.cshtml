@@ -7,6 +7,7 @@
         <h1>Entrar</h1>
         <input type="text" class="form-control form-input" name="email" placeholder="Email" required />
         <input type="password" class="form-control form-input" name="password" placeholder="Senha" required />
+        <span class="error">@ViewBag.Error</span>
         <p class="margin-topbottom-15">Ainda não possui uma conta? <a asp-controller="signup" asp-action="index">Crie aqui</a></p>
         <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Entrar</button>
     </div>

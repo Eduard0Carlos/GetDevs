@@ -11,7 +11,7 @@ namespace Domain.Entities
         public string PhoneNumber { get; protected set; }
         public DateTime BirthDate { get; protected set; }
         public Resume Resume { get; protected set; }
-        public int ResumeId { get; protected set; }
+        public int? ResumeId { get; protected set; }
         public ICollection<CandidateAnnouncement> CandidateAnnouncements { get; set; }
 
         public int Age { get; }

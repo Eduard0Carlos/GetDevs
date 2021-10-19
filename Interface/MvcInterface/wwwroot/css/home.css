@@ -19,6 +19,14 @@
     background-color: #680800 !important;
 }
 
+.error {
+    margin-top: 5px !important;
+    color: red !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    font-family: Hind,sans-serif !important;
+}
+
 .signin {
     margin-right: 5px !important;
     background-color: none !important;
