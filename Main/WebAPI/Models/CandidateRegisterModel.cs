@@ -12,24 +12,21 @@ namespace WebAPI.Models
         public string Cep { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime BirthDate { get; set; }
-    }
 
-    public static class CandidateRegisterModelExtension
-    {
-        public static Candidate ConvertToCandidate(this CandidateRegisterModel registerModel)
+        public Candidate ConvertToCandidate()
         {
             return new Candidate(
-                registerModel.Name,
-                registerModel.Cpf,
-                registerModel.Cep,
-                registerModel.PhoneNumber,
-                registerModel.BirthDate
+                this.Name,
+                this.Cpf,
+                this.Cep,
+                this.PhoneNumber,
+                this.BirthDate
                 );
         }
 
-        public static User ConvertToUser(this CandidateRegisterModel registerModel)
+        public User ConvertToUser()
         {
-            return new User(registerModel.Email, registerModel.Password);
+            return new User(this.Email, this.Password);
         }
     }
 }

@@ -18,12 +18,22 @@ namespace Domain.Entities
 
         protected Resume() { }
 
-        public Resume(Skill skills, Degree degrees, Language languages, int candidateId)
+        public Resume(Skill skills, Degree degrees, Language languages, int candidateId )
         {
             Skills = skills;
             Degrees = degrees;
             Languages = languages;
             CandidateId = candidateId;
+        }
+
+        public Resume(int candidateId, Skill skills, Degree degrees, Language languages, ICollection<Education> educations, ICollection<BusinessBond> businessBonds)
+        {
+            CandidateId = candidateId;
+            Skills = skills;
+            Degrees = degrees;
+            Educations = educations;
+            Languages = languages;
+            BusinessBonds = businessBonds;
         }
 
         public Resume SetScore(float score)
