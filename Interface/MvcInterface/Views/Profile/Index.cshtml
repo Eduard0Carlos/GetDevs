@@ -1,11 +1,83 @@
 ﻿@{
-    Layout = $"~/Views/Shared/_LayoutShortBlack.cshtml";
+    Layout = $"~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Ínicio";
 }
 
-<div class="gray-square" style="width: 80%;">
-    <div class="margin-b-40 center">
-        <img class="profile-img" src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80">
-        <h1 class="center-text">Teste</h1>
+<div class="grid-template">
+    <div id="banner" class="content-lg container" style="width: 100%; padding-bottom: 0px; padding-top: 250px">
+        <div class="margin-b-40 center">
+        </div>
     </div>
-</div>
+    <div style="display: flex;">
+        <img class="profile-img profile-top" src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80">
+    </div>
+    <div>
+        <h1 class="black center-text">Carlos Eduardo Vieira</h1>
+        <h3 class="black center-text" style="margin-top: -20px; color: #565656 !important;">Desenvolvedor C# Junior</h3>
+    </div>
+    <div class="bg-color-sky-light" data-auto-height="true">
+        <div class="content-lg container" style="display: flex;">
+            <div style="width: 50%;">
+                <div class="row margin-b-40" style="width: 50%;">
+                    <div class="col-sm-4">
+                        <h2 style="font-weight: 400">Habilidades</h2>
+                    </div>
+                </div>
+                <div class="row" style="width: 50%;">
+                    <ul style="list-style:none;">
+                        <li class="skill">C#</li>
+                        <li class="skill">Java</li>
+                        <li class="skill">JavaScript</li>
+                        <li class="skill">HTML5</li>
+                        <li class="skill">CSS3</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="width: 50%;">
+                <div class="row margin-b-40" style="width: 50%;">
+                    <div class="col-sm-4">
+                        <h2 style="font-weight: 400">Idiomas</h2>
+                    </div>
+                </div>
+                <div class="row" style="width: 70%;">
+                    <ul style="list-style: none">
+                        <li class="skill">Inglês</li>
+                        <li class="skill">Alemão</li>
+                        <li class="skill">Francês</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-lg container">
+        <div class="row margin-b-40 center-element">
+            <div class="col-sm-4" style="width: 100%;">
+                <h2 style="font-weight: 400; text-align: center;">Cursos</h2>
+            </div>
+        </div>
+        <div class="row center-element">
+            <div class="education-top">
+                <h3>Hercílio Deeke</h3>
+                <h3 class="right-align">Ensino Médio</h3>
+            </div>
+            <div class="education" style="text-align: center;">
+                <h3>2020</h3>
+                <h3 class="text-separator">-</h3>
+                <h3>2022</h3>
+            </div>
+        </div>
+    </div>
+    <div class="bg-color-sky-light" data-auto-height="true">
+        <div class="content-lg container">
+            <div class="row">
+                <h2>Contato</h2>
+                <p>Telefone: 47 99102-9894</p>
+                <p>Email: @User.Identity.Name</p>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+    <script src="~/js/randomColor.js" type="text/javascript"></script>
+    }
+
