@@ -19,6 +19,48 @@
     background-color: #680800 !important;
 }
 
+.center-element {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 50% !important;
+}
+
+.education {
+    font-weight: 400 !important;
+    padding: 16px 0 12px !important;
+    border-bottom: 1px solid !important;
+    display: flex !important;
+}
+
+.text-separator {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+}
+
+.education-top {
+    font-weight: 400 !important;
+    padding: 16px 0 6px !important;
+    display: flex !important;
+}
+
+.right-align {
+    margin-left: 250px !important;
+}
+
+.grid-template {
+    background-color: #FFF !important;
+    width: 80% !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    border: 2px solid !important;
+    border-color: #E2E1DF !important;
+}
+
+.skill {
+    padding: 16px 0 12px;
+    border-bottom: 1px solid;
+}
+
 .gray-square {
     margin-top: 10% !important;
     margin-left: auto !important;
@@ -34,6 +76,10 @@
     width: 50% !important;
 }
 
+.black {
+    color: #333 !important;
+}
+
 .center-text {
     text-align: center;
 }
@@ -45,6 +91,11 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 100%;
+}
+
+.profile-top {
+    margin-top: -180px;
+    z-index: 4;
 }
 
 .error {
