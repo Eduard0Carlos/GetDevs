@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
@@ -55,25 +56,29 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(Resume resume)
+        public async Task<IActionResult> Put(ResumeRegisterModel registerModel)
         {
+            var resume = registerModel.ConvertToResume();
             var result = await _resumeService.InsertAsync(resume);
+            
             if (result.Success)
-            {
                 return Ok(result);
-            }
+
             return NotFound(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Resume resume)
+        public async Task<IActionResult> Post(string name)
         {
-            var result = await _resumeService.InsertAsync(resume);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return NotFound(result);
+            //var resume = registerModel.ConvertToResume();
+            //var result = await _resumeService.InsertAsync(resume);
+
+            //if (result.Success)
+            //return Ok(result);
+
+            //return NotFound(result);
+
+            return NotFound();
         }
     }
 }
