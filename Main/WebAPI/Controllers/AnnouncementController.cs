@@ -32,7 +32,11 @@ namespace WebAPI.Controllers
 
             if (result.Success)
             {
-                result.Value.Candidate.CandidateAnnouncements.ToList().ForEach(a => announcements.Add(a.Announcement));
+                if (result.Value.Candidate != null)
+                    result.Value.Candidate.CandidateAnnouncements.ToList().ForEach(a => announcements.Add(a.Announcement));
+                else
+                    announcements = result.Value.Company.Announcements.ToList();
+
                 return Ok(announcements);
             }
 

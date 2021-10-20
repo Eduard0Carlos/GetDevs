@@ -5,7 +5,10 @@
 
 <div class="grid-template shadow">
     <div id="banner" class="content-lg container" style="width: 100%; padding-bottom: 0px; padding-top: 250px">
-        <a asp-action="Index" asp-controller="Resume"><img class="edit-button" src="~/img/svg/pencil.svg" /></a>
+        @if (User.Identity.IsAuthenticated && User.Identity.Name == ViewBag.ProfileName)
+        {
+            <a asp-action="Index" asp-controller="Resume"><img class="edit-button" src="~/img/svg/pencil.svg" /></a>
+        }
         <div class="margin-b-40 center">
         </div>
     </div>
