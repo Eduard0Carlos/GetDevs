@@ -15,9 +15,9 @@ namespace Domain.Entities
             string institutionName, 
             DateTime startDate, 
             DateTime endDate, 
-            Degree degree, 
+            string degree, 
             ICollection<Resume> resumes
-            ) : base(institutionName, startDate, endDate, degree, resumes)
+            ) : base(institutionName, startDate, endDate, degree)
         {
             Name = name;
         }

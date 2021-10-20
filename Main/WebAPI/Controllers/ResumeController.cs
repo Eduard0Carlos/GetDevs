@@ -16,22 +16,13 @@ namespace WebAPI.Controllers
     {
         private readonly IResumeService _resumeService;
         private readonly IUserService _userService;
+        private readonly ICandidateService _candidateService;
 
-        public ResumeController(IResumeService resumeService, IUserService userService)
+        public ResumeController(ICandidateService candidateService, IResumeService resumeService, IUserService userService)
         {
+            _candidateService = candidateService;
             _resumeService = resumeService;
             _userService = userService;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Get(int id)
-        {
-            var result = await _resumeService.GetByIdAsync(id);
-
-            if (result.Success)
-                return Ok(result);
-
-            return NotFound(result);
         }
 
         [HttpGet]
@@ -39,7 +30,10 @@ namespace WebAPI.Controllers
         {
             var result = await _userService.GetByEmailAsync(email);
             if (result.Success)
-                return Ok(result.Value.Candidate.Resume);
+            {
+                var resume = await _resumeService.GetByIdAsync(result.Value.Candidate.ResumeId.Value);
+                return Ok(resume.Value.ConvertToResumeViewModel());
+            }
 
             return NotFound(result);
         }
@@ -59,8 +53,12 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Put(ResumeRegisterModel registerModel)
         {
             var resume = registerModel.ConvertToResume();
-            var result = await _resumeService.InsertAsync(resume);
-            
+            var user = await _userService.GetByEmailAsync(registerModel.Email);
+
+            resume.SetId(user.Value.Candidate.ResumeId.Value);
+
+            var result = await _resumeService.UpdateAsync(resume);
+
             if (result.Success)
                 return Ok(result);
 
@@ -68,15 +66,20 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(string name)
+        public async Task<IActionResult> Post(ResumeRegisterModel registerModel)
         {
-            //var resume = registerModel.ConvertToResume();
-            //var result = await _resumeService.InsertAsync(resume);
+            var resume = registerModel.ConvertToResume();
+            var user = await this._userService.GetByEmailAsync(registerModel.Email);
+            
+            resume.SetCandidateId(user.Value.CandidateId.Value);
+            var result = await _resumeService.InsertAsync(resume);
 
-            //if (result.Success)
-            //return Ok(result);
-
-            //return NotFound(result);
+            if (result.Success)
+            {
+                user.Value.Candidate.SetResumeId(result.Value.Id);
+                await this._candidateService.UpdateAsync(user.Value.Candidate);
+                return Ok(result);
+            }
 
             return NotFound();
         }

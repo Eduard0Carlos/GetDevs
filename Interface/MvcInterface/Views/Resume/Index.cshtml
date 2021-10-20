@@ -1,0 +1,81 @@
+﻿@{
+    Layout = $"~/Views/Shared/_LayoutFooterHidden.cshtml";
+    ViewData["Title"] = "Perfil";
+}
+
+<form method="post" style="width: 100%">
+    <div class="grid-resume shadow" style="padding-bottom: 125px !important; padding-top: 125px !important;">
+        <div class="content-lg container resume-item">
+            <div class="margin-b-40" style="width: 60%; margin-left: auto; margin-right: auto">
+                <h1 class="resume-category">PERFIL</h1>
+                <input type="text" class="form-control resume-input" name="name" placeholder="Nome" required />
+                <input type="text" class="form-control resume-input" name="phoneNumber" placeholder="Telefone" required />
+            </div>
+        </div>
+
+        <div class="content-lg container resume-item">
+            <div class="margin-b-40" style="width: 60%; margin-left: auto; margin-right: auto;">
+                <h1 class="resume-category" style="padding: 15px;">CURSO</h1>
+                <input type="text" class="form-control resume-input" name="institutionName" placeholder="Instituição/Nome Curso" required />
+                <select class="form-control resume-input cmb" style="color: #a6a7aa" name="Degree" id="degree">
+                    <option value="Ensino_Fundamental">Ensino Fundamental</option>
+                    <option value="Ensino_Médio">Ensino Médio</option>
+                    <option value="Mestrado">Mestrado</option>
+                    <option value="Doutorado">Doutorado</option>
+                </select>
+                <div style="display: flex;">
+                    <input type="text" onfocus="(this.type='date')" class="form-control resume-date half-1" name="InstitutionStart" placeholder="Data Início" required />
+                    <input type="text" onfocus="(this.type='date')" class="form-control resume-date half-2" name="InstitutionEnd" placeholder="Data Término" required />
+                </div>
+            </div>
+        </div>
+        <div class="content-lg container resume-item">
+            <div class="margin-b-40" style="width: 60%; margin-left: auto; margin-right: auto;">
+                <h1 class="resume-category" style="padding: 15px;">EXPERIÊNCIA</h1>
+                <input type="text" class="form-control resume-input" name="CompanyName" placeholder="Nome Empresa" required />
+                <input type="text" class="form-control resume-input" name="Role" placeholder="Cargo" required />
+                <div style="display: flex;">
+                    <input type="text" onfocus="(this.type='date')" class="form-control resume-date half-1" name="CompanyStart" placeholder="Data Início" required />
+                    <input type="text" onfocus="(this.type='date')" class="form-control resume-date half-2" name="CompanyEnd" placeholder="Data Término" required />
+                </div>
+            </div>
+        </div>
+        <div class="content-lg container resume-item">
+            <div class="margin-b-40" style="width: 60%; margin-left: auto; margin-right: auto;">
+                <h1 class="resume-category" style="padding: 15px;">HABILIDADES</h1>
+                <select class="form-control resume-input cmb" style="color: #a6a7aa" name="Skills" id="skills" multiple>
+                    <option value="CSharp">C#</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Angular">Angular</option>
+                    <option value="Sql">SqlServer</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="content-lg container resume-item">
+            <div class="margin-b-40" style="width: 60%; margin-left: auto; margin-right: auto;">
+                <h1 class="resume-category" style="padding: 15px;">IDIOMAS</h1>
+                <select class="form-control resume-input cmb" style="color: #a6a7aa" name="Idioms" id="idioms" multiple="multiple">
+                    <option value="Inglês">Inglês</option>
+                    <option value="Francês">Francês</option>
+                    <option value="Português">Português</option>
+                    <option value="Espanhol">Espanhol</option>
+                    <option value="Alemão">Alemão</option>
+                </select>
+                <button onclick="postData()" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Concluir</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#skills').select2();
+            $('#idioms').select2();
+        });
+    </script>
+<script src="~/js/post.js" type="text/javascript"></script>
+<script src="~/js/randomColor.js" type="text/javascript"></script>
+    }

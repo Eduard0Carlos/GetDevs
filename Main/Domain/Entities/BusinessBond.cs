@@ -13,13 +13,12 @@ namespace Domain.Entities
 
         protected BusinessBond() { }
 
-        public BusinessBond(DateTime startDate, DateTime endDate, string companyName, string role, ICollection<Resume> resumes)
+        public BusinessBond(DateTime startDate, DateTime endDate, string companyName, string role)
         {
             StartDate = startDate;
             EndDate = endDate;
             CompanyName = companyName;
             Role = role;
-            Resumes = resumes;
         }
 
 

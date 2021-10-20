@@ -41,6 +41,12 @@ namespace Domain.Entities
             this.Score = score;
             return this;
         }
+
+        public Resume SetCandidateId(int candidateId)
+        {
+            this.CandidateId = candidateId;
+            return this;
+        }
     }
 
     public static class ResumeExtension

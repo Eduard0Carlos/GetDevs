@@ -47,13 +47,21 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(Candidate candidate)
+        public async Task<IActionResult> Put(CandidateRegisterModel registerModel)
         {
-            var result = await _candidateService.InsertAsync(candidate);
+            var user = await _userService.GetByEmailAsync(registerModel.Email);
+            if (!user.Success)
+                return NotFound();
+
+            user.Value.Candidate.SetName(registerModel.Name);
+            user.Value.Candidate.SetPhoneNumber(registerModel.PhoneNumber);
+
+            user.Value.Candidate.SetId(user.Value.CandidateId.Value);
+            
+            var result = await _candidateService.UpdateAsync(user.Value.Candidate);
             if (result.Success)
-            {
                 return Ok(result);
-            }
+            
             return NotFound(result);
         }
 

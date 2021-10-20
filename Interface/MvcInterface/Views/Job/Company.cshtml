@@ -1,0 +1,34 @@
+﻿@{
+    Layout = $"~/Views/Shared/_LayoutFooterHidden.cshtml";
+    ViewData["Title"] = "Vagas";
+}
+
+<div style="width: 100%; margin-top: 200px; margin-bottom: 100px;">
+    <div class="grid-job" style="width: 80%; margin-left: auto; margin-right: auto; margin-bottom: 20px; margin-top: -100px !important;">
+        <a type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button" style="width: 150px !important" asp-action="Create" asp-controller="Job">Criar</a>
+    </div>
+    <div class="grid-job" style="width: 80%; margin-left: auto; margin-right: auto;">
+        @foreach (var item in Model)
+        {
+            <div class="wow fadeInUp animated fadein-effect" data-wow-delay=".3s" data-wow-duration=".3" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                <div class="rounded-job fadein-effect">
+                    <h2 style="text-transform: uppercase;">@item.Title</h2>
+                    <h4>@item.Description</h4>
+                    <p>Vagas Disponíveis: @item.AvaibleVacancy</p>
+                    <p>Data de expiração: @item.ExpiredDate</p>
+                    <a href="@ViewBag.Company.Url"><p>Empresa: @ViewBag.Company.Name</p></a>
+                    <form method="post">
+                        <input type="hidden" value="@Model.Id" hidden>
+                        <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Ver Mais</button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+<script type="text/javascript">
+    $("body").css("background-color", "#F3F2EF");
+</script>
+}

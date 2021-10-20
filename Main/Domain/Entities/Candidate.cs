@@ -38,5 +38,11 @@ namespace Domain.Entities
             this.PhoneNumber = phoneNumber;
             return this;
         }
+
+        public virtual Candidate SetResumeId(int resumeId)
+        {
+            this.ResumeId = resumeId;
+            return this;
+        }
     }
 }

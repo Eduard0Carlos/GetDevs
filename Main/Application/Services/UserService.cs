@@ -24,13 +24,15 @@ namespace Application.Services
                 return ResultFactory.CreateFailureSingleResult<User>();
 
             var userAuthenticated = await this._dbContext.Set<User>()
+                           .Include(u => u.Company)
+                           .Include(u => u.Candidate)
                            .AsNoTracking()
                            .FirstOrDefaultAsync(u => u.Email == user.Email);
 
             if (userAuthenticated == null)
                 return ResultFactory.CreateFailureSingleResult<User>();
 
-            return ResultFactory.CreateSuccessSingleResult(user);
+            return ResultFactory.CreateSuccessSingleResult(userAuthenticated);
         }
 
         public async Task<SingleResult<User>> GetByEmailAsync(string email)

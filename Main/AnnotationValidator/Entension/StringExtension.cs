@@ -104,7 +104,7 @@ namespace AnnotationValidator.Enxtensions
 
             for (int i = 0; i < str.Length; i++)
             {
-                if (!char.IsLetter(str[i]) && str[i] != '\'')
+                if (!char.IsLetter(str[i]) && str[i] != '\'' && !char.IsWhiteSpace(str[i]))
                     return ValidationResultFactory.CreateFailure(failureMessage);
             }
 

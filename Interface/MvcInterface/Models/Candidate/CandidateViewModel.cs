@@ -5,6 +5,7 @@ namespace MvcInterface.Models
 {
     public class CandidateViewModel
     {
+        public string Email { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
         [JsonPropertyName("cpf")]

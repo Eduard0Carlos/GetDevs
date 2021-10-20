@@ -2,17 +2,21 @@
     Layout = "~/Views/Shared/GuestBlackLayout.cshtml";
     ViewData["Title"] = "Cadastrar";
 }
-<div style="width: 100%;">
+<form method="post" style="width: 100%;">
     <div class="margin-b-40" style="margin-top: 10%; width: 40%; margin-left: 30%;">
         <h1>Cadastro</h1>
-        <input type="text" class="form-control form-input" placeholder="Email" required />
-        <input type="password" class="form-control form-input" placeholder="Senha" required />
-        <input type="text" class="form-control form-input" placeholder="Nome da Empresa" required />
+        <input type="text" class="form-control form-input" name="email" placeholder="Email" required />
+        <input type="password" class="form-control form-input" name="password" placeholder="Senha" required />
+        <input type="text" class="form-control form-input" name="name" placeholder="Nome da Empresa" required />
         <input type="text" class="form-control form-input" name="slogan" placeholder="Slogan" required />
-        <input type="text" class="form-control form-input" placeholder="CNPJ" required />
+        <div style="display: flex;">
+            <input type="text" class="form-control form-input half-1" name="sector" placeholder="Setor de Atuação" required />
+            <input type="text" class="form-control form-input half-2" name="logoImageUrl" placeholder="Url da logo" required />
+        </div>
+        <input type="text" class="form-control form-input" name="cnpj" placeholder="CNPJ" required />
         <div style="width: 100%; display: flex;">
-            <input type="text" class="form-control form-input half-1" placeholder="Site URL" required />
-            <select class="form-control form-input half-2" style="color: #a6a7aa" name="cars" id="cars">
+            <input type="text" class="form-control form-input half-1" name="url" placeholder="Site URL" required />
+            <select class="form-control form-input half-2" style="color: #a6a7aa" name="companySize" id="cars">
                 <option value="empty" disabled selected hidden>Tamanho</option>
                 <option value="50">0-50</option>
                 <option value="100">50-100</option>
@@ -24,4 +28,4 @@
         <p class="margin-topbottom-15">Já possui uma conta? <a asp-controller="signin" asp-action="index">Entre aqui</a></p>
         <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Cadastrar</button>
     </div>
-</div>
+</form>
