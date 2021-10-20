@@ -34,6 +34,16 @@ namespace WebAPI.Controllers
             return NotFound(result);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await _candidateService.GetDevsAsync(id);
+            if (result.Success)
+                return Ok(result.Data);
+
+            return NotFound(result);
+        }
+
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

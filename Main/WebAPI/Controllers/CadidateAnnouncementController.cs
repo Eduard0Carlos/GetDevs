@@ -43,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(CandidateAnnouncement businessBond)
+        public async Task<IActionResult> Put( int candidateId, int announcementId)
         {
-            var result = await _service.InsertAsync(businessBond);
+            var result = await _service.UpdateAsync(new CandidateAnnouncement(true, candidateId, announcementId));
             if (result.Success)
             {
                 return Ok(result);
@@ -54,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CandidateAnnouncement businessBond)
+        public async Task<IActionResult> Post(CandidateAnnouncement candidateAnnouncement)
         {
-            var result = await _service.InsertAsync(businessBond);
+            var result = await _service.InsertAsync(candidateAnnouncement);
             if (result.Success)
             {
                 return Ok(result);

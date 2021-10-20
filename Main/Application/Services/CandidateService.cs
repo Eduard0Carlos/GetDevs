@@ -43,8 +43,9 @@ namespace Application.Services
 
             return authenticateResult;
         }
-        public async Task<DataResult<Candidate>> GetDevsAsync(Announcement announcement)
+        public async Task<DataResult<Candidate>> GetDevsAsync(int announcementId)
         {
+            var announcement = await this._dbContext.Set<Announcement>().FindAsync(announcementId);
             var candidatesRegistered = await this.GetRegisteredCandidatesAsync(announcement);
             var resumes = new List<ResumeAI>();
 
