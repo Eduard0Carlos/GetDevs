@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcInterface.Models;
+using MvcInterface.Models.Company;
 using MvcInterface.Shared;
 using System.Net.Http;
 using System.Text.Json;
@@ -35,7 +36,7 @@ namespace MVCUserInterface.Controllers
                 return RedirectToAction("Index", "Home");
 
             var responseString = await response.Content.ReadAsStringAsync();
-            var candidateObject = JsonSerializer.Deserialize<CandidateViewModel>(responseString);
+            var candidateObject = JsonSerializer.Deserialize<CompanyViewModel>(responseString);
 
             ViewBag.ProfileName = profileName;
 

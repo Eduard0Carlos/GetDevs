@@ -41,12 +41,16 @@ namespace MVCUserInterface.Controllers
                 return RedirectToAction("Index", "Home");
 
             var responseString = await response.Content.ReadAsStringAsync();
-            var resumeResponseString = await resumeResponse.Content.ReadAsStringAsync();
-            var candidateObject = System.Text.Json.JsonSerializer.Deserialize<CandidateViewModel>(responseString);
-            var resumeObject = JsonConvert.DeserializeObject<ResumeViewModel>(resumeResponseString);
+            var candidateObject = JsonConvert.DeserializeObject<CandidateViewModel>(responseString);
+
+            if (resumeResponse.IsSuccessStatusCode)
+            {
+                var resumeResponseString = await resumeResponse.Content.ReadAsStringAsync();
+                var resumeObject = JsonConvert.DeserializeObject<ResumeViewModel>(resumeResponseString);
+                ViewBag.Resume = resumeObject;
+            }
 
             ViewBag.ProfileName = profileName;
-            ViewBag.Resume = resumeObject;
 
             return View(candidateObject);
         }

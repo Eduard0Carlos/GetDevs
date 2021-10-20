@@ -28,7 +28,7 @@ namespace MVCUserInterface.Controllers
                 return RedirectToAction("Index", "SignIn");
 
             if (User.IsInRole("company"))
-                RedirectToAction("Company", "Job");
+                return RedirectToAction("Company", "Job");
 
             return View();
         }

@@ -28,10 +28,16 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Get(string email)
         {
             var result = await _announcementService.GetCompanyAnnouncement(email);
-
+            var announcement = new List<Announcement>();
+            
             if (result.Success)
             {
-                return Ok(result.Data);
+                if (result.Value.Candidate != null)
+                    result.Value.Candidate.CandidateAnnouncements.ToList().ForEach(a => announcements.Add(a.Announcement));
+                else
+                    announcements = result.Value.Company.Announcements.ToList();
+
+                return Ok(announcements);
             }
 
             return NotFound(result);
