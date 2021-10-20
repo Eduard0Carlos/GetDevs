@@ -20,12 +20,20 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(string companyName)
+        public async Task<IActionResult> Get(string email, string companyName)
         {
-            var result = await _companyService.GetByCompanyNameAsync(companyName);
-            if (result.Success)
-                return Ok(result.Value);
-
+            if (!string.IsNullOrWhiteSpace(companyName))
+            {
+                var result = await _companyService.GetByCompanyNameAsync(companyName);
+                if (result.Success)
+                    return Ok(result.Value);
+            }
+            else
+            {
+                var result = await _userService.GetByEmailAsync(email);
+                if (result.Success)
+                    return Ok(result.Value);
+            }
             return NotFound();
         }
 

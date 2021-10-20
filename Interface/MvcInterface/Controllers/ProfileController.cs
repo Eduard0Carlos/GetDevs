@@ -12,9 +12,9 @@ namespace MVCUserInterface.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CompanyController> _logger;
 
-        public ProfileController(ILogger<HomeController> logger)
+        public ProfileController(ILogger<CompanyController> logger)
         {
             _logger = logger;
         }

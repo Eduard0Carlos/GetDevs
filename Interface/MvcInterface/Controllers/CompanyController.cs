@@ -10,9 +10,9 @@ namespace MVCUserInterface.Controllers
 {
     public class CompanyController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CompanyController> _logger;
 
-        public CompanyController(ILogger<HomeController> logger)
+        public CompanyController(ILogger<CompanyController> logger)
         {
             _logger = logger;
         }
