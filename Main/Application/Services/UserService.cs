@@ -5,6 +5,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Shared.Factory;
 using Shared.Results;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Application.Services
@@ -18,7 +19,7 @@ namespace Application.Services
 
         public async Task<SingleResult<User>> Authenticate(User user)
         {
-            var result = this.Validate(user);
+            var result = this.Validate(user);   
 
             if (!result.IsValid)
                 return ResultFactory.CreateFailureSingleResult<User>();
@@ -37,7 +38,9 @@ namespace Application.Services
         {
             var user = await this._dbContext.Set<User>()
                 .Include(u => u.Candidate)
+                .Include(u => u.Candidate.CandidateAnnouncements.ToList().Where(c => c.Registered == true))
                 .Include(u => u.Company)
+                .Include(u => u.Company.Announcements)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Email == email);
 

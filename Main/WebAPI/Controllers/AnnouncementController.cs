@@ -15,25 +15,23 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AnnouncementController : ControllerBase
     {
-        private readonly IAnnouncementService _annoucementService;
+        private readonly IAnnouncementService _announcementService;
         private readonly IUserService _userService;
 
         public AnnouncementController(IAnnouncementService annoucementService, IUserService userService)
         { 
-            _annoucementService = annoucementService;
+            _announcementService = annoucementService;
             _userService = userService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(string email)
         {
-            var result = await _userService.GetByEmailAsync(email);
-            var announcements = new List<Announcement>();   
+            var result = await _announcementService.GetCompanyAnnouncement(email);
 
             if (result.Success)
             {
-                result.Value.Candidate.CandidateAnnouncements.ToList().ForEach(a => announcements.Add(a.Announcement));
-                return Ok(announcements);
+                return Ok(result.Data);
             }
 
             return NotFound(result);
@@ -42,7 +40,7 @@ namespace WebAPI.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _annoucementService.DeleteAsync(id);
+            var result = await _announcementService.DeleteAsync(id);
 
             if (result.Success)
                 return Ok(result);
@@ -53,7 +51,7 @@ namespace WebAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(Announcement announcement)
         {
-            var result = await _annoucementService.InsertAsync(announcement);
+            var result = await _announcementService.InsertAsync(announcement);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,7 +62,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Announcement announcement)
         {
-            var result = await _annoucementService.InsertAsync(announcement);
+            var result = await _announcementService.InsertAsync(announcement);
             if (result.Success)
             {
                 return Ok(result);
