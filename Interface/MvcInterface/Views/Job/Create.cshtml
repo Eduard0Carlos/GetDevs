@@ -1,0 +1,62 @@
+﻿@{
+    Layout = $"~/Views/Shared/_LayoutFooterHidden.cshtml";
+    ViewData["Title"] = "Perfil";
+}
+
+<form method="post" style="width: 100%">
+    <div class="grid-resume shadow" style="padding-bottom: 125px !important; padding-top: 125px !important;">
+        <div class="content-lg container resume-item">
+            <div class="margin-b-40" style="width: 60%; margin-left: auto; margin-right: auto">
+                <h1 class="resume-category">INFORMAÇÕES</h1>
+                <input type="text" class="form-control resume-input" name="name" placeholder="Título" required />
+                <input type="text" class="form-control resume-input" name="phoneNumber" placeholder="Descrição" required />
+                <div style="display: flex;">
+                    <input type="text" class="form-control resume-input" name="phoneNumber" placeholder="Vagas Disponíveis" required />
+                    <input type="text" onfocus="(this.type='date')" class="form-control resume-date half-2" name="CompanyEnd" placeholder="Data Limite" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="content-lg container resume-item">
+            <div class="margin-b-40" style="width: 60%; margin-left: auto; margin-right: auto">
+                <h1 class="resume-category">REQUISITOS</h1>
+                <select class="form-control resume-input cmb" style="color: #a6a7aa" name="Skills" id="skills" multiple>
+                    <option value="CSharp">C#</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Angular">Angular</option>
+                    <option value="Sql">SqlServer</option>
+                </select>
+
+                <select class="form-control resume-input cmb" style="color: #a6a7aa" name="Idioms" id="idioms" multiple="multiple">
+                    <option value="Inglês">Inglês</option>
+                    <option value="Francês">Francês</option>
+                    <option value="Português">Português</option>
+                    <option value="Espanhol">Espanhol</option>
+                    <option value="Alemão">Alemão</option>
+                </select>
+
+                <select class="form-control resume-input cmb" style="color: #a6a7aa" name="Degree" id="degree">
+                    <option value="empty" disabled selected hidden>Formação</option>
+                    <option value="Ensino_Fundamental">Ensino Fundamental</option>
+                    <option value="Ensino_Médio">Ensino Médio</option>
+                    <option value="Mestrado">Mestrado</option>
+                    <option value="Doutorado">Doutorado</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+<script>
+    $(document).ready(function() {
+        $('#skills').select2({
+        placeholder: "Conhecimentos"
+            });
+        $('#idioms').select2({
+        placeholder: "Idiomas"
+            });
+    });
+</script>
+    }

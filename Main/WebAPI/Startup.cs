@@ -51,6 +51,9 @@ namespace WebAPI
 
             services.AddDbContext<MainContext>(opt => opt.UseSqlServer(SqlDataBase.CONNECTION_STRING));
 
+            services.AddControllers().AddJsonOptions(x =>
+                    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });

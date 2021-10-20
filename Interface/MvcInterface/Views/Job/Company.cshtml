@@ -1,0 +1,36 @@
+﻿@{
+    Layout = $"~/Views/Shared/_LayoutFooterHidden.cshtml";
+    ViewData["Title"] = "Vagas";
+}
+
+<div style="width: 100%; margin-top: 200px; margin-bottom: 100px;">
+    <a type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button" asp-action="Create" asp-controller="Job">Criar</a>
+    <div class="grid-job" style="width: 80%; margin-left: auto; margin-right: auto;">
+        <div class="wow fadeInUp animated fadein-effect" data-wow-delay=".3s" data-wow-duration=".3" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+            <div class="rounded-job fadein-effect">
+                <h2 style="text-transform: uppercase;">Desenvolvedor C#</h2>
+                <h4>Descrição</h4>
+                <p>Vagas Disponíveis: 20</p>
+                <p>Data de expiração: 20/10/2021</p>
+                <a href="https://www.ambev.com"><p>Empresa: Empresa 2</p></a>
+                <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Candidatar-se</button>
+            </div>
+        </div>
+        <div class="wow fadeInUp animated fadein-effect" data-wow-delay=".3s" data-wow-duration=".3" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+            <div class="rounded-job fadein-effect">
+                <h2 style="text-transform: uppercase;">Desenvolvedor Python</h2>
+                <h4>Descrição 2</h4>
+                <p>Vagas Disponíveis: 2</p>
+                <p>Data de expiração: 25/10/2021</p>
+                <a href="https://www.ambev.com"><p>Empresa: Empresa 3</p></a>
+                <div class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button-choosed">Candidatado</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script type="text/javascript">
+    $("body").css("background-color", "#F3F2EF");
+</script>
+}

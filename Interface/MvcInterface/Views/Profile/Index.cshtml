@@ -5,6 +5,7 @@
 
 <div class="grid-template shadow">
     <div id="banner" class="content-lg container" style="width: 100%; padding-bottom: 0px; padding-top: 250px">
+        <a asp-action="Index" asp-controller="Resume"><img class="edit-button" src="~/img/svg/pencil.svg" /></a>
         <div class="margin-b-40 center">
         </div>
     </div>
@@ -13,80 +14,91 @@
     </div>
     <div>
         <h1 class="black center-text">@Model.Name</h1>
-        <h3 class="black center-text" style="margin-top: -20px; color: #565656 !important;">Desenvolvedor C# Junior</h3>
     </div>
-    <div class="bg-color-sky-light" data-auto-height="true">
-        <div class="content-lg container" style="display: flex; margin-left: 5%;">
-            <div style="width: 50%;">
-                <div class="row margin-b-40" style="width: 50%;">
-                    <div class="col-sm-4">
-                        <h2 style="font-weight: 400">Habilidades</h2>
+
+    @if (ViewBag.Resume != null)
+    {
+        <div class="bg-color-sky-light" data-auto-height="true">
+            <div class="content-lg container" style="display: flex; margin-left: 5%;">
+                <div style="width: 50%;">
+                    <div class="row margin-b-40" style="width: 50%;">
+                        <div class="col-sm-4">
+                            <h2 style="font-weight: 400">Habilidades</h2>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 50%;">
+                        <ul style="list-style:none;">
+                            @foreach (var item in @ViewBag.Resume.Skills)
+                            {
+                                <li class="skill">@item</li>
+                            }
+                        </ul>
                     </div>
                 </div>
-                <div class="row" style="width: 50%;">
-                    <ul style="list-style:none;">
-                        <li class="skill">C#</li>
-                        <li class="skill">Java</li>
-                        <li class="skill">JavaScript</li>
-                        <li class="skill">HTML5</li>
-                        <li class="skill">CSS3</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="width: 50%;">
-                <div class="row margin-b-40" style="width: 50%;">
-                    <div class="col-sm-4">
-                        <h2 style="font-weight: 400">Idiomas</h2>
+                <div style="width: 50%;">
+                    <div class="row margin-b-40" style="width: 50%;">
+                        <div class="col-sm-4">
+                            <h2 style="font-weight: 400">Idiomas</h2>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 70%;">
+                        <ul style="list-style: none">
+                            @foreach (var item in @ViewBag.Resume.Languages)
+                            {
+                                <li class="skill">@item</li>
+                            }
+                        </ul>
                     </div>
                 </div>
-                <div class="row" style="width: 70%;">
-                    <ul style="list-style: none">
-                        <li class="skill">Inglês</li>
-                        <li class="skill">Alemão</li>
-                        <li class="skill">Francês</li>
-                    </ul>
-                </div>
             </div>
         </div>
-    </div>
-    <div class="content-lg container">
-        <div class="row margin-b-40 center-element">
-            <div class="col-sm-4" style="width: 100%;">
-                <h2 style="font-weight: 400; text-align: center;">Cursos</h2>
-            </div>
-        </div>
-        <div class="row center-element">
-            <div class="education-top">
-                <h3>Hercílio Deeke</h3>
-                <h3 class="right-align">Ensino Médio</h3>
-            </div>
-            <div class="education" style="text-align: center;">
-                <h3>2020</h3>
-                <h3 class="text-separator">-</h3>
-                <h3>2022</h3>
-            </div>
-        </div>
-    </div>
-    <div class="bg-color-sky-light" data-auto-height="true">
         <div class="content-lg container">
             <div class="row margin-b-40 center-element">
                 <div class="col-sm-4" style="width: 100%;">
-                    <h2 style="font-weight: 400; text-align: center;">Experiências</h2>
+                    <h2 style="font-weight: 400; text-align: center;">Cursos</h2>
                 </div>
             </div>
-            <div class="row center-element">
-                <div class="education-top">
-                    <h3>Empresa 1</h3>
-                    <h3 class="right-align">Desenvolvedor C#</h3>
+            @foreach (var item in @ViewBag.Resume.Educations)
+            {
+                <div class="row center-element">
+                    <div class="education-top">
+                        <h3>@item.InstitutionName</h3>
+                        <h3 class="right-align">@item.Degree</h3>
+                    </div>
+                    <div class="education" style="text-align: center;">
+                        <h3>@item.StartDate.Year</h3>
+                        <h3 class="text-separator">-</h3>
+                        <h3>@item.EndDate.Year</h3>
+                    </div>
                 </div>
-                <div class="education" style="text-align: center;">
-                    <h3>2018</h3>
-                    <h3 class="text-separator">-</h3>
-                    <h3>2022</h3>
+            }
+        </div>
+        <div class="bg-color-sky-light" data-auto-height="true">
+            <div class="content-lg container">
+                <div class="row margin-b-40 center-element">
+                    <div class="col-sm-4" style="width: 100%;">
+                        <h2 style="font-weight: 400; text-align: center;">Experiências</h2>
+                    </div>
                 </div>
+
+                @foreach (var item in @ViewBag.Resume.BusinessBonds)
+                {
+                    <div class="row center-element">
+                        <div class="education-top">
+                            <h3>@item.CompanyName</h3>
+                            <h3 class="right-align">@item.Role</h3>
+                        </div>
+                        <div class="education" style="text-align: center;">
+                            <h3>@item.StartDate.Year</h3>
+                            <h3 class="text-separator">-</h3>
+                            <h3>@item.EndDate.Year</h3>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-    </div>
+    }
+
     <div class="content-lg container" style="margin-left: 10% !important;">
         <div class="row">
             <h2 style="font-weight: 400;">Contato</h2>

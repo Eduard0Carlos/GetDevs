@@ -8,6 +8,7 @@ namespace WebAPI.Models
         public string Password { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
+        public string LogoImageUrl { get; set; }
         public string Sector { get; set; }
         public string Cnpj { get; set; }
         public int CompanySize { get; set; }
@@ -32,7 +33,8 @@ namespace WebAPI.Models
                 registerModel.Sector, 
                 registerModel.Cnpj, 
                 registerModel.CompanySize, 
-                registerModel.Slogan
+                registerModel.Slogan,
+                registerModel.LogoImageUrl
                 );
         }
     }

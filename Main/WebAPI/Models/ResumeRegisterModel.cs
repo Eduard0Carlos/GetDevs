@@ -8,14 +8,13 @@ namespace WebAPI.Models
 {
     public class ResumeRegisterModel
     {
-
-        public int CandidateId { get; set; }
+        public string Email { get; set; }
         public float? Score { get; set; }
         public string[] Skills { get; set; }
         public string[] Degrees { get; set; }
-        public ICollection<Education> Educations { get; set; }
+        public ICollection<EducationViewModel> Educations { get; set; }
         public string[] Languages { get; set; }
-        public ICollection<BusinessBond> BusinessBonds { get; set; }
+        public ICollection<BusinessBondViewModel> BusinessBonds { get; set; }
 
         public Resume ConvertToResume()
         {
@@ -33,13 +32,28 @@ namespace WebAPI.Models
 
 
             return new Resume(
-                this.CandidateId,
-                skill, 
-                degree, 
-                language, 
-                this.Educations, 
-                this.BusinessBonds);
+                0,
+                skill,
+                degree,
+                language,
+                this.Educations.ToEducation(),
+                this.BusinessBonds.ToBusinessBond()
+                );
         }
+    }
 
+    public static class ResumeExtension
+    {
+        public static ResumeRegisterModel ConvertToResumeViewModel(this Resume resume)
+        {
+            return new ResumeRegisterModel()
+            {
+                Skills = resume.Skills.ToString().Split(", "),
+                Degrees = resume.Degrees.ToString().Split(", "),
+                Languages = resume.Languages.ToString().Split(", "),
+                BusinessBonds = resume.BusinessBonds.ToBusinessBondViewModel(),
+                Educations = resume.Educations.ToEducationViewModel()
+            };
+        }
     }
 }

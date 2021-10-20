@@ -22,6 +22,19 @@ namespace MVCUserInterface.Controllers
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "SignIn");
 
+            if (User.IsInRole("company"))
+                RedirectToAction("Company", "Job");
+
+            return View();
+        }
+
+        public IActionResult Company()
+        {
+            return View();
+        }
+
+        public IActionResult Create()
+        {
             return View();
         }
     }

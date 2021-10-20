@@ -15,9 +15,9 @@
     margin-top: 30px !important;
 }
 
-.signup:hover {
-    background-color: #680800 !important;
-}
+    .signup:hover {
+        background-color: #680800 !important;
+    }
 
 .center-element {
     margin-left: auto !important;
@@ -119,9 +119,9 @@
     margin-top: 30px !important;
 }
 
-.signin:hover {
-    background-color: #555555 !important;
-}
+    .signin:hover {
+        background-color: #555555 !important;
+    }
 
 .fadein-effect {
     transition-duration: .3s !important;
@@ -145,17 +145,81 @@
     bottom: 0 !important;
 }
 
+.cmb {
+    color: black !important;
+}
+
+.resume-item {
+    background-color: #FFF !important;
+    border-radius: 25px !important;
+    margin-top: 40px !important;
+    box-shadow: rgb(0 0 0 / 55%) 0px 15px 68px !important;
+}
+
+.select2-container--open .select2-dropdown--below {
+    width: 200px !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: #EAEAEA !important;
+    padding: 6px 12px !important;
+    padding-left: 15px !important;
+    height: 50px !important;
+    color: #000 !important;
+    border: 0px solid #AF1100 !important;
+    border-radius: 6px !important;
+    margin-top: 15px !important;
+    cursor: pointer !important;
+}
+
+    .select2-container--default .select2-selection--multiple:focus {
+        border: 2px solid #AF1100 !important;
+    }
+
+.resume-category {
+    padding: 10px !important;
+    color: #000 !important;
+    text-align: center !important;
+    border-bottom: 1px solid #000;
+}
+
+.resume-input {
+    background-color: #EAEAEA !important;
+    color: #000 !important;
+    border: 0px solid #AF1100 !important;
+    border-radius: 6px !important;
+    margin-top: 15px !important;
+}
+
+    .resume-input:focus {
+        border: 2px solid #AF1100 !important;
+    }
+
+.resume-date {
+    padding: 6px 12px !important;
+    color: #FFF !important;
+    background-color: #EAEAEA !important;
+    color: #000 !important;
+    border: 0px solid #AF1100 !important;
+    border-radius: 6px !important;
+    margin-top: 15px !important;
+}
+
+    .resume-date:focus {
+        border: 2px solid #AF1100 !important;
+    }
+
 .form-input {
     background: rgba(0,0,0,.40) !important;
     border: 0px solid #AF1100 !important;
     border-radius: 6px !important;
     color: #FFF !important;
-    margin-top: 15px!important;
+    margin-top: 15px !important;
 }
 
-.form-input:focus {
-    border: 2px solid #AF1100 !important;
-}
+    .form-input:focus {
+        border: 2px solid #AF1100 !important;
+    }
 
 .form-button {
     background-color: #AF1100 !important;
@@ -171,12 +235,13 @@
 }
 
 .form-button:hover {
-    background-color: #680800!important;
+    background-color: #680800 !important;
 }
 
 .half-1 {
     margin-right: 7.5px
 }
+
 .half-2 {
     margin-left: 7.5px;
 }
@@ -190,9 +255,9 @@
     margin-top: 15px !important;
 }
 
-.form-date:focus {
-    border: 2px solid #AF1100 !important;
-}
+    .form-date:focus {
+        border: 2px solid #AF1100 !important;
+    }
 
 .btn-choose {
     display: block;
@@ -209,12 +274,23 @@
     font-family: Hind,sans-serif;
 }
 
-.btn-choose:hover {
-    background-color: #680800!important;
-    color: #FFF;
-}
+    .btn-choose:hover {
+        background-color: #680800 !important;
+        color: #FFF;
+    }
+
 .shadow {
     box-shadow: rgb(0 0 0 / 55%) 0px 15px 68px !important;
+}
+
+.edit-button {
+    background-color: white !important;
+    border-radius: 15px !important;
+    margin-top: 30px !important;
+    padding: 6px !important;
+    height: 40px !important;
+    position: absolute !important;
+    cursor: pointer !important;
 }
 
 .grid-job {
@@ -223,6 +299,13 @@
     grid-template-columns: auto auto auto !important;
     box-sizing: inherit;
 }
+
+.grid-resume {
+    display: grid !important;
+    grid-template-rows: auto auto auto !important;
+    box-sizing: inherit;
+}
+
 
 .rounded-job {
     border-radius: 15px !important;
