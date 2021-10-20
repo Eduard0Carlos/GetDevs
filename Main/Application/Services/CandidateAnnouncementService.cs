@@ -5,6 +5,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Shared.Factory;
 using Shared.Results;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,12 +13,14 @@ namespace Application.Services
 {
     public class CandidateAnnouncementService : GenericService<CandidateAnnouncement>, ICandidateAnnouncementService
     {
+        protected readonly IUserService _userService;
         protected readonly IResumeService _resumeService;
 
-        public CandidateAnnouncementService(IResumeService resumeService, MainContext dbContext, IEntityValidationModel<CandidateAnnouncement> validationModel)
+        public CandidateAnnouncementService(IResumeService resumeService, IUserService userService, MainContext dbContext, IEntityValidationModel<CandidateAnnouncement> validationModel)
         : base(dbContext, validationModel)
         {
             this._resumeService = resumeService;
+            this._userService = userService;
         }
 
         public async Task<SingleResult<CandidateAnnouncement>> FindAsync(int candidateId, int announcementId)
@@ -45,5 +48,8 @@ namespace Application.Services
 
             return ResultFactory.CreateSuccessResult();
         }
+
+        
+
     }
 }

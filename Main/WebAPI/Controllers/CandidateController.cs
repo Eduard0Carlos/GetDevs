@@ -31,8 +31,7 @@ namespace WebAPI.Controllers
             if (result.Success)
                 return Ok(result.Value.Candidate);
 
-
-            return NotFound();
+            return NotFound(result);
         }
 
         [HttpDelete]
