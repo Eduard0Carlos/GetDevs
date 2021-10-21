@@ -18,6 +18,19 @@ namespace Application.Services
             this._userService = userService;   
         }
 
+        public async Task<DataResult<CandidateAnnouncement>> GetCandidateAnnouncement(string email)
+        {
+            var user = await _userService.GetByEmailAsync(email);
+            if (!user.Success)
+                return ResultFactory.CreateFailureDataResult<CandidateAnnouncement>();
+
+            var announcement = new List<CandidateAnnouncement>();
+            if (user.Value.Candidate != null)
+                announcement = user.Value.Candidate.CandidateAnnouncements.ToList();
+
+            return ResultFactory.CreateSuccessDataResult(announcement);
+        }
+
         public async Task<DataResult<Announcement>> GetCompanyAnnouncement(string email)
         {
             var user = await _userService.GetByEmailAsync(email);

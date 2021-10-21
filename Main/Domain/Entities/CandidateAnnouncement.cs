@@ -17,6 +17,11 @@
             AnnouncementId = announcementId;
         }
 
+        public void SetAnnouncementId(Announcement announcement)
+        {
+            this.Announcement = announcement;
+        }
+
         public CandidateAnnouncement SetRegistered(bool registered)
         {
             this.Registered = registered;

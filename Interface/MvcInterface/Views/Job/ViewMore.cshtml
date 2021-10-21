@@ -1,0 +1,32 @@
+﻿@{
+    Layout = $"~/Views/Shared/_LayoutFooterHidden.cshtml";
+    ViewData["Title"] = "Perfil";
+}
+
+<form method="post" style="width: 100%">
+    <div class="grid-resume shadow" style="padding-bottom: 125px !important; padding-top: 125px !important;">
+        <div class="content-lg container resume-item">
+            <div class="margin-b-40" style="width: 60%; margin-left: auto; margin-right: auto">
+                @if (Model != null)
+                {
+                    @foreach (var item in @Model)
+                    {
+                        <h1>@item.Name</h1>
+                    }
+                }
+            </div>
+        </div>
+</form>
+
+@section Scripts {
+<script>
+    $(document).ready(function() {
+        $('#skills').select2({
+        placeholder: "Conhecimentos"
+            });
+        $('#idioms').select2({
+        placeholder: "Idiomas"
+            });
+    });
+</script>
+    }

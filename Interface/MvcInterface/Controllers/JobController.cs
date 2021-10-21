@@ -5,6 +5,7 @@ using MvcInterface.Models.Announcement;
 using MvcInterface.Models.Company;
 using MvcInterface.Shared;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -22,7 +23,7 @@ namespace MVCUserInterface.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "SignIn");
@@ -30,6 +31,22 @@ namespace MVCUserInterface.Controllers
             if (User.IsInRole("company"))
                 return RedirectToAction("Company", "Job");
 
+            var response = await new HttpClient().GetAsync($"{Api.URL}/announcement?email={User.Identity.Name}");
+
+            if (!response.IsSuccessStatusCode)
+                return RedirectToAction("Index", "Home");
+
+            var responseString = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var announcementList = JsonConvert.DeserializeObject<List<CandidateAnnouncementViewModel>>(responseString);
+                if (announcementList != null)
+                    return View(announcementList);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
             return View();
         }
 
@@ -51,9 +68,45 @@ namespace MVCUserInterface.Controllers
             return View(announcementList);
         }
 
+        public async Task<IActionResult> ViewMore(string id)
+        {
+            var response = await new HttpClient().GetAsync($"{Api.URL}/candidate?id={User.Identity.Name}");
+
+            if (!response.IsSuccessStatusCode || !response.IsSuccessStatusCode)
+                return View();
+
+            var responseString = await response.Content.ReadAsStringAsync();
+            var candidateList = JsonConvert.DeserializeObject<List<CandidateViewModel>>(responseString);
+
+            return View(candidateList);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Company(string id)
+        {
+            return RedirectToAction("ViewMore", "Job", new { id = id });
+        }
+
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(AnnouncementRegisterViewModel registerModel)
+        {
+            registerModel.Email = User.Identity.Name;
+            registerModel.AnnouncementDate = DateTime.Now;
+            var json = JsonConvert.SerializeObject(registerModel);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            using var client = new HttpClient();
+            var response = await client.PostAsync($"{Api.URL}/announcement", data);
+
+            if (!response.IsSuccessStatusCode)
+                return View();
+
+            return RedirectToAction("Index", "Profile");
         }
     }
 }

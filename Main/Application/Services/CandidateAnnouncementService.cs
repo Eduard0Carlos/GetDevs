@@ -15,10 +15,12 @@ namespace Application.Services
     {
         protected readonly IUserService _userService;
         protected readonly IResumeService _resumeService;
+        protected readonly IAnnouncementService _announcementService;
 
-        public CandidateAnnouncementService(IResumeService resumeService, IUserService userService, MainContext dbContext, IEntityValidationModel<CandidateAnnouncement> validationModel)
+        public CandidateAnnouncementService(IAnnouncementService announcementService, IResumeService resumeService, IUserService userService, MainContext dbContext, IEntityValidationModel<CandidateAnnouncement> validationModel)
         : base(dbContext, validationModel)
         {
+            this._announcementService = announcementService;
             this._resumeService = resumeService;
             this._userService = userService;
         }
@@ -30,8 +32,11 @@ namespace Application.Services
                                      .FirstOrDefaultAsync(c => c.AnnouncementId == announcementId && c.CandidateId == candidateId));
         }
 
-        public async Task<Result> FindDevsAsync(Announcement announcement)
+        public async Task<Result> FindDevsAsync(int announcementId)
         {
+            var announcementResult = await _announcementService.GetByIdAsync(announcementId);
+            var announcement = announcementResult.Value;
+
             var resumeDataResult = await this._resumeService.GetResumeByRequirementAsync(announcement.SkillRequired, announcement.LanguagesRequired, announcement.DegreesRequired);
 
             foreach (var resume in resumeDataResult.Data)

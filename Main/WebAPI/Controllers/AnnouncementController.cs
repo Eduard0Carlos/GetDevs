@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
@@ -17,9 +18,11 @@ namespace WebAPI.Controllers
     {
         private readonly IAnnouncementService _announcementService;
         private readonly IUserService _userService;
+        private readonly ICandidateAnnouncementService _candidateAnnouncementService;
 
-        public AnnouncementController(IAnnouncementService annoucementService, IUserService userService)
-        { 
+        public AnnouncementController(ICandidateAnnouncementService candidateAnnouncementService, IAnnouncementService annoucementService, IUserService userService)
+        {
+            _candidateAnnouncementService = candidateAnnouncementService;
             _announcementService = annoucementService;
             _userService = userService;
         }
@@ -27,20 +30,35 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(string email)
         {
-            var result = await _announcementService.GetCompanyAnnouncement(email);
-            var announcement = new List<Announcement>();
-            
-            if (result.Success)
-            {
-                if (result.Value.Candidate != null)
-                    result.Value.Candidate.CandidateAnnouncements.ToList().ForEach(a => announcements.Add(a.Announcement));
-                else
-                    announcements = result.Value.Company.Announcements.ToList();
+            var user = await _userService.GetByEmailAsync(email);
 
-                return Ok(announcements);
+            if (user.Value.Company != null)
+            {
+                var result = await _announcementService.GetCompanyAnnouncement(email);
+
+                if (result.Success)
+                {
+                    return Ok(result.Data);
+                }
+            }
+            else
+            {
+                var result = await _announcementService.GetCandidateAnnouncement(email);
+
+                if (result.Success)
+                {
+                    foreach (var item in result.Data)
+                    {
+                        var an = await _announcementService.GetByIdAsync(item.AnnouncementId);
+                        item.SetAnnouncementId(an.Value);
+                    }
+                    var resultList = new List<CandidateAnnouncementViewModel>();
+                    result.Data.ForEach(c => resultList.Add(c.ConvertToCandidateAnnouncementViewModel()));
+                    return Ok(resultList);
+                }
             }
 
-            return NotFound(result);
+            return NotFound();
         }
 
         [HttpDelete]
@@ -66,11 +84,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Announcement announcement)
+        public async Task<IActionResult> Post(AnnouncementRegisterViewModel registerModel)
         {
+            var user = await _userService.GetByEmailAsync(registerModel.Email);
+            var announcement = registerModel.ConvertToAnnouncement();
+            announcement.SetCompanyId(user.Value.CompanyId.Value);
             var result = await _announcementService.InsertAsync(announcement);
-            if (result.Success)
+            if (result.Success) 
             {
+                await _candidateAnnouncementService.FindDevsAsync(result.Value.Id);
                 return Ok(result);
             }
             return NotFound(result);

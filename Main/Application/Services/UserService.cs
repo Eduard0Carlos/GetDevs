@@ -40,7 +40,7 @@ namespace Application.Services
         {
             var user = await this._dbContext.Set<User>()
                 .Include(u => u.Candidate)
-                .Include(u => u.Candidate.CandidateAnnouncements.ToList().Where(c => c.Registered == true))
+                .Include(u => u.Candidate.CandidateAnnouncements)
                 .Include(u => u.Company)
                 .Include(u => u.Company.Announcements)
                 .AsNoTracking()

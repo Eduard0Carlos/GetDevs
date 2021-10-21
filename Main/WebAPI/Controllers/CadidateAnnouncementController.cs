@@ -20,6 +20,19 @@ namespace WebAPI.Controllers
             this._service = service;
         }
 
+        [HttpGet("findevs")]
+        public async Task<IActionResult> Post(int announcementId)
+        {
+            var result = await _service.FindDevsAsync(announcementId);
+
+            if (result.Success)
+            {
+                return Ok();
+            }
+
+            return NotFound(result);
+        }
+
         [HttpGet]
         public async Task<IActionResult> Get(int id)
         {

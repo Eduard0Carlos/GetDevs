@@ -28,7 +28,7 @@ namespace Domain.Entities
 
         protected Announcement() { }
 
-        public Announcement(string title, string description, Skill skillRequired, Language languagesRequired, Degree degreesRequired, int avaibleVacancy, DateTime announcementDate, DateTime expiredDate, int companyId)
+        public Announcement(string title, string description, Skill skillRequired, Language languagesRequired, Degree degreesRequired, int avaibleVacancy, DateTime announcementDate, DateTime expiredDate)
         {
             Title = title;
             Description = description;
@@ -38,7 +38,12 @@ namespace Domain.Entities
             AvaibleVacancy = avaibleVacancy;
             AnnouncementDate = announcementDate;
             ExpiredDate = expiredDate;
-            CompanyId = companyId;
+        }
+
+        public Announcement SetCompanyId(int companyId)
+        {
+            this.CompanyId = companyId;
+            return this;
         }
 
         public override bool Equals(object obj) =>

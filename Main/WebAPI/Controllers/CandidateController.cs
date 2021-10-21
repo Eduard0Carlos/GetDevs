@@ -38,10 +38,10 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _candidateService.DeleteAsync(id);
-            
+
             if (result.Success)
                 return Ok(result);
-            
+
             return NotFound(result);
         }
 
@@ -56,11 +56,21 @@ namespace WebAPI.Controllers
             user.Value.Candidate.SetPhoneNumber(registerModel.PhoneNumber);
 
             user.Value.Candidate.SetId(user.Value.CandidateId.Value);
-            
+
             var result = await _candidateService.UpdateAsync(user.Value.Candidate);
             if (result.Success)
                 return Ok(result);
-            
+
+            return NotFound(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await _candidateService.GetDevsAsync(id);
+            if (result.Success)
+                return Ok(result.Data);
+
             return NotFound(result);
         }
 

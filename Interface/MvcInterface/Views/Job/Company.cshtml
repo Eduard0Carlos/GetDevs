@@ -18,7 +18,7 @@
                     <p>Data de expiração: @item.ExpiredDate</p>
                     <a href="@ViewBag.Company.Url"><p>Empresa: @ViewBag.Company.Name</p></a>
                     <form method="post">
-                        <input type="hidden" value="@Model.Id" hidden>
+                        <input type="hidden" name="id" value="@item.Id" hidden>
                         <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Ver Mais</button>
                     </form>
                 </div>

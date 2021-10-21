@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             {
                 var result = await _userService.GetByEmailAsync(email);
                 if (result.Success)
-                    return Ok(result.Value);
+                    return Ok(result.Value.Company);
             }
             return NotFound();
         }
