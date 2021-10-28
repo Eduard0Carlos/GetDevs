@@ -1,12 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 using WebAPI.Models;
 
@@ -35,22 +30,24 @@ namespace WebAPI.Controllers
             if (user.Value.Company != null)
             {
                 var result = await _announcementService.GetCompanyAnnouncement(email);
-
                 if (result.Success)
-                {
                     return Ok(result.Data);
-                }
             }
             else
             {
-                var result = await _announcementService.GetCandidateAnnouncement(email);
+                var announcementResult = await this._announcementService.GetAllAsync();
+                foreach (var announcement in announcementResult.Data)
+                {
+                    await this._candidateAnnouncementService.FindDevsAsync(announcement.Id);
+                }
 
+                var result = await _announcementService.GetCandidateAnnouncement(email);
                 if (result.Success)
                 {
                     foreach (var item in result.Data)
                     {
                         var an = await _announcementService.GetByIdAsync(item.AnnouncementId);
-                        item.SetAnnouncementId(an.Value);
+                        item.SetAnnouncement(an.Value);
                     }
                     var resultList = new List<CandidateAnnouncementViewModel>();
                     result.Data.ForEach(c => resultList.Add(c.ConvertToCandidateAnnouncementViewModel()));
@@ -65,7 +62,6 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _announcementService.DeleteAsync(id);
-
             if (result.Success)
                 return Ok(result);
 
@@ -75,12 +71,18 @@ namespace WebAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(Announcement announcement)
         {
-            var result = await _announcementService.InsertAsync(announcement);
+            var result = await _announcementService.UpdateAsync(announcement);
             if (result.Success)
-            {
                 return Ok(result);
-            }
+
             return NotFound(result);
+        }
+
+        [HttpPost("findevs")]
+        public async Task<IActionResult> Post(FindDevsModel model)
+        {
+            await _candidateAnnouncementService.FindDevsAsync(model.Id);
+            return Ok();
         }
 
         [HttpPost]
@@ -90,11 +92,13 @@ namespace WebAPI.Controllers
             var announcement = registerModel.ConvertToAnnouncement();
             announcement.SetCompanyId(user.Value.CompanyId.Value);
             var result = await _announcementService.InsertAsync(announcement);
-            if (result.Success) 
+
+            if (result.Success)
             {
                 await _candidateAnnouncementService.FindDevsAsync(result.Value.Id);
                 return Ok(result);
             }
+
             return NotFound(result);
         }
     }

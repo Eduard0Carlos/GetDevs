@@ -1,10 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -20,24 +16,10 @@ namespace WebAPI.Controllers
             this._service = service;
         }
 
-        [HttpGet("findevs")]
-        public async Task<IActionResult> Post(int announcementId)
-        {
-            var result = await _service.FindDevsAsync(announcementId);
-
-            if (result.Success)
-            {
-                return Ok();
-            }
-
-            return NotFound(result);
-        }
-
         [HttpGet]
         public async Task<IActionResult> Get(int id)
         {
             var result = await _service.GetByIdAsync(id);
-
             if (result.Success)
                 return Ok(result);
 
@@ -48,7 +30,6 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _service.DeleteAsync(id);
-
             if (result.Success)
                 return Ok(result);
 
@@ -58,11 +39,10 @@ namespace WebAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(CandidateAnnouncement businessBond)
         {
-            var result = await _service.InsertAsync(businessBond);
+            var result = await _service.UpdateAsync(businessBond);
             if (result.Success)
-            {
                 return Ok(result);
-            }
+            
             return NotFound(result);
         }
 
@@ -71,9 +51,8 @@ namespace WebAPI.Controllers
         {
             var result = await _service.InsertAsync(businessBond);
             if (result.Success)
-            {
                 return Ok(result);
-            }
+            
             return NotFound(result);
         }
     }

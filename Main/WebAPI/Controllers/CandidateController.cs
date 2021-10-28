@@ -1,11 +1,5 @@
-﻿using Domain.Entities;
-using Domain.Enums;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 using WebAPI.Models;
 
@@ -24,21 +18,36 @@ namespace WebAPI.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get(string email)
+        [HttpPost("job/register")]
+        public async Task<IActionResult> Post(RegisterInAnnouncementModel model)
         {
-            var result = await _userService.GetByEmailAsync(email);
+            var userResult = await this._userService.GetByEmailAsync(model.Email);
+            var result = await this._candidateService.RegisterInAnnouncement(userResult.Value.Candidate, model.AnnouncementId);
             if (result.Success)
-                return Ok(result.Value.Candidate);
+                return Ok();
 
-            return NotFound(result);
+            return NotFound();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(string email, int id)
+        {
+            if (email != null)
+            {
+                var result = await _userService.GetByEmailAsync(email);
+                if (result.Success)
+                    return Ok(result.Value.Candidate);
+            }
+            else
+                return await this.GetDevs(id);
+
+            return NotFound();
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _candidateService.DeleteAsync(id);
-
             if (result.Success)
                 return Ok(result);
 
@@ -54,7 +63,6 @@ namespace WebAPI.Controllers
 
             user.Value.Candidate.SetName(registerModel.Name);
             user.Value.Candidate.SetPhoneNumber(registerModel.PhoneNumber);
-
             user.Value.Candidate.SetId(user.Value.CandidateId.Value);
 
             var result = await _candidateService.UpdateAsync(user.Value.Candidate);
@@ -64,8 +72,7 @@ namespace WebAPI.Controllers
             return NotFound(result);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        private async Task<IActionResult> GetDevs(int id)
         {
             var result = await _candidateService.GetDevsAsync(id);
             if (result.Success)
@@ -79,7 +86,6 @@ namespace WebAPI.Controllers
         {
             var candidate = registerModel.ConvertToCandidate();
             var user = registerModel.ConvertToUser();
-
             var candidateInsertResult = await _candidateService.InsertAsync(candidate);
 
             if (!candidateInsertResult.Success)

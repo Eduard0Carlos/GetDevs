@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/GuestShortLayout.cshtml";
+    Layout = "~/Views/Shared/GuestBlackLayout.cshtml";
     ViewData["Title"] = "Cadastrar";
 }
 <form method="post" style="width: 100%;">
@@ -8,10 +8,7 @@
         <input type="text" class="form-control form-input" name="email" placeholder="Email" required />
         <input type="password" class="form-control form-input" name="password" placeholder="Senha" required />
         <input type="text" class="form-control form-input" name="phoneNumber" placeholder="Telefone" required />
-        <div style="width: 100%; display: flex;">
-            <input type="text" class="form-control form-input half-1" name="name" placeholder="Nome" required />
-            <input type="text" class="form-control form-input half-2" placeholder="Sobrenome" required />
-        </div>
+            <input type="text" class="form-control form-input" name="name" placeholder="Nome Completo" required />
         <input type="text" class="form-control form-input" name="cpf" placeholder="CPF" required />
         <div style="width: 100%; display: flex;">
             <input type="text" class="form-control form-input half-1" name="cep" placeholder="CEP" required />

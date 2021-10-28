@@ -14,35 +14,13 @@ namespace Application.Services
 {
     public class CandidateService : GenericService<Candidate>, ICandidateService
     {
-        public CandidateService(MainContext dbContext, IEntityValidationModel<Candidate> validationModel) : base(dbContext, validationModel)
-        {
+        private readonly ICandidateAnnouncementService _candidateAnnouncementService;
 
+        public CandidateService(MainContext dbContext, ICandidateAnnouncementService candidateAnnouncementService, IEntityValidationModel<Candidate> validationModel) : base(dbContext, validationModel)
+        {
+            this._candidateAnnouncementService = candidateAnnouncementService;
         }
 
-        public async Task<AuthenticateResult> Authenticate(AuthenticateRequest model)
-        {
-            var authenticateResult = new AuthenticateResult();
-
-            var user = await this._dbContext.Set<User>().FirstOrDefaultAsync(x => x.Email == model.Email && x.Password == model.Password);
-
-            if (user == null)
-                return null;
-
-            authenticateResult.FullName = user.Email;
-
-            authenticateResult.Email = user.Email;
-            authenticateResult.Id = user.Id;
-
-            if (user.CompanyId.HasValue)
-                authenticateResult.IsCompany = true;
-            else
-                authenticateResult.IsCandidate = true;
-
-            if (user == null)
-                return null;
-
-            return authenticateResult;
-        }
         public async Task<DataResult<Candidate>> GetDevsAsync(int announcementId)
         {
             var announcement = await this._dbContext.Set<Announcement>().FindAsync(announcementId);
@@ -55,7 +33,7 @@ namespace Application.Services
             var dataView = AIContext.PrepareData(resumes);
             var rankingResult = AIContext.Rank(dataView);
 
-            candidatesRegistered.Data.ForEach(c => c.Resume.SetScore(rankingResult.ToList().FirstOrDefault(r => r.Id == c.Resume.Id).Score));
+            candidatesRegistered.Data.ForEach(c => c.Resume.SetScore(rankingResult.ToList().FirstOrDefault(r => r.Id == c.Id).Score));
 
             return ResultFactory.CreateSuccessDataResult(candidatesRegistered.Data);
         }
@@ -65,11 +43,24 @@ namespace Application.Services
             var registeredCandidates = new List<Candidate>();
 
             this._dbContext.Set<CandidateAnnouncement>()
-                .Where(e => e.Announcement == announcement && e.Registered)
+                .Include(u => u.Candidate)
+                .Include(u => u.Candidate.Resume)
+                .Include(u => u.Candidate.Resume.BusinessBonds)
+                .Include(u => u.Candidate.Resume.Educations)
+                .Where(e => e.Announcement.Id == announcement.Id && e.Registered)
                 .ToList()
                 .ForEach(e => registeredCandidates.Add(e.Candidate));
 
             return ResultFactory.CreateSuccessDataResult(registeredCandidates);
+        }
+
+        public async Task<Result> RegisterInAnnouncement(Candidate candidate, int announcementId)
+        {
+            var candidateAnnouncement = await this._candidateAnnouncementService.FindAsync(candidate.Id, announcementId);
+            candidateAnnouncement.Value.SetRegistered();
+
+            await this._candidateAnnouncementService.UpdateAsync(candidateAnnouncement.Value);
+            return ResultFactory.CreateSuccessResult();
         }
     }
 }   

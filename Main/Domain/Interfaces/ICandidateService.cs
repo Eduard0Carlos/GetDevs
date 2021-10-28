@@ -8,5 +8,6 @@ namespace Domain.Interfaces
     {
         Task<DataResult<Candidate>> GetDevsAsync(int id);
         Task<DataResult<Candidate>> GetRegisteredCandidatesAsync(Announcement announcement);
+        Task<Result> RegisterInAnnouncement(Candidate candidate, int announcementId);
     }
 }

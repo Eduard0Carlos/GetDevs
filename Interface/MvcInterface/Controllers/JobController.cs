@@ -50,6 +50,16 @@ namespace MVCUserInterface.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(int id)
+        {
+            var json = JsonConvert.SerializeObject(new { Email = User.Identity.Name, AnnouncementId = id });
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            var registerResponse = await new HttpClient().PostAsync($"{Api.URL}/candidate/job/register", data);
+
+            return RedirectToAction("Index");
+        }
+
         public async Task<IActionResult> Company()
         {
             var response = await new HttpClient().GetAsync($"{Api.URL}/announcement?email={User.Identity.Name}");
@@ -70,7 +80,11 @@ namespace MVCUserInterface.Controllers
 
         public async Task<IActionResult> ViewMore(string id)
         {
-            var response = await new HttpClient().GetAsync($"{Api.URL}/candidate?id={User.Identity.Name}");
+            var response = await new HttpClient().GetAsync($"{Api.URL}/candidate?id={id}");
+
+            var json = JsonConvert.SerializeObject(new { Id = id });
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            await new HttpClient().PostAsync($"{Api.URL}/announcement/findevs", data);
 
             if (!response.IsSuccessStatusCode || !response.IsSuccessStatusCode)
                 return View();
@@ -84,6 +98,10 @@ namespace MVCUserInterface.Controllers
         [HttpPost]
         public async Task<IActionResult> Company(string id)
         {
+            var json = JsonConvert.SerializeObject(new { Id = id});
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            
+            await new HttpClient().PostAsync($"{Api.URL}/announcement/findevs", data);
             return RedirectToAction("ViewMore", "Job", new { id = id });
         }
 
@@ -106,7 +124,7 @@ namespace MVCUserInterface.Controllers
             if (!response.IsSuccessStatusCode)
                 return View();
 
-            return RedirectToAction("Index", "Profile");
+            return RedirectToAction("Index", "Job");
         }
     }
 }

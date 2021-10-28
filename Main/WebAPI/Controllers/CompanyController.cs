@@ -23,18 +23,9 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Get(string email, string companyName)
         {
             if (!string.IsNullOrWhiteSpace(companyName))
-            {
-                var result = await _companyService.GetByCompanyNameAsync(companyName);
-                if (result.Success)
-                    return Ok(result.Value);
-            }
+                return await this.GetCompanyByName(companyName);
             else
-            {
-                var result = await _userService.GetByEmailAsync(email);
-                if (result.Success)
-                    return Ok(result.Value.Company);
-            }
-            return NotFound();
+                return await this.GetByEmail(email);
         }
 
         [HttpDelete]
@@ -50,11 +41,10 @@ namespace WebAPI.Controllers
 
         public async Task<IActionResult> Put(Company company)
         {
-            var result = await _companyService.InsertAsync(company);
+            var result = await _companyService.UpdateAsync(company);
             if (result.Success)
-            {
                 return Ok(result);
-            }
+            
             return NotFound(result);
         }
 
@@ -63,7 +53,6 @@ namespace WebAPI.Controllers
         {
             var company = registerModel.ConvertToCompany();
             var user = registerModel.ConvertToUser();
-
             var companyInsertResult = await _companyService.InsertAsync(company);
 
             if (!companyInsertResult.Success)
@@ -83,10 +72,27 @@ namespace WebAPI.Controllers
         {
             var result = await _companyService.InsertAsync(company);
             if (result.Success)
-            {
                 return Ok(result);
-            }
+            
             return NotFound(result);
+        }
+
+        private async Task<IActionResult> GetByEmail(string email)
+        {
+            var result = await _userService.GetByEmailAsync(email);
+            if (result.Success)
+                return Ok(result.Value.Company);
+
+            return NotFound();
+        }
+
+        private async Task<IActionResult> GetCompanyByName(string companyName)
+        {
+            var result = await _companyService.GetByCompanyNameAsync(companyName);
+            if (result.Success)
+                return Ok(result.Value);
+
+            return NotFound();
         }
     }
 }

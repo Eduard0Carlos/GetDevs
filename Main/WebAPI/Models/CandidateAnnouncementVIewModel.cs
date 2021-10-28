@@ -17,6 +17,7 @@ namespace WebAPI.Models
                 Registered = model.Registered,
                 Announcement = new AnnouncementRegisterViewModel
                 {
+                    Id = model.Announcement.Id,
                     Title = model.Announcement.Title,
                     Description = model.Announcement.Description,
                     SkillRequired = model.Announcement.SkillRequired.ToString().Split(", "),

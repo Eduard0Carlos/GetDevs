@@ -17,12 +17,17 @@
             AnnouncementId = announcementId;
         }
 
-        public void SetAnnouncementId(Announcement announcement)
+        public void SetAnnouncement(Announcement announcement)
         {
             this.Announcement = announcement;
         }
 
-        public CandidateAnnouncement SetRegistered(bool registered)
+        public void SetAnnouncementId(int announcementId)
+        {
+            this.AnnouncementId = announcementId;
+        }
+
+        public CandidateAnnouncement SetRegistered(bool registered = true)
         {
             this.Registered = registered;
             return this;

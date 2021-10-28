@@ -41,20 +41,22 @@ namespace Application.Services
 
             foreach (var resume in resumeDataResult.Data)
             {
-                try
+                var resumeRegistered = await this.FindAsync(resume.CandidateId, announcementId);
+
+                if (resumeRegistered.Value == null)
                 {
-                    await this.InsertAsync(new CandidateAnnouncement(false, resume.CandidateId, announcement.Id));
-                }
-                catch (System.Exception)
-                {
-                    continue;
+                    try
+                    {
+                        await this.InsertAsync(new CandidateAnnouncement(false, resume.CandidateId, announcement.Id));
+                    }
+                    catch (System.Exception)
+                    {
+                        continue;
+                    }
                 }
             }
 
             return ResultFactory.CreateSuccessResult();
         }
-
-        
-
     }
 }

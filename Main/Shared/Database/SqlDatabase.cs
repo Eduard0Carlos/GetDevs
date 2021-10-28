@@ -2,6 +2,6 @@
 {
     public static class SqlDataBase
     {
-        public const string CONNECTION_STRING = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\carlo\Documents\Teste7.mdf;Integrated Security=True;Connect Timeout=30";
+        public const string CONNECTION_STRING = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Downloads\GetDevs\GetDevs\DataBase\GetDevsDb.mdf;Integrated Security=True;Connect Timeout=30";
     }
 }

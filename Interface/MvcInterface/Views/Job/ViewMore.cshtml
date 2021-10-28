@@ -6,12 +6,12 @@
 <form method="post" style="width: 100%">
     <div class="grid-resume shadow" style="padding-bottom: 125px !important; padding-top: 125px !important;">
         <div class="content-lg container resume-item">
-            <div class="margin-b-40" style="width: 60%; margin-left: auto; margin-right: auto">
+            <div class="margin-b-40" style="width: 85%; margin-left: auto; margin-right: auto">
                 @if (Model != null)
                 {
                     @foreach (var item in @Model)
                     {
-                        <h1>@item.Name</h1>
+                        <h3 class="black" style="border-bottom: 2px solid #EAEAEA; text-transform: uppercase;">@item.Name</h3>
                     }
                 }
             </div>

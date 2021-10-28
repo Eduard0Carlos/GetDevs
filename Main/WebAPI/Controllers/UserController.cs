@@ -1,12 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -26,7 +20,6 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var result = await _userService.GetByIdAsync(id);
-
             if (result.Success)
                 return Ok(result);
 
@@ -37,7 +30,6 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _userService.DeleteAsync(id);
-
             if (result.Success)
                 return Ok(result);
 
@@ -46,11 +38,10 @@ namespace WebAPI.Controllers
 
         public async Task<IActionResult> Put(User user)
         {
-            var result = await _userService.InsertAsync(user);
+            var result = await _userService.UpdateAsync(user);
             if (result.Success)
-            {
                 return Ok(result);
-            }
+            
             return NotFound(result);
         }
 

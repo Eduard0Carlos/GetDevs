@@ -1,35 +1,38 @@
-﻿@{
-    Layout = $"~/Views/Shared/_LayoutFooterHidden.cshtml";
-    ViewData["Title"] = "Vagas";
-}
+﻿@{ Layout = $"~/Views/Shared/_LayoutFooterHidden.cshtml";
+                ViewData["Title"] = "Vagas"; }
 
 <div style="width: 100%; margin-top: 200px; margin-bottom: 100px;">
     <div class="grid-job" style="width: 80%; margin-left: auto; margin-right: auto;">
         @if (Model != null)
         {
             @foreach (var item in Model)
+            {
+<div class="wow fadeInUp animated fadein-effect" data-wow-delay=".3s" data-wow-duration=".3" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+    <div class="rounded-job fadein-effect">
+        <h2 style="text-transform: uppercase;">@item.Announcement.Title</h2>
+        <h4>@item.Announcement.Description</h4>
+        <p>Vagas Disponíveis: @item.Announcement.AvaibleVacancy</p>
+        <p>Data de expiração: @item.Announcement.ExpiredDate</p>
+        @*<a href="@ViewBag.Company.Url"><p>Empresa: @ViewBag.Company.Name</p></a>*@
+    <form method="post">
+        <input type="hidden" name="id" value="@item.Announcement.Id" hidden>
+        <input type="hidden" name="registered" value="@item.Registered" hidden>
+        @if (item.Registered)
         {
-            <div class="wow fadeInUp animated fadein-effect" data-wow-delay=".3s" data-wow-duration=".3" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
-                <div class="rounded-job fadein-effect">
-                    <h2 style="text-transform: uppercase;">@item.Announcement.Title</h2>
-                    <h4>@item.Announcement.Description</h4>
-                    <p>Vagas Disponíveis: @item.Announcement.AvaibleVacancy</p>
-                    <p>Data de expiração: @item.Announcement.ExpiredDate</p>
-                    @*<a href="@ViewBag.Company.Url"><p>Empresa: @ViewBag.Company.Name</p></a>*@
-                    <form method="post">
-                        <input type="hidden" name="id" value="@item.Announcement.Id" hidden>
-                        <input type="hidden" name="registered" value="@item.Registered" hidden>
-                        <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Candidatar-se</button>
-                    </form>
-                </div>
-            </div>
-        }
+    <div class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button-choosed">Cadastrado</div>}
+
+else
+{
+    <button type="submit" class="btn-theme btn-theme-sm btn-base-bg text-uppercase form-button">Candidatar-se</button>}
+    </form>
+    </div>
+</div>}
         }
     </div>
 </div>
 
 @section Scripts {
-<script type="text/javascript">
-    $("body").css("background-color", "#F3F2EF");
-</script>
+    <script type="text/javascript">
+        $("body").css("background-color", "#F3F2EF");
+    </script>
 }
